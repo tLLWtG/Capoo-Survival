@@ -9,7 +9,7 @@ Just download the newest "Capoo-Survival" in the [Releases](https://github.com/t
 ## Developers
 
 * [tLLWtG](https://github.com/tLLWtG)
-* [chasestar1]()
+* [chasestar1](https://github.com/chasestar1)
 * [wegret](https://github.com/wegret)
 
 > Names are in no particular order.

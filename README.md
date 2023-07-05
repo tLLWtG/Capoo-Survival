@@ -1,4 +1,4 @@
-# Capoo-Survival.
+# Capoo-Survival
 
 一个以猫猫虫为主题的幸存者 like 游戏，使用 SFML 作为游戏的多媒体库。
 

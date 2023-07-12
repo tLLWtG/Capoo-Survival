@@ -1,58 +1,115 @@
+#include "stdafx.h"
 #include "Game.h"
 
-Game::Game() : _window(sf::VideoMode(800, 600), "Capoo-Survival"), _player()
+void Game::Start(int frame_per_seconds)
 {
+	if (_gameState != Uninitialized)
+		return;
 
+	_mainWindow.create(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32), "Pang!");
+
+	_mainWindow.setFramerateLimit(frame_per_seconds);
+
+	// 在这里初始化游戏内的对象
+
+	_gameState = Game::ShowingSplash;
+
+
+	while (!IsExiting())
+	{
+		GameLoop();
+	}
+
+	_mainWindow.close();
 }
 
-void Game::run(int frame_per_seconds)
+bool Game::IsExiting()
 {
-	sf::Clock clock;
-	sf::Time timeSinceLastUpdate = sf::Time::Zero;
-	sf::Time TimePerFrame = sf::seconds(1.f / frame_per_seconds);
+	if (_gameState == Game::Exiting)
+		return true;
+	else
+		return false;
+}
 
-	while (_window.isOpen())
+
+sf::RenderWindow& Game::GetWindow()
+{
+	return _mainWindow;
+}
+
+const sf::Event& Game::GetInput()
+{
+	sf::Event currentEvent;
+	_mainWindow.pollEvent(currentEvent);
+	return currentEvent;
+}
+
+const GameObjectManager& Game::GetGameObjectManager()
+{
+	return Game::_gameObjectManager;
+}
+
+void Game::GameLoop()
+{
+	sf::Event currentEvent;
+	_mainWindow.pollEvent(currentEvent);
+
+
+	switch (_gameState)
 	{
-		processEvents();
-		bool repaint = false;
-		timeSinceLastUpdate += clock.restart();
-		while (timeSinceLastUpdate > TimePerFrame)
+	case Game::ShowingMenu:
+	{
+		ShowMenu();
+		break;
+	}
+	case Game::ShowingSplash:
+	{
+		ShowSplashScreen();
+		break;
+	}
+	case Game::Playing:
+	{
+		_mainWindow.clear(sf::Color(0, 0, 0));
+
+		_gameObjectManager.UpdateAll();
+		_gameObjectManager.DrawAll(_mainWindow);
+
+		_mainWindow.display();
+		if (currentEvent.type == sf::Event::Closed) _gameState = Game::Exiting;
+
+		if (currentEvent.type == sf::Event::KeyPressed)
 		{
-			timeSinceLastUpdate -= TimePerFrame;
-			repaint = true;
-			//update(TimePerFrame);
+			if (currentEvent.key.code == sf::Keyboard::Escape) ShowMenu();
 		}
-		if (repaint)
-			render();
+
+		break;
+	}
 	}
 }
 
-void Game::processEvents()
+void Game::ShowSplashScreen()
 {
-	sf::Event event;
-
-	while (_window.pollEvent(event))
-	{
-		if (event.type == sf::Event::Closed)
-		{
-			_window.close();
-		}
-		else if (event.type == sf::Event::KeyPressed)
-		{
-		}
-		else if (event.type == sf::Event::KeyReleased)
-		{
-		}
-	}
+	//SplashScreen splashScreen;
+	//splashScreen.Show(_mainWindow);
+	//_gameState = Game::ShowingMenu;
 }
 
-void Game::update(sf::Time deltaTime)
+void Game::ShowMenu()
 {
+	//MainMenu mainMenu;
+	//MainMenu::MenuResult result = mainMenu.Show(_mainWindow);
+	//switch (result)
+	//{
+	//case MainMenu::Exit:
+	//	_gameState = Exiting;
+	//	break;
+	//case MainMenu::Play:
+	//	_gameObjectManager.clock.restart();
+	//	_gameState = Playing;
+	//	break;
+	//}
 }
 
-void Game::render()
-{
-	_window.clear();
-	_window.draw(_player);
-	_window.display();
-}
+Game::GameState Game::_gameState = Uninitialized;
+sf::RenderWindow Game::_mainWindow;
+GameObjectManager Game::_gameObjectManager;

@@ -1,25 +1,32 @@
 #pragma once
 
-#include <SFML/System.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
-
-#include "Player.h"
+#include "GameObjectManager.h"
 
 class Game
 {
 public:
-	Game(const Game&) = delete;
-	Game& operator = (const Game&) = delete;
-	Game();
-	void run(int minimum_frame_per_seconds);
+	static void Start(int frame_per_seconds);
+	static sf::RenderWindow& GetWindow();
+	const static sf::Event& GetInput();
+	const static GameObjectManager& GetGameObjectManager();
+
+	const static int SCREEN_WIDTH = 1280;
+	const static int SCREEN_HEIGHT = 720;
 
 private:
-	void processEvents();
-	void update(sf::Time deltaTime);
-	void render();
+	static bool IsExiting();
+	static void GameLoop();
 
-	sf::RenderWindow _window;
-	Player _player;
+	static void ShowSplashScreen();
+	static void ShowMenu();
+
+	enum GameState {
+		Uninitialized, ShowingSplash, Paused,
+		ShowingMenu, Playing, Exiting
+	};
+
+	static GameState _gameState;
+	static sf::RenderWindow _mainWindow;
+
+	static GameObjectManager _gameObjectManager;
 };

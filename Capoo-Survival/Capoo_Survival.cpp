@@ -1,9 +1,9 @@
+#include "stdafx.h"
 #include "Game.h"
 
 int main(int argc, char* argv[])
 {
-	Game game;
-	game.run(60);
+	Game::Start(60);
 
 	return 0;
 }

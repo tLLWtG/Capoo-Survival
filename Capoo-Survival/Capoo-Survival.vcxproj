@@ -22,12 +22,16 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Capoo_Survival.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
+    <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="PlayerChick.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="VisibleGameObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObjectManager.h" />
+    <ClInclude Include="Monster.h" />
+    <ClInclude Include="PlayerChick.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="VisibleGameObject.h" />
   </ItemGroup>

@@ -19,9 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Archive.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Capoo_Survival.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
+    <ClCompile Include="jsoncpp.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="PlayerChick.cpp" />
     <ClCompile Include="stdafx.cpp" />
@@ -30,8 +32,11 @@
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObjectManager.h" />
+    <ClInclude Include="json\json-forwards.h" />
+    <ClInclude Include="json\json.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="PlayerChick.h" />
+    <ClInclude Include="Archive.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="VisibleGameObject.h" />
   </ItemGroup>
@@ -87,6 +92,12 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -94,7 +105,7 @@
       <PreprocessorDefinitions>SFML_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\tllwtg\Documents\cpp_lib\SFML-2.6.0-windows-vc17-32-bit\SFML-2.6.0\include</AdditionalIncludeDirectories>
-      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -112,7 +123,7 @@
       <PreprocessorDefinitions>SFML_STATIC;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\tllwtg\Documents\cpp_lib\SFML-2.6.0-windows-vc17-32-bit\SFML-2.6.0\include</AdditionalIncludeDirectories>
-      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

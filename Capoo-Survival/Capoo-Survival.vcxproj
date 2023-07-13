@@ -26,8 +26,11 @@
     <ClCompile Include="VisibleGameObject.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animator.h" />
+    <ClInclude Include="AssertManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObjectManager.h" />
+    <ClInclude Include="Obstacle.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="VisibleGameObject.h" />
   </ItemGroup>

@@ -14,8 +14,12 @@ public:
 
 	sf::Vector2f GetVelocity() const;
 
-	int health;
-	int maxHealth;
+	float health;
+	float maxHealth;
+	float baseDamage;
+	int score;
+	void getDamage(float damage);
+
 private:
 	sf::Vector2f _velocity;
 	sf::Vector2f _maxVelocity;

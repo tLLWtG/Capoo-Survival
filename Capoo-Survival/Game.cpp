@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "Game.h"
+#include "GameObjectManager.h"
+#include "PlayerChick.h"
 
 void Game::Start(int frame_per_seconds)
 {
@@ -11,6 +13,13 @@ void Game::Start(int frame_per_seconds)
 	_mainWindow.setFramerateLimit(frame_per_seconds);
 
 	// 在这里初始化游戏内的对象
+	PlayerChick* player = new PlayerChick();
+	player->SetPosition(0, 0);
+	_gameObjectManager.Add("player", player);
+
+	view.reset(sf::FloatRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT));
+	view.setCenter(sf::Vector2f(0, 0));
+	_mainWindow.setView(view);
 
 	_gameState = Game::ShowingSplash;
 
@@ -113,3 +122,4 @@ void Game::ShowMenu()
 Game::GameState Game::_gameState = Uninitialized;
 sf::RenderWindow Game::_mainWindow;
 GameObjectManager Game::_gameObjectManager;
+sf::View Game::view;

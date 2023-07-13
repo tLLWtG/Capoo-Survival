@@ -12,6 +12,8 @@ public:
 
 	const static int SCREEN_WIDTH = 1280;
 	const static int SCREEN_HEIGHT = 720;
+	static sf::View view;
+
 
 private:
 	static bool IsExiting();

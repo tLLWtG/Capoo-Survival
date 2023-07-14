@@ -1,5 +1,5 @@
-#include "stdafx.h"
 #include "SplashScreen.h"
+#include "AssetManager.h"
 
 SplashScreen::SplashScreen() :_font(AssetManager::GetFont("Font/pixel.ttf")) {
 	_text.setFont(_font);
@@ -11,7 +11,7 @@ SplashScreen::SplashScreen() :_font(AssetManager::GetFont("Font/pixel.ttf")) {
 	_peroration.setFillColor(sf::Color::White);
 }
 
-void SplashScreen::printText(sf::Text& text,sf::RenderWindow& window) {
+void SplashScreen::printText(sf::Text& text, sf::RenderWindow& window) {
 	text.setOrigin(text.getLocalBounds().width / 2, text.getLocalBounds().height / 2);
 	text.setPosition((float)(window.getSize().x / 2), (float)(window.getSize().y / 2));
 	window.draw(text);
@@ -23,7 +23,7 @@ void SplashScreen::show(sf::RenderWindow& window) {
 
 	const std::wstring target_text = L"Waiting...";
 
-	const float interval = 0.2f;
+	const float interval = 0.13f;
 	const float waitingTime = 1.0f;
 	float elapsedTime = 0.0f;
 	int currentPos = 0;
@@ -37,21 +37,21 @@ void SplashScreen::show(sf::RenderWindow& window) {
 		while (window.pollEvent(event)) {
 			if (event.type == sf::Event::Closed)
 				window.close();
-				if (over && event.type == sf::Event::KeyPressed)
-					fade_state = true;
+			if (over && event.type == sf::Event::KeyPressed)
+				fade_state = true;
 		}
 		window.clear(sf::Color::Black);
-		printText(over?_peroration:_text,window);
+		printText(over ? _peroration : _text, window);
 		window.display();
 		if (fade_state) {
-			const float fadeSpeed = 1.0f;
+			const float fadeSpeed = 3.0f;
 			float fadeAlpha = 0.0f;
 			sf::RectangleShape fadeRect(sf::Vector2f(window.getSize().x, window.getSize().y));
 			fadeRect.setFillColor(sf::Color::Black);
 			while (fadeAlpha < 255.0f) {
 				fadeRect.setFillColor(sf::Color(0, 0, 0, static_cast<sf::Uint8>(fadeAlpha)));
 				window.clear();
-				printText(_peroration,window);
+				printText(_peroration, window);
 				window.draw(fadeRect);
 				window.display();
 				fadeAlpha += fadeSpeed;

@@ -3,9 +3,7 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
 
-#include "stdafx.h"
-
-sf::Vector2u windowSize_init = { 800,600 };
+#include "AssetManager.h"
 
 bool interface_uninitialized = true;
 sf::Font font_pixel;
@@ -53,7 +51,7 @@ private:
 
 public:
 	std::string name;
-	Button(const sf::Vector2f position, std::string const& filepath, std::string const& buttonName) {	// 中心位置，PNG文件路径，按钮命名
+	Button(const sf::Vector2f position, std::string const& filepath, std::string const& buttonName) {
 		_type = Icon;
 		name = buttonName;
 
@@ -64,7 +62,7 @@ public:
 
 		_rect = getSpriteBounds(_sprite);
 	}
-	Button(const sf::Vector2f position, const std::wstring& str, std::string const& buttonName) {		// 中心位置，字符串，按钮命名
+	Button(const sf::Vector2f position, const std::wstring& str, std::string const& buttonName) {
 		_type = Text;
 		name = buttonName;
 
@@ -141,7 +139,7 @@ public:
 			interface_uninitialized = false;
 		}
 	}
-	void addIconButton(const sf::Vector2f& position, std::string const& filepath, std::string const& name) {		// 中心位置，PNG文件路径，按钮名字
+	void addIconButton(const sf::Vector2f& position, std::string const& filepath, std::string const& name) {
 		_buttons.push_back(Button::Button(position, filepath, name));
 	}
 	void addTextButton(const sf::Vector2f& position, const std::wstring& str, std::string const& name) {

@@ -1,4 +1,7 @@
 #include "AssetManager.h"
+#include <assert.h>
+
+AssetManager assetmanager;
 
 AssetManager* AssetManager::sInstance = nullptr;
 
@@ -7,11 +10,15 @@ AssetManager::AssetManager() {
     sInstance = this;
 }
 
+sf::Texture& AssetManager::GetTexture(std::string const& filename) {
+    auto& texMap = sInstance->m_Textures;
 AssetManager::~AssetManager()
 {
     sInstance = nullptr;
 }
 
+    auto pairFound = texMap.find(filename);
+    if (pairFound != texMap.end()) {
 sf::Music& AssetManager::GetMusic(std::string const& filename) {
     auto& MusMap = sInstance->m_Musics;
 
@@ -20,20 +27,20 @@ sf::Music& AssetManager::GetMusic(std::string const& filename) {
         return pairFound->second;
     }
 
-    auto& music = MusMap[filename];
-    music.openFromFile(filename);
-    return music;
+    auto& texture = texMap[filename];
+    texture.loadFromFile(filename);
+    return texture;
 }
 
 sf::Font& AssetManager::GetFont(std::string const& filename) {
-    auto& FonMap = sInstance->m_Fonts;
+    auto& fontMap = sInstance->m_Fonts;
 
-    auto pairFound = FonMap.find(filename);
-    if (pairFound != FonMap.end()) {
+    auto pairFound = fontMap.find(filename);
+    if (pairFound != fontMap.end()) {
         return pairFound->second;
     }
 
-    auto& font = FonMap[filename];
+    auto& font = fontMap[filename];
     font.loadFromFile(filename);
     return font;
 }

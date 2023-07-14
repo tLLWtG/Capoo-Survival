@@ -24,6 +24,8 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Capoo_Survival.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
+    <ClCompile Include="Interface.cpp" />
+    <ClCompile Include="SplashScreen.cpp" />
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="VisibleGameObject.cpp" />
@@ -33,9 +35,29 @@
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObjectManager.h" />
-    <ClInclude Include="Obstacle.h" />
+    <ClInclude Include="Interface.h" />
+    <ClInclude Include="Mainmenu.h" />
+    <ClInclude Include="SplashScreen.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Sword.h" />
     <ClInclude Include="VisibleGameObject.h" />
+    <ClInclude Include="Weapon.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Font\pixel.ttf" />
+    <Font Include="Font\pixel1.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Image\IconButton\item_0.png" />
+    <Image Include="Image\IconButton\item_1.png" />
+    <Image Include="Image\IconButton\music.png" />
+    <Image Include="Image\IconButton\setting.png" />
+    <Image Include="Image\IconButton\volume.png" />
+    <Image Include="Image\Mainmenu\background_glass.png" />
+    <Image Include="Image\Mainmenu\cloud_1285x61.png" />
+    <Image Include="Image\Mouse\mouse.png" />
+    <Image Include="Image\Weapon\sword_attack_160x160.png" />
+    <Image Include="Image\Weapon\sword_hold_160x160.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

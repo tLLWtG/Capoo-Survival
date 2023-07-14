@@ -33,7 +33,7 @@ public:
 	virtual bool SwitchAnimation(std::string const& name);
 	virtual std::string GetCurrentAnimationName()const;
 
-	// void update(sf::Time const& dt);// 在派生类中实现
+	 void update(sf::Time const& dt);// 在派生类中实现
 private:
 	virtual Animator::Animation* FindAnimation(std::string const& name);
 	virtual void SwitchAnimation(Animator::Animation* animation);

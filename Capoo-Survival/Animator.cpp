@@ -5,7 +5,7 @@
 Animator::Animator(sf::Sprite& sprite) :m_Sprite(sprite), m_CurrentTime(), m_CurrentAnimation(nullptr) {}
 Animator::~Animator() {}
 
-Animator::Animation& Animator::CreateAnimation(string const& name, string const textureName, sf::Time const& duration, bool loop)
+Animator::Animation& Animator::CreateAnimation(std::string const& name, std::string const textureName, sf::Time const& duration, bool loop)
 {
 	m_Animations.push_back(Animator::Animation(name, textureName, duration, loop));
 
@@ -27,7 +27,7 @@ void Animator::SwitchAnimation(Animator::Animation* animation)
 	m_CurrentTime = sf::Time::Zero;
 }
 
-Animator::Animation* Animator::FindAnimation(string const& name)
+Animator::Animation* Animator::FindAnimation(std::string const& name)
 {
 	for (auto it = m_Animations.begin(); it != m_Animations.end(); it++)
 	{
@@ -37,7 +37,7 @@ Animator::Animation* Animator::FindAnimation(string const& name)
 	return nullptr;
 }
 
-bool Animator::SwitchAnimation(string const& name)
+bool Animator::SwitchAnimation(std::string const& name)
 {
 	auto animation = FindAnimation(name);
 	if (animation != nullptr)
@@ -49,7 +49,7 @@ bool Animator::SwitchAnimation(string const& name)
 	return false;
 }
 
-string Animator::GetCurrentAnimationName()const
+std::string Animator::GetCurrentAnimationName()const
 {
 
 	if (m_CurrentAnimation != nullptr)

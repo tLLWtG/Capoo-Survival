@@ -34,17 +34,8 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="Obstacle.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="VisibleGameObject.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Capoo-Survival.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="5.png" />
-    <Image Include="test1.png" />
-    <Image Include="test2.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

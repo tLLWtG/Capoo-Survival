@@ -8,7 +8,7 @@ void Game::Start(int frame_per_seconds)
 	if (_gameState != Uninitialized)
 		return;
 
-	_mainWindow.create(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32), "Pang!");
+	_mainWindow.create(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32), "Pang!", sf::Style::Titlebar | sf::Style::Close);
 
 	_mainWindow.setFramerateLimit(frame_per_seconds);
 
@@ -56,6 +56,11 @@ const sf::Event& Game::GetInput()
 const GameObjectManager& Game::GetGameObjectManager()
 {
 	return Game::_gameObjectManager;
+}
+
+const sf::Vector2f Game::GetPlayerPosition()
+{
+	return _gameObjectManager.Get("player")->GetPosition();
 }
 
 void Game::GameLoop()

@@ -9,9 +9,12 @@ public:
 	static sf::RenderWindow& GetWindow();
 	const static sf::Event& GetInput();
 	const static GameObjectManager& GetGameObjectManager();
-
+	const static sf::Vector2f GetPlayerPosition();
+	
+	static sf::View view;
 	const static int SCREEN_WIDTH = 1280;
 	const static int SCREEN_HEIGHT = 720;
+
 
 	enum GameState {
 		Uninitialized, ShowingSplash, Paused,

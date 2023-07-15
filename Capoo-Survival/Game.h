@@ -32,4 +32,6 @@ private:
 	static sf::RenderWindow _mainWindow;
 
 	static GameObjectManager _gameObjectManager;
+	static SplashScreen _splashscreen;
+	static MainMenu _mainmenu;
 };

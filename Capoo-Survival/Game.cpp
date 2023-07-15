@@ -2,6 +2,8 @@
 #include "Game.h"
 #include "GameObjectManager.h"
 #include "PlayerChick.h"
+#include "SplashScreen.h"
+#include "MainMenu.h"
 
 void Game::Start(int frame_per_seconds)
 {
@@ -103,28 +105,28 @@ void Game::GameLoop()
 
 void Game::ShowSplashScreen()
 {
-	//SplashScreen splashScreen;
-	//splashScreen.Show(_mainWindow);
-	//_gameState = Game::ShowingMenu;
+	_splashscreen.show(_mainWindow);
+	_gameState = Game::ShowingMenu;
 }
 
 void Game::ShowMenu()
 {
-	//MainMenu mainMenu;
-	//MainMenu::MenuResult result = mainMenu.Show(_mainWindow);
-	//switch (result)
-	//{
-	//case MainMenu::Exit:
-	//	_gameState = Exiting;
-	//	break;
-	//case MainMenu::Play:
-	//	_gameObjectManager.clock.restart();
-	//	_gameState = Playing;
-	//	break;
-	//}
+	MainMenu::MenuResult result = _mainmenu.Show(_mainWindow);
+	switch (result)
+	{
+	case MainMenu::Exit:
+		_gameState = Exiting;
+		break;
+	case MainMenu::Play:
+		_gameObjectManager.clock.restart();
+		_gameState = Playing;
+		break;
+	}
 }
 
 Game::GameState Game::_gameState = Uninitialized;
 sf::RenderWindow Game::_mainWindow;
 GameObjectManager Game::_gameObjectManager;
 sf::View Game::view;
+SplashScreen Game::_splashscreen;
+MainMenu Game::_mainmenu;

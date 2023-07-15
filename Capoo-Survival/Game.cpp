@@ -8,7 +8,7 @@ void Game::Start(int frame_per_seconds)
 	if (_gameState != Uninitialized)
 		return;
 
-	_mainWindow.create(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32), "Pang!", sf::Style::Titlebar | sf::Style::Close);
+	_mainWindow.create(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32), "Capoo-Survival!", sf::Style::Titlebar | sf::Style::Close);
 
 	_mainWindow.setFramerateLimit(frame_per_seconds);
 

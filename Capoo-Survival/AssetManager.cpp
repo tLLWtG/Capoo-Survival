@@ -10,51 +10,47 @@ AssetManager::AssetManager() {
     sInstance = this;
 }
 
-sf::Texture& AssetManager::GetTexture(std::string const& filename) {
-    auto& texMap = sInstance->m_Textures;
 AssetManager::~AssetManager()
 {
     sInstance = nullptr;
 }
 
-    auto pairFound = texMap.find(filename);
-    if (pairFound != texMap.end()) {
 sf::Music& AssetManager::GetMusic(std::string const& filename) {
-    auto& MusMap = sInstance->m_Musics;
+    auto& MusicMap = sInstance->m_Musics;
 
-    auto pairFound = MusMap.find(filename);
-    if (pairFound != MusMap.end()) {
+    auto pairFound = MusicMap.find(filename);
+    if (pairFound != MusicMap.end()) {
         return pairFound->second;
     }
 
-    auto& texture = texMap[filename];
-    texture.loadFromFile(filename);
-    return texture;
+    auto& music = MusicMap[filename];
+    music.openFromFile(filename);
+    return music;
 }
 
 sf::Font& AssetManager::GetFont(std::string const& filename) {
-    auto& fontMap = sInstance->m_Fonts;
+    auto& FontMap = sInstance->m_Fonts;
 
-    auto pairFound = fontMap.find(filename);
-    if (pairFound != fontMap.end()) {
+    auto pairFound = FontMap.find(filename);
+    if (pairFound != FontMap.end()) {
         return pairFound->second;
     }
 
-    auto& font = fontMap[filename];
+    auto& font = FontMap[filename];
     font.loadFromFile(filename);
     return font;
 }
 
 
 sf::Texture& AssetManager::GetTexture(std::string const& filename) {
-    auto& texMap = sInstance->m_Textures;
+    auto& TextureMap = sInstance->m_Textures;
 
-    auto pairFound = texMap.find(filename);
-    if (pairFound != texMap.end()) {
+    auto pairFound = TextureMap.find(filename);
+    if (pairFound != TextureMap.end()) {
         return pairFound->second;
     }
 
-    auto& texture = texMap[filename];
+    auto& texture = TextureMap[filename];
     texture.loadFromFile(filename);
     return texture;
 }

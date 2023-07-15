@@ -27,7 +27,7 @@ public:
 	}
 	Game::GameState show(sf::RenderWindow& window) {
 		static sf::Sprite background_sprite;
-		background_sprite.setPosition(0,300);
+		background_sprite.setPosition(0, 300);
 		Animator animator(background_sprite);
 		auto& cloudAnimation = animator.CreateAnimation("clouds", "Image/Mainmenu/cloud_1285x61.png", sf::seconds(2), true);
 		cloudAnimation.AddFrames(sf::Vector2i(0, 0), sf::Vector2i(1285, 61), 30);
@@ -36,7 +36,7 @@ public:
 		while (window.isOpen()) {
 			sf::Event event;
 			while (window.pollEvent(event)) {
-				if (event.type == sf::Event::Closed) 
+				if (event.type == sf::Event::Closed)
 					return Game::GameState::Exiting;
 				else if (event.type == sf::Event::MouseButtonPressed) {
 					std::string buttonName = getClickButtonName(getMousePosition(window));

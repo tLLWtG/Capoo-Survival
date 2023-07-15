@@ -1,6 +1,8 @@
 #pragma once
 
 #include "GameObjectManager.h"
+#include "SplashScreen.h"
+#include "Mainmenu.h"
 
 class Game
 {
@@ -33,5 +35,5 @@ private:
 
 	static GameObjectManager _gameObjectManager;
 	static SplashScreen _splashscreen;
-	static MainMenu _mainmenu;
+	static Mainmenu _mainmenu;
 };

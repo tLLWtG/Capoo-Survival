@@ -3,7 +3,7 @@
 #include "GameObjectManager.h"
 #include "PlayerChick.h"
 #include "SplashScreen.h"
-#include "MainMenu.h"
+#include "Mainmenu.h"
 
 void Game::Start(int frame_per_seconds)
 {
@@ -111,17 +111,18 @@ void Game::ShowSplashScreen()
 
 void Game::ShowMenu()
 {
-	MainMenu::MenuResult result = _mainmenu.Show(_mainWindow);
-	switch (result)
-	{
-	case MainMenu::Exit:
-		_gameState = Exiting;
-		break;
-	case MainMenu::Play:
-		_gameObjectManager.clock.restart();
-		_gameState = Playing;
-		break;
-	}
+	//_mainmenu.init();
+	//Mainmenu::MenuResult result = _mainmenu.show(_mainWindow);
+	//switch (result)
+	//{
+	//case Mainmenu::Exiting:
+	//	_gameState = Exiting;
+	//	break;
+	//case Mainmenu::Playing:
+	//	_gameObjectManager.clock.restart();
+	//	_gameState = Playing;
+	//	break;
+	//}
 }
 
 Game::GameState Game::_gameState = Uninitialized;
@@ -129,4 +130,4 @@ sf::RenderWindow Game::_mainWindow;
 GameObjectManager Game::_gameObjectManager;
 sf::View Game::view;
 SplashScreen Game::_splashscreen;
-MainMenu Game::_mainmenu;
+Mainmenu Game::_mainmenu;

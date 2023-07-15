@@ -5,7 +5,7 @@
 
 #include "Interface.h"
 #include "Game.h"
-#include "Animation.h"
+#include "Animator.h"
 
 class Mainmenu : public Interface {
 public:

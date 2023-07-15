@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Animator.h"
 #include "AssetManager.h"
 
@@ -57,7 +58,7 @@ std::string Animator::GetCurrentAnimationName()const
 	return "";
 }
 
-void Animator::update(sf::Time const& dt)
+void Animator::Update(sf::Time const& dt)
 {
 
 	if (m_CurrentAnimation == nullptr)

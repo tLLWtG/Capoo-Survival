@@ -1,8 +1,7 @@
 #pragma once
 
-#include "stdafx.h"
 #include "VisibleGameObject.h"
-#include "Animation.h"
+#include "Animator.h"
 
 class Weapon :public VisibleGameObject {
 protected:

@@ -1,5 +1,5 @@
+#include "stdafx.h"
 #include "AssetManager.h"
-#include <assert.h>
 
 AssetManager assetmanager;
 

@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Obstacle.h"
 
 char Obstacle::cnt = '1';

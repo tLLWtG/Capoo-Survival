@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "SplashScreen.h"
 #include "AssetManager.h"
 

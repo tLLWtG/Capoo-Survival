@@ -51,6 +51,21 @@
     <ClCompile Include="Obstacle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Interface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SplashScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mainmenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sword.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -83,30 +98,66 @@
     <ClInclude Include="Animator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Obstacle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AssetManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
+    <ClInclude Include="Interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mainmenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SplashScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sword.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Obstacle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Capoo-Survival.rc">
+    <Image Include="Image\IconButton\item_0.png">
       <Filter>Resource Files</Filter>
-    </ResourceCompile>
+    </Image>
+    <Image Include="Image\IconButton\item_1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\IconButton\music.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\IconButton\setting.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\IconButton\volume.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\Mainmenu\background_glass.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\Mainmenu\cloud_1285x61.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\Mouse\mouse.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\Weapon\sword_attack_160x160.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\Weapon\sword_hold_160x160.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="test1.png">
+    <Font Include="Font\pixel.ttf">
       <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="test2.png">
+    </Font>
+    <Font Include="Font\pixel1.ttf">
       <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="5.png">
-      <Filter>Resource Files</Filter>
-    </Image>
+    </Font>
   </ItemGroup>
 </Project>

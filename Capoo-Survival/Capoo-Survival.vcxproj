@@ -26,13 +26,16 @@
     <ClCompile Include="Capoo_Survival.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="jsoncpp.cpp" />
+    <ClCompile Include="Mainmenu.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="PlayerChick.cpp" />
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="SplashScreen.cpp" />
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Sword.cpp" />
     <ClCompile Include="VisibleGameObject.cpp" />
+    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animator.h" />
@@ -42,6 +45,7 @@
     <ClInclude Include="json\json-forwards.h" />
     <ClInclude Include="json\json.h" />
     <ClInclude Include="Monster.h" />
+    <ClInclude Include="Obstacle.h" />
     <ClInclude Include="PlayerChick.h" />
     <ClInclude Include="Archive.h" />
     <ClInclude Include="Interface.h" />

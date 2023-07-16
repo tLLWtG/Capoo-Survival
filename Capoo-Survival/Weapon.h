@@ -17,13 +17,13 @@ public:
 	};
 	WeaponState weaponstate;
 
-	Weapon() : weaponstate(Holding),m_Animator(GetSprite()) {
+	Weapon() : weaponstate(Holding), m_Animator(GetSprite()) {
 
 	}
 	virtual void Update(float elapsedTime) {
 		if (weaponstate == Attacking) {
 			attackTime += elapsedTime;
-			if (attackTime >= attackDuration) 
+			if (attackTime >= attackDuration)
 				Hold();
 		}
 		m_Animator.Update(sf::seconds(elapsedTime));

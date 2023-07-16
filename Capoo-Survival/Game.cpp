@@ -18,7 +18,7 @@ void Game::Start(int frame_per_seconds)
 	PlayerChick* player = new PlayerChick();
 	player->SetPosition(0, 0);
 	_gameObjectManager.Add("player", player);
-	
+
 	view.reset(sf::FloatRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT));
 	view.setCenter(sf::Vector2f(0, 0));
 	_mainWindow.setView(view);
@@ -59,10 +59,10 @@ const GameObjectManager& Game::GetGameObjectManager()
 	return Game::_gameObjectManager;
 }
 
-const sf::Vector2f Game::GetPlayerPosition()
-{
-	return _gameObjectManager.Get("player")->GetPosition();
-}
+//const sf::Vector2f Game::GetPlayerPosition()
+//{
+//	return _gameObjectManager.Get("player")->GetPosition();
+//}
 
 void Game::GameLoop()
 {
@@ -113,12 +113,12 @@ void Game::ShowMenu()
 	Mainmenu::MenuResult result = _mainmenu.show(_mainWindow);
 	switch (result)
 	{
-		case Mainmenu::Exiting:
-			_gameState = Exiting;
-			break;
-		case Mainmenu::Playing:
-			_gameObjectManager.clock.restart();
-			_gameState = Playing;
+	case Mainmenu::Exiting:
+		_gameState = Exiting;
+		break;
+	case Mainmenu::Playing:
+		_gameObjectManager.clock.restart();
+		_gameState = Playing;
 		break;
 	}
 }

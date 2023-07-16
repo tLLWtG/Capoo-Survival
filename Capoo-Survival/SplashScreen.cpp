@@ -15,7 +15,7 @@ SplashScreen::SplashScreen() :_font(AssetManager::GetFont("Font/pixel.ttf")) {
 
 void SplashScreen::printText(sf::Text& text, sf::RenderWindow& window) {
 	text.setOrigin(text.getLocalBounds().width / 2, text.getLocalBounds().height / 2);
-	text.setPosition(Game::GetPlayerPosition());
+	text.setPosition(Game::view.getCenter());
 	window.draw(text);
 }
 

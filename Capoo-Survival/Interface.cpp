@@ -29,7 +29,7 @@ sf::Rect<int> Button::getSpriteBounds(const sf::Sprite& sprite) {
 	);
 	return rect;
 }
-Button::Button(const sf::Vector2f position, std::string const& filepath, std::string const& buttonName):_font(AssetManager::GetFont("Font/pixel.ttf")) {
+Button::Button(const sf::Vector2f position, std::string const& filepath, std::string const& buttonName) :_font(AssetManager::GetFont("Font/pixel.ttf")) {
 	_type = Icon;
 	name = buttonName;
 
@@ -49,19 +49,19 @@ Button::Button(const sf::Vector2f position, const std::wstring& str, std::string
 	sf::Texture& texture0 = AssetManager::GetTexture("Image/IconButton/item_0.png");
 	_icon_unpointed.setTexture(texture0);
 	_icon_unpointed.setOrigin(_icon_unpointed.getLocalBounds().width / 2, _icon_unpointed.getLocalBounds().height / 2);
-//	_icon_unpointed.setPosition(position.x, position.y);
+	//	_icon_unpointed.setPosition(position.x, position.y);
 
 	sf::Texture& texture1 = AssetManager::GetTexture("Image/IconButton/item_1.png");
 	_icon_pointed.setTexture(texture1);
 	_icon_pointed.setOrigin(_icon_pointed.getLocalBounds().width / 2, _icon_pointed.getLocalBounds().height / 2);
-//	_icon_pointed.setPosition(position.x, position.y);
+	//	_icon_pointed.setPosition(position.x, position.y);
 
 	_text.setString(str);
 	_text.setFont(_font);
 	_text.setCharacterSize(36);
 	_text.setFillColor(sf::Color::White);
 	_text.setOrigin(_text.getLocalBounds().width / 2, _text.getLocalBounds().height / 2);
-//	_text.setPosition(position.x, position.y - 10);
+	//	_text.setPosition(position.x, position.y - 10);
 
 	_rect = getSpriteBounds(_icon_unpointed);
 
@@ -108,7 +108,7 @@ void Button::draw(sf::RenderWindow& window) {
 	}
 }
 
-Interface::Interface():_font(AssetManager::GetFont("Font/pixel.ttf")) {
+Interface::Interface() :_font(AssetManager::GetFont("Font/pixel.ttf")) {
 	sf::Texture& texture = AssetManager::GetTexture("Image/Mouse/mouse.png");
 	_mouse.setTexture(texture);
 }

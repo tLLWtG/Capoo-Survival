@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "SplashScreen.h"
 #include "AssetManager.h"
+#include "Game.h"
 
 SplashScreen::SplashScreen() :_font(AssetManager::GetFont("Font/pixel.ttf")) {
 	_text.setFont(_font);
@@ -14,7 +15,7 @@ SplashScreen::SplashScreen() :_font(AssetManager::GetFont("Font/pixel.ttf")) {
 
 void SplashScreen::printText(sf::Text& text, sf::RenderWindow& window) {
 	text.setOrigin(text.getLocalBounds().width / 2, text.getLocalBounds().height / 2);
-	text.setPosition((float)(window.getSize().x / 2), (float)(window.getSize().y / 2));
+	text.setPosition(Game::GetPlayerPosition());
 	window.draw(text);
 }
 
@@ -48,6 +49,7 @@ void SplashScreen::show(sf::RenderWindow& window) {
 			const float fadeSpeed = 3.0f;
 			float fadeAlpha = 0.0f;
 			sf::RectangleShape fadeRect(sf::Vector2f(window.getSize().x, window.getSize().y));
+			fadeRect.setPosition(getWindowStart());
 			fadeRect.setFillColor(sf::Color::Black);
 			while (fadeAlpha < 255.0f) {
 				fadeRect.setFillColor(sf::Color(0, 0, 0, static_cast<sf::Uint8>(fadeAlpha)));

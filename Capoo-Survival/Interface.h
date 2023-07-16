@@ -1,9 +1,5 @@
 #pragma once
 
-#ifndef INTERFACE_H
-#define INTERFACE_H
-
-
 sf::Vector2f changeV2itoV2f(sf::Vector2i vec);
 sf::Vector2i changeV2ftoV2i(sf::Vector2f vec);
 sf::Vector2i getMousePosition(sf::RenderWindow& window);
@@ -64,4 +60,3 @@ private:
 	sf::Font _font;
 };
 
-#endif

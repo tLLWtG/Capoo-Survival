@@ -1,8 +1,5 @@
 #pragma once
 
-#ifndef MAINMENU_H
-#define MAINMENU_H
-
 #include "Interface.h"
 #include "Animator.h"
 
@@ -20,4 +17,3 @@ public:
 private:
 };
 
-#endif

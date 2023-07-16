@@ -14,15 +14,14 @@ void Game::Start(int frame_per_seconds)
 
 	_mainWindow.setFramerateLimit(frame_per_seconds);
 
-	// 在这里初始化游戏内的对象
+	// 鍦ㄨ繖閲屽垵濮嬪寲娓告垙鍐呯殑瀵硅薄
 	PlayerChick* player = new PlayerChick();
 	player->SetPosition(0, 0);
 	_gameObjectManager.Add("player", player);
-
+	
 	view.reset(sf::FloatRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT));
 	view.setCenter(sf::Vector2f(0, 0));
 	_mainWindow.setView(view);
-
 	_gameState = Game::ShowingSplash;
 
 
@@ -111,18 +110,17 @@ void Game::ShowSplashScreen()
 
 void Game::ShowMenu()
 {
-	//_mainmenu.init();
-	//Mainmenu::MenuResult result = _mainmenu.show(_mainWindow);
-	//switch (result)
-	//{
-	//case Mainmenu::Exiting:
-	//	_gameState = Exiting;
-	//	break;
-	//case Mainmenu::Playing:
-	//	_gameObjectManager.clock.restart();
-	//	_gameState = Playing;
-	//	break;
-	//}
+	Mainmenu::MenuResult result = _mainmenu.show(_mainWindow);
+	switch (result)
+	{
+		case Mainmenu::Exiting:
+			_gameState = Exiting;
+			break;
+		case Mainmenu::Playing:
+			_gameObjectManager.clock.restart();
+			_gameState = Playing;
+		break;
+	}
 }
 
 Game::GameState Game::_gameState = Uninitialized;

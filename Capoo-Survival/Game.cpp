@@ -1,16 +1,27 @@
 #include "stdafx.h"
 #include "Game.h"
+#include "GameObjectManager.h"
+#include "PlayerChick.h"
+#include "SplashScreen.h"
+#include "Mainmenu.h"
 
 void Game::Start(int frame_per_seconds)
 {
 	if (_gameState != Uninitialized)
 		return;
 
-	_mainWindow.create(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32), "Pang!");
+	_mainWindow.create(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32), "Capoo-Survival!", sf::Style::Titlebar | sf::Style::Close);
 
 	_mainWindow.setFramerateLimit(frame_per_seconds);
 
 	// 在这里初始化游戏内的对象
+	PlayerChick* player = new PlayerChick();
+	player->SetPosition(0, 0);
+	_gameObjectManager.Add("player", player);
+
+	view.reset(sf::FloatRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT));
+	view.setCenter(sf::Vector2f(0, 0));
+	_mainWindow.setView(view);
 
 	_gameState = Game::ShowingSplash;
 
@@ -47,6 +58,11 @@ const sf::Event& Game::GetInput()
 const GameObjectManager& Game::GetGameObjectManager()
 {
 	return Game::_gameObjectManager;
+}
+
+const sf::Vector2f Game::GetPlayerPosition()
+{
+	return _gameObjectManager.Get("player")->GetPosition();
 }
 
 void Game::GameLoop()
@@ -89,21 +105,20 @@ void Game::GameLoop()
 
 void Game::ShowSplashScreen()
 {
-	//SplashScreen splashScreen;
-	//splashScreen.Show(_mainWindow);
-	//_gameState = Game::ShowingMenu;
+	_splashscreen.show(_mainWindow);
+	_gameState = Game::ShowingMenu;
 }
 
 void Game::ShowMenu()
 {
-	//MainMenu mainMenu;
-	//MainMenu::MenuResult result = mainMenu.Show(_mainWindow);
+	//_mainmenu.init();
+	//Mainmenu::MenuResult result = _mainmenu.show(_mainWindow);
 	//switch (result)
 	//{
-	//case MainMenu::Exit:
+	//case Mainmenu::Exiting:
 	//	_gameState = Exiting;
 	//	break;
-	//case MainMenu::Play:
+	//case Mainmenu::Playing:
 	//	_gameObjectManager.clock.restart();
 	//	_gameState = Playing;
 	//	break;
@@ -113,3 +128,6 @@ void Game::ShowMenu()
 Game::GameState Game::_gameState = Uninitialized;
 sf::RenderWindow Game::_mainWindow;
 GameObjectManager Game::_gameObjectManager;
+sf::View Game::view;
+SplashScreen Game::_splashscreen;
+Mainmenu Game::_mainmenu;

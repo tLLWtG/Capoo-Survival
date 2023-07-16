@@ -19,17 +19,58 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Archive.cpp" />
+    <ClCompile Include="Animator.cpp" />
+    <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Capoo_Survival.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
+    <ClCompile Include="jsoncpp.cpp" />
+    <ClCompile Include="Mainmenu.cpp" />
+    <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="PlayerChick.cpp" />
+    <ClCompile Include="Interface.cpp" />
+    <ClCompile Include="SplashScreen.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Sword.cpp" />
     <ClCompile Include="VisibleGameObject.cpp" />
+    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animator.h" />
+    <ClInclude Include="AssetManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObjectManager.h" />
+    <ClInclude Include="json\json-forwards.h" />
+    <ClInclude Include="json\json.h" />
+    <ClInclude Include="Monster.h" />
+    <ClInclude Include="Obstacle.h" />
+    <ClInclude Include="PlayerChick.h" />
+    <ClInclude Include="Archive.h" />
+    <ClInclude Include="Interface.h" />
+    <ClInclude Include="Mainmenu.h" />
+    <ClInclude Include="SplashScreen.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Sword.h" />
     <ClInclude Include="VisibleGameObject.h" />
+    <ClInclude Include="Weapon.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Font\pixel.ttf" />
+    <Font Include="Font\pixel1.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Image\IconButton\item_0.png" />
+    <Image Include="Image\IconButton\item_1.png" />
+    <Image Include="Image\IconButton\music.png" />
+    <Image Include="Image\IconButton\setting.png" />
+    <Image Include="Image\IconButton\volume.png" />
+    <Image Include="Image\Mainmenu\background_glass.png" />
+    <Image Include="Image\Mainmenu\cloud_1285x61.png" />
+    <Image Include="Image\Mouse\mouse.png" />
+    <Image Include="Image\Weapon\sword_attack_160x160.png" />
+    <Image Include="Image\Weapon\sword_hold_160x160.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -83,6 +124,12 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -90,7 +137,7 @@
       <PreprocessorDefinitions>SFML_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\tllwtg\Documents\cpp_lib\SFML-2.6.0-windows-vc17-32-bit\SFML-2.6.0\include</AdditionalIncludeDirectories>
-      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -108,7 +155,7 @@
       <PreprocessorDefinitions>SFML_STATIC;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\tllwtg\Documents\cpp_lib\SFML-2.6.0-windows-vc17-32-bit\SFML-2.6.0\include</AdditionalIncludeDirectories>
-      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -12,6 +12,7 @@ Monster::Monster(std::string filename, std::string name) :
 	baseDamage(10.0f),
 	scores(10.0f),
 	lastAttackTime(0.0f),
+	_name(name),
 	animator(GetSprite())
 {
 	//Load("images/paddle.png");
@@ -90,6 +91,7 @@ void Monster::monsterDie()
 {
 	PlayerChick* player = dynamic_cast<PlayerChick*>(Game::GetGameObjectManager().Get("player"));
 	player->getScore(scores);
+	Game::GetMonsterManager().Erase(_name);
 	// ¶¯»­¡¢ÉùÒô
 	// Ïû³ı
 }

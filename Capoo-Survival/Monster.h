@@ -26,6 +26,7 @@ private:
 	void chase();
 	void attack();
 
+	std::string _name;
 	float lastAttackTime;
 	sf::Vector2f _velocity;
 	float _maxVelocity;

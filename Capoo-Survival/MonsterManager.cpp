@@ -4,7 +4,7 @@
 #include "Game.h"
 MonsterManager::MonsterManager()
 {
-	cnt = '1';
+	cnt = 0;
 }
 
 MonsterManager::~MonsterManager()
@@ -18,11 +18,20 @@ void MonsterManager::Update()
 	int width = Game::SCREEN_WIDTH;
 
 	std::string filename = "Image/Capoo/Capoo.png";
-	std::string name = "monster";
+	std::string name = "monster" + std::to_string(++cnt);
 
-	Monster* monster = new Monster(filename, name + '1');
-
-	Game::GetGameObjectManager().Add(name + '1', monster);
+	Monster* monster = new Monster(filename, name);
+	MonsterSet.insert(name);
+	Game::GetGameObjectManager().Add(name, monster);
 }
 
-char MonsterManager::cnt = 0;
+void MonsterManager::Erase(std::string name)
+{
+	Game::GetGameObjectManager().Remove(name);
+	MonsterSet.erase(name);
+}
+
+std::set<std::string>& MonsterManager::GetMonsterSet()
+{
+	return MonsterSet;
+}

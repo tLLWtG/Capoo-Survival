@@ -76,6 +76,11 @@ ObstacleManager& Game::GetObstacleManager()
 	return Game::_obstacleManager;
 }
 
+MonsterManager& Game::GetMonsterManager()
+{
+	return Game::_monsterManager;
+}
+
 void Game::GameLoop()
 {
 	sf::Event currentEvent;

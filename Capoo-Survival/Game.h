@@ -15,6 +15,7 @@ public:
 	static void GetDead();
 	static GameObjectManager& GetGameObjectManager();
 	static ObstacleManager& GetObstacleManager();
+	static MonsterManager& GetMonsterManager();
 	const static sf::Event& GetInput();
 
 	//const static sf::Vector2f GetPlayerPosition();

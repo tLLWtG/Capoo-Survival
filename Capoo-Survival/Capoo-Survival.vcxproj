@@ -28,10 +28,12 @@
     <ClCompile Include="jsoncpp.cpp" />
     <ClCompile Include="Mainmenu.cpp" />
     <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="MonsterManager.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
+    <ClCompile Include="ObstacleManager.cpp" />
     <ClCompile Include="PlayerChick.cpp" />
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="SplashScreen.cpp" />
-    <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Sword.cpp" />
     <ClCompile Include="VisibleGameObject.cpp" />
@@ -45,7 +47,9 @@
     <ClInclude Include="json\json-forwards.h" />
     <ClInclude Include="json\json.h" />
     <ClInclude Include="Monster.h" />
+    <ClInclude Include="MonsterManager.h" />
     <ClInclude Include="Obstacle.h" />
+    <ClInclude Include="ObstacleManager.h" />
     <ClInclude Include="PlayerChick.h" />
     <ClInclude Include="Archive.h" />
     <ClInclude Include="Interface.h" />
@@ -61,6 +65,8 @@
     <Font Include="Font\pixel1.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Image\Capoo\Capoo_14.png" />
+    <Image Include="Image\Capoo\Capoo_8.png" />
     <Image Include="Image\IconButton\item_0.png" />
     <Image Include="Image\IconButton\item_1.png" />
     <Image Include="Image\IconButton\music.png" />

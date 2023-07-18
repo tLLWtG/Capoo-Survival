@@ -1,21 +1,42 @@
 #include "stdafx.h"
 #include "Monster.h"
 #include "Game.h"
+#include "PlayerChick.h"
+#include "Animator.h"
 
-
-Monster::Monster() :
+Monster::Monster(std::string filename, std::string name) :
 	_velocity({ 0.0f, 0.0f }),
-	_maxVelocity({ 400.0f, 400.0f }),
+	_maxVelocity(40.0f),
 	health(100.0f),
 	maxHealth(100.0f),
 	baseDamage(10.0f),
-	score(10)
+	scores(10.0f),
+	lastAttackTime(0.0f),
+	animator(GetSprite())
 {
 	//Load("images/paddle.png");
 	//assert(IsLoaded());
 
-	GetSprite().setOrigin(GetSprite().getLocalBounds().width / 2, GetSprite().getLocalBounds().height / 2);
+	Load(filename);
+	
+	sf::Vector2i spriteSize1(100, 85);
+	auto& idleAnimation1 = animator.CreateAnimation("Idle", "Image/Capoo/Capoo_8.png", sf::seconds(1), true);
 
+	idleAnimation1.AddFrames(sf::Vector2i(0, 0), spriteSize1, 8);
+
+	GetSprite().setOrigin(GetSprite().getLocalBounds().width / 2, GetSprite().getLocalBounds().height / 2);
+	//std::cout << GetBoundingRect().width << std::endl;
+	srand(clock());
+	sf::Vector2f birthpos = { float(rand() % 1100), float(rand() % 600) };
+	while (5 != 3)
+	{
+		if ((birthpos.x > 900 || birthpos.x < 200) && (birthpos.y > 450 || birthpos.y < 150))
+			break;
+		birthpos = { float(rand() % 1100), float(rand() % 600) };
+	}
+	birthpos.x -= 550;
+	birthpos.y -= 300;
+	GetSprite().setPosition(birthpos.x + Game::view.getCenter().x, birthpos.y + Game::view.getCenter().y);
 }
 
 
@@ -35,13 +56,26 @@ sf::Vector2f Monster::GetVelocity() const
 
 void Monster::Update(float elapsedTime)
 {
+	//std::cout << GetPosition().x << " " << GetPosition().y << std::endl;
+	sf::Time t = sf::seconds(elapsedTime);
+	//if (Game::gameTime.getElapsedTime() < sf::seconds(20))
+	animator.Update(t);
+
+	
 	// ÑªÁ¿¼ì²â
+	if (health <= 0)
+	{
+		monsterDie();
+	}
+	
+	// upgrade
+	upgrade();
 
-	// Chase
-
-	// Åö×²¼ì²â
+	// chase
+	chase();
 
 	// attack
+	attack();
 
 	GetSprite().move(_velocity.x * elapsedTime, _velocity.y * elapsedTime);
 }
@@ -50,4 +84,50 @@ void Monster::getDamage(float damage)
 {
 	health -= damage;
 	// ¶¯»­¡¢ÉùÒô
+}
+
+void Monster::monsterDie()
+{
+	PlayerChick* player = dynamic_cast<PlayerChick*>(Game::GetGameObjectManager().Get("player"));
+	player->getScore(scores);
+	// ¶¯»­¡¢ÉùÒô
+	// Ïû³ý
+}
+
+void Monster::upgrade()
+{
+	sf::Time t = Game::gameTime.getElapsedTime();
+	int time = t.asSeconds();
+	int cal = pow(time / 50, 0.8);
+	baseDamage = 10 + cal;
+	// ÒÆËÙ£¬ÉúÃü
+}
+
+void Monster::chase()
+{
+	sf::Vector2f goalPositon = Game::view.getCenter();
+	float xd = goalPositon.x - GetPosition().x;
+	float yd = goalPositon.y - GetPosition().y;
+	float d = sqrtf(xd * xd + yd * yd);
+	_velocity.x = _maxVelocity * xd / d;
+	_velocity.y = _maxVelocity * yd / d;
+}
+
+void Monster::attack()
+{
+	// BUG
+	sf::Time t = Game::gameTime.getElapsedTime();
+	float time = t.asSeconds();
+	if (time - lastAttackTime >= 0.7)
+	{
+		return;
+	}
+	PlayerChick* player = dynamic_cast<PlayerChick*>(Game::GetGameObjectManager().Get("player"));
+	sf::Rect<float> playerRec = player->GetBoundingRect();
+	sf::Rect<float> monsterRec = GetBoundingRect();
+	if (playerRec.intersects(monsterRec))
+	{
+		lastAttackTime = time;
+		player->getDamage(baseDamage);
+	}
 }

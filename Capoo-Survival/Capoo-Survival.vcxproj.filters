@@ -48,9 +48,6 @@
     <ClCompile Include="AssetManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Obstacle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -64,6 +61,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sword.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Obstacle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ObstacleManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -117,7 +120,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Obstacle.h">
-      <Filter>Header Files</Filter>
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ObstacleManager.h">
+      <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +155,12 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Image\Weapon\sword_hold_160x160.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\Capoo\Capoo_8.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\Capoo\Capoo_14.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

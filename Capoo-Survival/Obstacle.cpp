@@ -1,21 +1,15 @@
 #include "stdafx.h"
 #include "Obstacle.h"
-
-char Obstacle::cnt = '1';
-
-Obstacle::Obstacle()
+#include "Game.h"
+Obstacle::Obstacle(std::string filename)
 {
-	int height = Game::SCREEN_HEIGHT;
-	int width = Game::SCREEN_WIDTH;
+	float ScreenHalfHeight = Game::SCREEN_HEIGHT;
+	float ScreenHalfWidth = Game::SCREEN_WIDTH;
 
-	std::string filename = "images/test0.png";
-
-	filename.erase(filename.begin() + 11);
-	filename.insert(filename.begin() + 11, cnt);
 	Load(filename);
 	assert(IsLoaded());
-	GetSprite().setOrigin(rand() % height - 200, rand() % width - 300);
-	cnt++;
+
+	GetSprite().setOrigin(rand() % (2 * (int)ScreenHalfWidth), rand() % (2 * (int)ScreenHalfHeight));
 }
 
 Obstacle::~Obstacle()
@@ -23,10 +17,11 @@ Obstacle::~Obstacle()
 
 }
 
-void Obstacle::Draw(sf::RenderWindow& rw)
+sf::Rect<float> Obstacle::GetBoundingRect()const
 {
-	VisibleGameObject::Draw(rw);
+	return VisibleGameObject::GetBoundingRect();
 }
+
 
 void Obstacle::Update(float elapsedTime)
 {
@@ -48,4 +43,9 @@ void Obstacle::Update(float elapsedTime)
 		this->GetSprite().setPosition(rand() % (2 * (int)ScreenHalfWidth), rand() % (2 * (int)ScreenHalfHeight));
 	}
 
+}
+
+void Obstacle::Draw(sf::RenderWindow& rw)
+{
+	VisibleGameObject::Draw(rw);
 }

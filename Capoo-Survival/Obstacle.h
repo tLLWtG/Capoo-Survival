@@ -1,17 +1,17 @@
 #pragma once
-
 #include "VisibleGameObject.h"
-#include "Game.h"
 
 class Obstacle : public VisibleGameObject
 {
 public:
-	Obstacle();
+	Obstacle(std::string filename);
 	~Obstacle();
 
 	void Update(float elapsedTime);
 	void Draw(sf::RenderWindow& rw);
 
+	sf::Rect<float> GetBoundingRect() const;
+
 private:
-	static char cnt;
+
 };

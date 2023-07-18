@@ -1,12 +1,12 @@
 #pragma once
 
 #include "VisibleGameObject.h"
-
+#include "Animator.h"
 class Monster :
 	public VisibleGameObject
 {
 public:
-	Monster();
+	Monster(std::string filename, std::string name);
 	~Monster();
 
 	void Update(float elapsedTime);
@@ -17,10 +17,17 @@ public:
 	float health;
 	float maxHealth;
 	float baseDamage;
-	int score;
+	float scores;
 	void getDamage(float damage);
 
 private:
+	void monsterDie();
+	void upgrade();
+	void chase();
+	void attack();
+
+	float lastAttackTime;
 	sf::Vector2f _velocity;
-	sf::Vector2f _maxVelocity;
+	float _maxVelocity;
+	Animator animator;
 };

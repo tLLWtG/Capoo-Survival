@@ -4,6 +4,9 @@
 #include "PlayerChick.h"
 #include "SplashScreen.h"
 #include "Mainmenu.h"
+#include "ObstacleManager.h"
+#include "Animator.h"
+#include "MonsterManager.h"
 
 void Game::Start(int frame_per_seconds)
 {
@@ -22,6 +25,8 @@ void Game::Start(int frame_per_seconds)
 	view.reset(sf::FloatRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT));
 	view.setCenter(sf::Vector2f(0, 0));
 	_mainWindow.setView(view);
+	_monsterManager.Update();
+
 	_gameState = Game::ShowingSplash;
 
 
@@ -47,6 +52,11 @@ sf::RenderWindow& Game::GetWindow()
 	return _mainWindow;
 }
 
+void Game::GetDead()
+{
+	_gameState = Dead;
+}
+
 const sf::Event& Game::GetInput()
 {
 	sf::Event currentEvent;
@@ -54,15 +64,15 @@ const sf::Event& Game::GetInput()
 	return currentEvent;
 }
 
-const GameObjectManager& Game::GetGameObjectManager()
+GameObjectManager& Game::GetGameObjectManager()
 {
 	return Game::_gameObjectManager;
 }
 
-//const sf::Vector2f Game::GetPlayerPosition()
-//{
-//	return _gameObjectManager.Get("player")->GetPosition();
-//}
+ObstacleManager& Game::GetObstacleManager()
+{
+	return Game::_obstacleManager;
+}
 
 void Game::GameLoop()
 {
@@ -84,11 +94,12 @@ void Game::GameLoop()
 	}
 	case Game::Playing:
 	{
-		_mainWindow.clear(sf::Color(0, 0, 0));
+		std::cout << view.getCenter().x << " " << view.getCenter().y << std::endl;
+		_mainWindow.clear(sf::Color::Black);
 
 		_gameObjectManager.UpdateAll();
 		_gameObjectManager.DrawAll(_mainWindow);
-
+		
 		_mainWindow.display();
 		if (currentEvent.type == sf::Event::Closed) _gameState = Game::Exiting;
 
@@ -97,6 +108,11 @@ void Game::GameLoop()
 			if (currentEvent.key.code == sf::Keyboard::Escape) ShowMenu();
 		}
 
+		break;
+	}
+	case Game::Dead:
+	{
+		ShowDieScreen();
 		break;
 	}
 	}
@@ -121,6 +137,12 @@ void Game::ShowMenu()
 		_gameState = Playing;
 		break;
 	}
+	Game::gameTime.restart();
+}
+
+void Game::ShowDieScreen()
+{
+
 }
 
 Game::GameState Game::_gameState = Uninitialized;
@@ -129,3 +151,7 @@ GameObjectManager Game::_gameObjectManager;
 sf::View Game::view;
 SplashScreen Game::_splashscreen;
 Mainmenu Game::_mainmenu;
+sf::Clock Game::gameTime;
+ObstacleManager Game::_obstacleManager;
+AssetManager Game::_assetManager;
+MonsterManager Game::_monsterManager;

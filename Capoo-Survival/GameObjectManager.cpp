@@ -56,11 +56,12 @@ void GameObjectManager::UpdateAll()
 {
 	std::map<std::string, VisibleGameObject*>::const_iterator itr = _gameObjects.begin();
 	float timeDelta = clock.restart().asSeconds();
-	//std::cout << 1 / timeDelta << std::endl;
+	
 	while (itr != _gameObjects.end())
 	{
 		itr->second->Update(timeDelta);
 		itr++;
+		
 	}
 	
 

@@ -101,7 +101,7 @@ void Game::GameLoop()
 	}
 	case Game::Playing:
 	{
-		_mainWindow.clear(sf::Color(0, 0, 0));
+		_mainWindow.clear(sf::Color(52, 103, 49));
 
 		_gameObjectManager.UpdateAll();
 		_gameObjectManager.DrawAll(_mainWindow);

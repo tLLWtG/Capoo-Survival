@@ -11,6 +11,7 @@
 #include <random>
 #include <iostream>
 #include <cassert>
+#include <set>
 
 #include "json/json.h"
 

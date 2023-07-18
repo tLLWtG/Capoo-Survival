@@ -16,8 +16,7 @@ public:
 	static GameObjectManager& GetGameObjectManager();
 	static ObstacleManager& GetObstacleManager();
 	const static sf::Event& GetInput();
-	
-	
+
 	//const static sf::Vector2f GetPlayerPosition();
 
 	static sf::View view;

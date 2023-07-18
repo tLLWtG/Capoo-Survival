@@ -8,6 +8,7 @@
 #include "Animator.h"
 #include "MonsterManager.h"
 
+
 void Game::Start(int frame_per_seconds)
 {
 	if (_gameState != Uninitialized)
@@ -24,6 +25,7 @@ void Game::Start(int frame_per_seconds)
 
 	view.reset(sf::FloatRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT));
 	view.setCenter(sf::Vector2f(0, 0));
+
 	_mainWindow.setView(view);
 	_monsterManager.Update();
 
@@ -74,6 +76,11 @@ ObstacleManager& Game::GetObstacleManager()
 	return Game::_obstacleManager;
 }
 
+ObstacleManager& Game::GetObstacleManager()
+{
+	return _obstacleManager;
+}
+
 void Game::GameLoop()
 {
 	sf::Event currentEvent;
@@ -94,8 +101,7 @@ void Game::GameLoop()
 	}
 	case Game::Playing:
 	{
-		std::cout << view.getCenter().x << " " << view.getCenter().y << std::endl;
-		_mainWindow.clear(sf::Color::Black);
+		_mainWindow.clear(sf::Color(0, 0, 0));
 
 		_gameObjectManager.UpdateAll();
 		_gameObjectManager.DrawAll(_mainWindow);

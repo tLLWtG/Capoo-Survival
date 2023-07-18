@@ -14,7 +14,7 @@ Obstacle::Obstacle(std::string filename)
 
 Obstacle::~Obstacle()
 {
-
+	
 }
 
 sf::Rect<float> Obstacle::GetBoundingRect()const
@@ -25,22 +25,45 @@ sf::Rect<float> Obstacle::GetBoundingRect()const
 
 void Obstacle::Update(float elapsedTime)
 {
+
 	float ObsHalfWidth = GetWidth() / 2;
 	float ObsHalfHeight = GetHeight() / 2;
 	float nowposx = GetPosition().x;
 	float nowposy = GetPosition().y;
-	// 此处需要player坐标
-	float playerposx = 0;
-	float playerposy = 0;
-	float ScreenHalfHeight = Game::SCREEN_HEIGHT;
-	float ScreenHalfWidth = Game::SCREEN_WIDTH;
-	// sf::Vector2f pos = PlayerPaddle::GetPosition();
-
+	
+	float playerposx = Game::view.getCenter().x;
+	float playerposy = Game::view.getCenter().y;
+	float ScreenHalfHeight = Game::SCREEN_HEIGHT/2;
+	float ScreenHalfWidth = Game::SCREEN_WIDTH/2;
+	
+	srand(clock());
 	// 越界重新设置位置
 	if (fabs(playerposx - nowposx) > ObsHalfWidth + ScreenHalfWidth ||
 		fabs(playerposy - nowposy) > ObsHalfHeight + ScreenHalfHeight)
 	{
-		this->GetSprite().setPosition(rand() % (2 * (int)ScreenHalfWidth), rand() % (2 * (int)ScreenHalfHeight));
+		
+		int x = rand() % (2 * (int)ScreenHalfWidth);
+		int y = rand() % (2 * (int)ScreenHalfHeight);
+		bool isOk = true;
+		while (1)
+		{
+			x = rand() % (2 * (int)ScreenHalfWidth);
+			y = rand() % (2 * (int)ScreenHalfHeight);
+
+			auto myset = Game::GetObstacleManager().GetObstacleSet();
+			auto gamemanager = Game::GetGameObjectManager();
+			for (std::set<std::string>::iterator it = myset.begin(); it != myset.end(); it++)
+			{
+				auto alrobs = gamemanager.Get((*it));
+				int arlx = alrobs->GetPosition().x;
+				int arly = alrobs->GetPosition().y;
+
+				if ((x - arlx) * (x - arlx) + (y - arly) * (y - arly) < 200)isOk = false;
+			}
+
+			if (isOk)break;
+		}
+		this->GetSprite().setPosition(x,y);
 	}
 
 }

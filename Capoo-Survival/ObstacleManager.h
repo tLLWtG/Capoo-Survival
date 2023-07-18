@@ -11,8 +11,9 @@ public:
 	ObstacleManager();
 	~ObstacleManager();
 
+	int GetNumofObstacle();
 	std::set<std::string>& GetObstacleSet();
 private:
-	static char cnt;
+	static int cnt;
 	std::set<std::string>ObstacleSet;
 };

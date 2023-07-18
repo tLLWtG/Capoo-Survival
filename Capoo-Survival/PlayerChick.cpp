@@ -95,7 +95,8 @@ void PlayerChick::Update(float elapsedTime)
 	// attack
 
 	// Åö×²¼ì²â
-
+	
+	
 	// score & upgrade
 
 	GetSprite().move(_velocity.x * elapsedTime, _velocity.y * elapsedTime);

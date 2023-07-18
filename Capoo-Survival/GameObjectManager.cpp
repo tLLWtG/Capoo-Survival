@@ -62,6 +62,6 @@ void GameObjectManager::UpdateAll()
 		itr->second->Update(timeDelta);
 		itr++;
 	}
-
+	
 
 }

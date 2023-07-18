@@ -6,7 +6,7 @@ class GameObjectManager
 {
 public:
 	sf::Clock clock;
-
+	
 	GameObjectManager();
 	~GameObjectManager();
 
@@ -20,8 +20,6 @@ public:
 
 private:
 	std::map<std::string, VisibleGameObject*> _gameObjects;
-
-
 
 	struct GameObjectDeallocator
 	{

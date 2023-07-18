@@ -4,6 +4,9 @@
 #include "PlayerChick.h"
 #include "SplashScreen.h"
 #include "Mainmenu.h"
+#include "ObstacleManager.h"
+#include "Animator.h"
+
 
 void Game::Start(int frame_per_seconds)
 {
@@ -21,6 +24,7 @@ void Game::Start(int frame_per_seconds)
 
 	view.reset(sf::FloatRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT));
 	view.setCenter(sf::Vector2f(0, 0));
+
 	_mainWindow.setView(view);
 	_gameState = Game::ShowingSplash;
 
@@ -54,7 +58,7 @@ const sf::Event& Game::GetInput()
 	return currentEvent;
 }
 
-const GameObjectManager& Game::GetGameObjectManager()
+GameObjectManager& Game::GetGameObjectManager()
 {
 	return Game::_gameObjectManager;
 }
@@ -63,6 +67,11 @@ const GameObjectManager& Game::GetGameObjectManager()
 //{
 //	return _gameObjectManager.Get("player")->GetPosition();
 //}
+
+ObstacleManager& Game::GetObstacleManager()
+{
+	return _obstacleManager;
+}
 
 void Game::GameLoop()
 {
@@ -129,3 +138,5 @@ GameObjectManager Game::_gameObjectManager;
 sf::View Game::view;
 SplashScreen Game::_splashscreen;
 Mainmenu Game::_mainmenu;
+ObstacleManager Game::_obstacleManager;
+AssetManager Game::_assetManager;

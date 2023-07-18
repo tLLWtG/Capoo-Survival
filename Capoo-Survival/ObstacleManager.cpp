@@ -2,8 +2,6 @@
 #include "ObstacleManager.h"
 #include "GameObjectManager.h"
 #include "Game.h"
-char ObstacleManager::cnt = '1';
-
 
 ObstacleManager::ObstacleManager()
 {

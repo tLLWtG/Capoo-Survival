@@ -118,16 +118,18 @@ void Monster::attack()
 	// BUG
 	sf::Time t = Game::gameTime.getElapsedTime();
 	float time = t.asSeconds();
-	if (time - lastAttackTime >= 0.7)
+	if (time - lastAttackTime < 1.0)
 	{
 		return;
 	}
+	//std::cout << "TIME:" << time << std::endl;
 	PlayerChick* player = dynamic_cast<PlayerChick*>(Game::GetGameObjectManager().Get("player"));
 	sf::Rect<float> playerRec = player->GetBoundingRect();
 	sf::Rect<float> monsterRec = GetBoundingRect();
 	if (playerRec.intersects(monsterRec))
 	{
 		lastAttackTime = time;
+		//std::cout << "Attack" << std::endl;
 		player->getDamage(baseDamage);
 	}
 }

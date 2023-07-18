@@ -76,11 +76,6 @@ ObstacleManager& Game::GetObstacleManager()
 	return Game::_obstacleManager;
 }
 
-ObstacleManager& Game::GetObstacleManager()
-{
-	return _obstacleManager;
-}
-
 void Game::GameLoop()
 {
 	sf::Event currentEvent;

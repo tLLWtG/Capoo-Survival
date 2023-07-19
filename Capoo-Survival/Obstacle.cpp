@@ -14,7 +14,7 @@ Obstacle::Obstacle(std::string filename)
 	srand(clock());
 
 	GetSprite().setOrigin(HalfWidth,HalfHeight);
-	SetPosition(rand()%(int)ScreenHalfWidth, rand()%(int)ScreenHalfHeight);
+	SetPosition(rand() % ((int)ScreenHalfHeight * 2) + (int)ScreenHalfHeight, rand() % ((int)ScreenHalfWidth * 2) + (int)ScreenHalfWidth);
 }
 
 Obstacle::~Obstacle()
@@ -43,18 +43,27 @@ void Obstacle::Update(float elapsedTime)
 	
 	srand(clock());
 	// 越界重新设置位置
-	if (fabs(playerposx - nowposx) > ObsHalfWidth + ScreenHalfWidth ||
-		fabs(playerposy - nowposy) > ObsHalfHeight + ScreenHalfHeight)
+	if (fabs(playerposx - nowposx) > ObsHalfWidth*2 + ScreenHalfWidth*2 ||
+		fabs(playerposy - nowposy) > ObsHalfHeight*2 + ScreenHalfHeight*2)
 	{
 
-		int x = rand() % (2 * (int)ScreenHalfWidth);
-		int y = rand() % (2 * (int)ScreenHalfHeight);
+		int x1, y1, x2, y2, x3, y3;
+		int x, y;
 		bool isOk = true;
 		while (1)
 		{
-			x = playerposx + rand() % ((int)ScreenHalfWidth );
-			y = playerposy + rand() % ((int)ScreenHalfHeight);
+			x1 = playerposx + rand() % ((int)ScreenHalfWidth / 2 )+ (int)(ScreenHalfWidth);
+			y1 = playerposy + rand() % ((int)ScreenHalfHeight * 2 )- (int)ScreenHalfHeight;
+			x2 = playerposx - rand() % ((int)ScreenHalfWidth / 2) - (int)(ScreenHalfWidth);
+			
+			y2 = playerposy + rand() %( (int)ScreenHalfHeight / 2 )+ (int)(ScreenHalfHeight);
+			x3 = playerposx + rand() % ((int)ScreenHalfWidth * 2) - (int)ScreenHalfWidth;
+			y3 = playerposy - rand() % ((int)ScreenHalfHeight / 2) - (int)(ScreenHalfHeight);
 
+			std::pair<int, int>Pos[4] = { {x1,y1},{x2,y1},{x3,y2},{x3,y3} };
+			int pos = rand() % 4;
+
+			x = Pos[pos].first, y = Pos[pos].second;
 			std::set<std::string>& myset = Game::GetObstacleManager().GetObstacleSet();
 			
 			GameObjectManager& gamemanager = Game::GetGameObjectManager();
@@ -65,12 +74,11 @@ void Obstacle::Update(float elapsedTime)
 				int arlx = alrobs->GetPosition().x;
 				int arly = alrobs->GetPosition().y;
 
-				if ((x - arlx) * (x - arlx) + (y - arly) * (y - arly) < 200)isOk = false;
+				
 			}
-
-			this->GetSprite().setPosition(x, y);
 			if (isOk)break;
 		}
+		this->GetSprite().setPosition(x, y);
 	}
 
 }

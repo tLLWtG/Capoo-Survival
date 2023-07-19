@@ -6,7 +6,7 @@
 
 Monster::Monster(std::string filename, std::string name) :
 	_velocity({ 0.0f, 0.0f }),
-	_maxVelocity(40.0f),
+	_maxVelocity(80.0f),
 	health(100.0f),
 	maxHealth(100.0f),
 	baseDamage(10.0f),

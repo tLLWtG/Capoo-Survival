@@ -27,7 +27,7 @@ void Game::Start(int frame_per_seconds)
 	view.setCenter(sf::Vector2f(0, 0));
 
 	_mainWindow.setView(view);
-	_monsterManager.Update();
+	
 
 	_gameState = Game::ShowingSplash;
 
@@ -103,6 +103,7 @@ void Game::GameLoop()
 	{
 		_mainWindow.clear(sf::Color(52, 103, 49));
 
+		_monsterManager.Update();
 		_gameObjectManager.UpdateAll();
 		_gameObjectManager.DrawAll(_mainWindow);
 		

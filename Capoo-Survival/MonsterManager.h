@@ -12,5 +12,6 @@ public:
 
 private:
 	int cnt;
+	float lastUpdate;
 	std::set<std::string>MonsterSet;
 };

@@ -5,9 +5,9 @@
 
 PlayerChick::PlayerChick() :
 	_velocity({ 0.0f, 0.0f }),
-	_maxVelocity(80.0f),
+	_maxVelocity(150.0f),
 	health(100.0f),
-	maxHealth(100.0f),
+	maxHealth(200.0f),
 	baseDamage(50.0f),
 	direction({ -1, 0 }),
 	scores(0)

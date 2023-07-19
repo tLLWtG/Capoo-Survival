@@ -129,14 +129,71 @@ void PlayerChick::getScore(float score)
 void PlayerChick::boundCheck()
 {
 	sf::Rect<float> playerRec = GetBoundingRect();
+	float pLeft = playerRec.left;
+	float pRight = pLeft + playerRec.width;
+	float pTop = playerRec.top;
+	float pBottom = pTop + playerRec.height;
+
 	std::set<std::string>& obs = Game::GetObstacleManager().GetObstacleSet();
 	for (auto& x : obs)
 	{
 		sf::Rect<float> obRect = Game::GetGameObjectManager().Get(x)->GetBoundingRect();
 		if (playerRec.intersects(obRect))
 		{
-			_velocity.x = -_velocity.x;
-			_velocity.y = -_velocity.y;
+			/*_velocity.x = -_velocity.x;
+			_velocity.y = -_velocity.y;*/
+			float xLeft = obRect.left;
+			float xRight = xLeft + obRect.width;
+			float xTop = obRect.top;
+			float xBottom = xTop + obRect.height;
+
+			if (pLeft < xRight && pRight > xRight && ((pTop > xTop && pTop < xBottom) && (pBottom > xTop && pBottom < xBottom)))
+			{
+				_velocity.x = abs(_velocity.x);
+				GetSprite().move(2, 0);
+			}
+			else if (pLeft < xRight && pRight > xRight && ((pTop < xTop && pBottom > xBottom)))
+			{
+				_velocity.x = abs(_velocity.x);
+				GetSprite().move(2, 0);
+			}
+			else if (pLeft < xRight && pRight > xRight && ((pTop > xTop && pTop < xBottom)))
+			{
+				_velocity.x = abs(_velocity.x);
+				_velocity.y = abs(_velocity.y);
+				GetSprite().move(2, 2);
+			}
+			else if (pLeft < xRight && pRight > xRight && ((pBottom > xTop && pBottom < xBottom)))
+			{
+				_velocity.x = abs(_velocity.x);
+				_velocity.y = -abs(_velocity.y);
+				GetSprite().move(2, -2);
+			}
+			//
+			else if (pRight > xLeft && pLeft < xLeft && ((pTop > xTop && pTop < xBottom) && (pBottom > xTop && pBottom < xBottom)))
+			{
+				_velocity.x = -abs(_velocity.x);
+				GetSprite().move(-2, 0);
+			}
+			else if (pRight > xLeft && pLeft < xLeft && ((pTop < xTop && pBottom > xBottom)))
+			{
+				_velocity.x = -abs(_velocity.x);
+				GetSprite().move(-2, 0);
+			}
+			else if (pRight > xLeft && pLeft < xLeft && ((pTop > xTop && pTop < xBottom)))
+			{
+				_velocity.x = -abs(_velocity.x);
+				_velocity.y = abs(_velocity.y);
+				GetSprite().move(-2, 2);
+			}
+			else if (pRight > xLeft && pLeft < xLeft && ((pBottom > xTop && pBottom < xBottom)))
+			{
+				_velocity.x = -abs(_velocity.x);
+				_velocity.y = -abs(_velocity.y);
+				GetSprite().move(-2, -2);
+			}
+			
+
 			break;
 		}
 	}

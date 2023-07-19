@@ -19,6 +19,7 @@ public:
 	virtual bool IsLoaded() const;
 	const sf::Texture* GetTexture() const;
 
+
 protected:
 	sf::Sprite& GetSprite();
 

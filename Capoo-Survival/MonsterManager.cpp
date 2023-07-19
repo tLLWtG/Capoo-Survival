@@ -17,7 +17,7 @@ void MonsterManager::Update()
 {
 	sf::Time t = Game::gameTime.getElapsedTime();
 	float time = t.asSeconds();
-	if (time - lastUpdate < 3.0)
+	if (time - lastUpdate < 2.7)
 	{
 		return;
 	}

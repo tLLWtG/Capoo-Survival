@@ -11,6 +11,8 @@ Weapon::Weapon() : weaponstate(Holding), m_Animator(GetSprite()) {
 void Weapon::Update(float elapsedTime) {
 	PlayerChick* player = dynamic_cast<PlayerChick*>(Game::GetGameObjectManager().Get("player"));
 	ChangeDirection(player->direction);
+	GetSprite().setPosition(Game::view.getCenter());
+	Fire();
 	if (weaponstate == Attacking) {
 		attackTime += elapsedTime;
 		if (attackTime >= attackDuration)

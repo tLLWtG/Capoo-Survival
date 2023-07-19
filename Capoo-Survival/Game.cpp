@@ -7,6 +7,7 @@
 #include "ObstacleManager.h"
 #include "Animator.h"
 #include "MonsterManager.h"
+#include "Sword.h"
 
 
 void Game::Start(int frame_per_seconds)
@@ -22,6 +23,10 @@ void Game::Start(int frame_per_seconds)
 	PlayerChick* player = new PlayerChick();
 	player->SetPosition(0, 0);
 	_gameObjectManager.Add("player", player);
+
+	Sword* sword = new Sword();
+	sword->SetPosition(0, 0);
+	_gameObjectManager.Add("weapon", sword);
 
 	view.reset(sf::FloatRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT));
 	view.setCenter(sf::Vector2f(0, 0));

@@ -36,10 +36,10 @@ Monster::Monster(std::string filename, std::string name) :
 
 	sf::Time t = Game::gameTime.getElapsedTime();
 	int time = t.asSeconds();
-	int cal = pow(time / 50, 0.8);
-	baseDamage = 10 + cal;
+	int cal = pow(time / 10, 0.95);
+	baseDamage = 10 + cal / 3;
 	_maxVelocity = 80.0f + cal;
-	health = 100.0f + cal;
+	health = 100.0f + cal * 5;
 	maxHealth = health;
 	scores = 10.0f + cal;
 }

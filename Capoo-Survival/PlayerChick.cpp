@@ -2,6 +2,7 @@
 #include "PlayerChick.h"
 #include "Game.h"
 #include "GameObjectManager.h"
+#include "Sword.h"
 
 
 PlayerChick::PlayerChick() :
@@ -111,6 +112,7 @@ void PlayerChick::Update(float elapsedTime)
 	if (health <= 0)
 	{
 		health = 200;
+		maxHealth = 200;
 		playerDie();
 	}
 
@@ -127,6 +129,7 @@ void PlayerChick::Update(float elapsedTime)
 
 void PlayerChick::playerDie()
 {
+	scores = 0;
 	Game::GetDead();
 }
 
@@ -216,10 +219,26 @@ void PlayerChick::boundCheck()
 
 void PlayerChick::upgrade()
 {
-	int cal = pow(scores / 100, 0.8);
+	int cal = pow(scores / 100, 0.95);
 	baseDamage = 50 + cal;
-	maxHealth = 200.0f + cal / 10 * 10;
+	maxHealth = 200.0f + cal / 3 * 5;
 	_maxVelocity = 150.0f + cal;
+
+	if (cal >= 30)
+	{
+		Weapon* weapon = dynamic_cast<Weapon*>(Game::GetGameObjectManager().Get("weapon"));
+		weapon->setSize(2.7f);
+	}
+	else if (cal >= 15)
+	{
+		Weapon* weapon = dynamic_cast<Weapon*>(Game::GetGameObjectManager().Get("weapon"));
+		weapon->setSize(2.5f);
+	}
+	else if (cal >= 5)
+	{
+		Weapon* weapon = dynamic_cast<Weapon*>(Game::GetGameObjectManager().Get("weapon"));
+		weapon->setSize(2.3f);
+	}
 
 	sf::Time t = Game::gameTime.getElapsedTime();
 	float time = t.asSeconds();
@@ -228,9 +247,9 @@ void PlayerChick::upgrade()
 	{
 		return;
 	}
-	if (health + 3 <= 200)
+	if (health + 3 <= maxHealth)
 		getDamage(-3);
 	else
-		getDamage(health - 200);
+		getDamage(health - maxHealth);
 	lastHeal = time;
 }

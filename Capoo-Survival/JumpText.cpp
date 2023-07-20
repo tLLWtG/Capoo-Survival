@@ -1,11 +1,11 @@
 #include "stdafx.h"
 #include "Interface.h"
-#include "DamageText.h"
+#include "JumpText.h"
 
-DamageText::DamageText(int damage, sf::Vector2f position)
+JumpText::JumpText(int damage, sf::Vector2f position) :_position(position)
 {
 	_damegeText.setFont(_font);
-	_damegeText.setCharacterSize(42);
+	_damegeText.setCharacterSize(24);
 	_damegeText.setFillColor(sf::Color::White);
 	_damegeText.setStyle(sf::Text::Style::Bold);
 	_damegeText.setOutlineColor(sf::Color::Black);
@@ -13,7 +13,7 @@ DamageText::DamageText(int damage, sf::Vector2f position)
 	_damegeText.setString(std::to_string(damage));
 }
 
-void DamageText::showDamage(sf::RenderWindow& window)
+void JumpText::showDamage(sf::RenderWindow& window)
 {
 
 }

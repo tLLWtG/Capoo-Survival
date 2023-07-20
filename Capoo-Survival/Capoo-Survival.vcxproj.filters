@@ -78,7 +78,7 @@
     <ClCompile Include="PlayingLayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DamageText.cpp">
+    <ClCompile Include="JumpText.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -149,7 +149,7 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DamageText.h">
+    <ClInclude Include="JumpText.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

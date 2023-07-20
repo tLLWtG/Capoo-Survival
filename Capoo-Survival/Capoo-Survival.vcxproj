@@ -62,7 +62,6 @@
     <ClInclude Include="Interface.h" />
     <ClInclude Include="Mainmenu.h" />
     <ClInclude Include="PlayingLayer.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="SplashScreen.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Sword.h" />
@@ -173,7 +172,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>SFML_STATIC;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\SFML-2.6.0-windows-vc17-32-bit\SFML-2.6.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\tllwtg\Documents\cpp_lib\SFML-2.6.0-windows-vc17-32-bit\SFML-2.6.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>

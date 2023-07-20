@@ -11,19 +11,19 @@ PlayerChick::PlayerChick() :
 	maxHealth(200.0f),
 	baseDamage(50.0f),
 	direction({ -1, 0 }),
+	lastHeal(0.0f),
 	scores(0),
 	animator(GetSprite())
 {
-	
+
 	Load("Image/Chick/Chick.png");
-	//assert(IsLoaded());
 
 	sf::Vector2i spriteSize1(73, 74);
-	
+
 	auto& idleAnimation1 = animator.CreateAnimation("Idle", "Image/Chick/PlayerChick.png", sf::seconds(0.5), true);
 
 	idleAnimation1.AddFrames(sf::Vector2i(0, 0), spriteSize1, 60);
-	
+
 	GetSprite().setOrigin(GetSprite().getLocalBounds().width / 2, GetSprite().getLocalBounds().height / 2);
 
 }
@@ -47,7 +47,7 @@ void PlayerChick::Update(float elapsedTime)
 {
 
 	sf::Time t = sf::seconds(elapsedTime);
-	
+
 	animator.Update(t);
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
@@ -104,7 +104,6 @@ void PlayerChick::Update(float elapsedTime)
 		_velocity.y = 0.0f;
 	}
 
-	// 血量检测
 	if (health > maxHealth)
 	{
 		health = maxHealth;
@@ -117,10 +116,8 @@ void PlayerChick::Update(float elapsedTime)
 
 	// fire in weapon
 
-	// 碰撞检测
 	boundCheck();
 
-	// score & upgrade
 	upgrade();
 
 	GetSprite().move(_velocity.x * elapsedTime, _velocity.y * elapsedTime);
@@ -136,7 +133,7 @@ void PlayerChick::playerDie()
 void PlayerChick::getDamage(float damage)
 {
 	health -= damage;
-	// 动画、声音
+	// 声音、数值显示
 }
 
 void PlayerChick::getScore(float score)
@@ -210,7 +207,7 @@ void PlayerChick::boundCheck()
 				_velocity.y = -abs(_velocity.y);
 				GetSprite().move(-2, -2);
 			}
-			
+
 
 			break;
 		}
@@ -221,5 +218,19 @@ void PlayerChick::upgrade()
 {
 	int cal = pow(scores / 100, 0.8);
 	baseDamage = 50 + cal;
-	// 移速，生命
+	maxHealth = 200.0f + cal / 10 * 10;
+	_maxVelocity = 150.0f + cal;
+
+	sf::Time t = Game::gameTime.getElapsedTime();
+	float time = t.asSeconds();
+
+	if (time - lastHeal < 1.0)
+	{
+		return;
+	}
+	if (health + 3 <= 200)
+		getDamage(-3);
+	else
+		getDamage(health - 200);
+	lastHeal = time;
 }

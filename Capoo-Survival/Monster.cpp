@@ -6,21 +6,13 @@
 
 Monster::Monster(std::string filename, std::string name) :
 	_velocity({ 0.0f, 0.0f }),
-	_maxVelocity(80.0f),
-	health(100.0f),
-	maxHealth(100.0f),
-	baseDamage(10.0f),
-	scores(10.0f),
 	lastAttackTime(0.0f),
 	_name(name),
 	deadTime(0.0f),
 	animator(GetSprite())
 {
-	//Load("images/paddle.png");
-	//assert(IsLoaded());
-
 	Load(filename);
-	
+
 	sf::Vector2i spriteSize1(100, 85);
 	sf::Vector2i spriteSize2(100, 80);
 	auto& idleAnimation1 = animator.CreateAnimation("Idle", "Image/Capoo/Capoo_8.png", sf::seconds(1), true);
@@ -30,7 +22,6 @@ Monster::Monster(std::string filename, std::string name) :
 	idleAnimation2.AddFrames(sf::Vector2i(0, 0), spriteSize2, 45);
 
 	GetSprite().setOrigin(GetSprite().getLocalBounds().width / 2, GetSprite().getLocalBounds().height / 2);
-	//std::cout << GetBoundingRect().width << std::endl;
 	srand(clock());
 	sf::Vector2f birthpos = { float(rand() % 1100), float(rand() % 600) };
 	while (5 != 3)
@@ -42,6 +33,15 @@ Monster::Monster(std::string filename, std::string name) :
 	birthpos.x -= 550;
 	birthpos.y -= 300;
 	GetSprite().setPosition(birthpos.x + Game::view.getCenter().x, birthpos.y + Game::view.getCenter().y);
+
+	sf::Time t = Game::gameTime.getElapsedTime();
+	int time = t.asSeconds();
+	int cal = pow(time / 50, 0.8);
+	baseDamage = 10 + cal;
+	_maxVelocity = 80.0f + cal;
+	health = 100.0f + cal;
+	maxHealth = health;
+	scores = 10.0f + cal;
 }
 
 
@@ -61,25 +61,19 @@ sf::Vector2f Monster::GetVelocity() const
 
 void Monster::Update(float elapsedTime)
 {
-	//std::cout << GetPosition().x << " " << GetPosition().y << std::endl;
 	sf::Time t = sf::seconds(elapsedTime);
-	//if (Game::gameTime.getElapsedTime() < sf::seconds(20))
 	animator.Update(t);
 
-	// ÑªÁ¿¼ì²â
 	if (health <= 0)
 	{
 		monsterDie();
 		return;
 	}
 
-	// upgrade
-	upgrade();
+	//upgrade();
 
-	// chase
 	chase();
 
-	// attack
 	attack();
 
 	GetSprite().move(_velocity.x * elapsedTime, _velocity.y * elapsedTime);
@@ -88,8 +82,8 @@ void Monster::Update(float elapsedTime)
 void Monster::getDamage(float damage)
 {
 	health -= damage;
-	// ¶¯»­¡¢ÉùÒô
-	
+	// ÉùÒô¡¢ÊýÖµÏÔÊ¾
+
 }
 
 void Monster::monsterDie()
@@ -113,22 +107,18 @@ void Monster::monsterDie()
 			return;
 		}
 	}
-	
-	// ¶¯»­¡¢ÉùÒô
-	
-	
-	
+
 	Game::GetMonsterManager().Erase(_name);
 }
 
-void Monster::upgrade()
-{
-	sf::Time t = Game::gameTime.getElapsedTime();
-	int time = t.asSeconds();
-	int cal = pow(time / 50, 0.8);
-	baseDamage = 10 + cal;
-	// ÒÆËÙ£¬ÉúÃü
-}
+//void Monster::upgrade()
+//{
+//	sf::Time t = Game::gameTime.getElapsedTime();
+//	int time = t.asSeconds();
+//	int cal = pow(time / 50, 0.8);
+//	baseDamage = 10 + cal;
+//	// ÒÆËÙ£¬ÉúÃü
+//}
 
 void Monster::chase()
 {
@@ -148,14 +138,12 @@ void Monster::attack()
 	{
 		return;
 	}
-	//std::cout << "TIME:" << time << std::endl;
 	PlayerChick* player = dynamic_cast<PlayerChick*>(Game::GetGameObjectManager().Get("player"));
 	sf::Rect<float> playerRec = player->GetBoundingRect();
 	sf::Rect<float> monsterRec = GetBoundingRect();
 	if (playerRec.intersects(monsterRec))
 	{
 		lastAttackTime = time;
-		//std::cout << "Attack" << std::endl;
 		player->getDamage(baseDamage);
 	}
 }

@@ -22,7 +22,7 @@ public:
 	void monsterDie();
 
 private:
-	void upgrade();
+	//void upgrade();
 	void chase();
 	void attack();
 

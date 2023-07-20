@@ -33,8 +33,10 @@ int PauseScreen::show(sf::RenderWindow& window) {
 				return 0;
 			else if (event.type == sf::Event::MouseButtonPressed) {
 				std::string buttonName = getClickButtonName(getMousePosition(window));
-				if (buttonName == "resume")
+				if (buttonName == "resume") {
+					sf::sleep(sf::milliseconds(10));	// È¥¶¶¶¯
 					return 1;
+				}
 				else if (buttonName == "quit")
 					return 2;
 			}

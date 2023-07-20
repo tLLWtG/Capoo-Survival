@@ -4,6 +4,7 @@
 #include "SplashScreen.h"
 #include "Mainmenu.h"
 #include "ObstacleManager.h"
+#include "BackGroundManager.h"
 #include "AssetManager.h"
 #include "MonsterManager.h"
 #include "DieScreen.h"
@@ -55,6 +56,7 @@ private:
 	static ObstacleManager _obstacleManager;
 	static AssetManager _assetManager;
 	static MonsterManager _monsterManager;
+	static BackGroundManager _backgroundManager;
 	static sf::Music _BGM_Mainmenu;
 	static sf::Music _BGM_Game;
 };

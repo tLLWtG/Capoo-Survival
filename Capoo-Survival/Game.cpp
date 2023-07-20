@@ -10,7 +10,7 @@
 #include "Sword.h"
 #include "DieScreen.h"
 #include "PlayingLayer.h"
-
+#include "BackGroundManager.h"
 
 void Game::Start(int frame_per_seconds)
 {
@@ -237,6 +237,7 @@ sf::Clock Game::gameTime;
 ObstacleManager Game::_obstacleManager;
 AssetManager Game::_assetManager;
 MonsterManager Game::_monsterManager;
+BackGroundManager Game::_backgroundManager;
 DieScreen Game::_diescreen;
 sf::Music Game::_BGM_Mainmenu;
 sf::Music Game::_BGM_Game;

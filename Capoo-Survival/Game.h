@@ -52,4 +52,6 @@ private:
 	static ObstacleManager _obstacleManager;
 	static AssetManager _assetManager;
 	static MonsterManager _monsterManager;
+	static sf::Music _BGM_Mainmenu;
+	static sf::Music _BGM_Game;
 };

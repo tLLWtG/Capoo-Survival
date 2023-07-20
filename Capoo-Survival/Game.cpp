@@ -22,6 +22,8 @@ void Game::Start(int frame_per_seconds)
 	_mainWindow.setFramerateLimit(frame_per_seconds);
 
 	// 在这里初始化游戏内的对象
+	_BGM_Mainmenu.openFromFile("Music/BGM_Mainmenu.flac");
+	_BGM_Game.openFromFile("Music/BGM_Game.flac");
 	PlayerChick* player = new PlayerChick();
 	player->SetPosition(0, 0);
 	_gameObjectManager.Add("player", player);
@@ -34,7 +36,7 @@ void Game::Start(int frame_per_seconds)
 	view.setCenter(sf::Vector2f(0, 0));
 
 	_mainWindow.setView(view);
-	
+
 
 	_gameState = Game::ShowingSplash;
 
@@ -98,7 +100,13 @@ void Game::GameLoop()
 	{
 	case Game::ShowingMenu:
 	{
+		_BGM_Mainmenu.setLoop(true);
+		_BGM_Mainmenu.play();
 		ShowMenu();
+		_BGM_Mainmenu.stop();
+		//std::cout << 1 << std::endl;
+		_BGM_Game.setLoop(true);
+		_BGM_Game.play();
 		break;
 	}
 	case Game::ShowingSplash:
@@ -113,7 +121,7 @@ void Game::GameLoop()
 		_monsterManager.Update();
 		_gameObjectManager.UpdateAll();
 		_gameObjectManager.DrawAll(_mainWindow);
-		
+
 		_playinglayer.showHP(_mainWindow);
 
 		_mainWindow.display();
@@ -134,6 +142,7 @@ void Game::GameLoop()
 	case Game::Dead:
 	{
 		ShowDieScreen();
+		_BGM_Game.stop();
 		break;
 	}
 	}
@@ -141,6 +150,7 @@ void Game::GameLoop()
 
 void Game::ShowSplashScreen()
 {
+	
 	_splashscreen.show(_mainWindow);
 	_gameState = Game::ShowingMenu;
 }
@@ -159,6 +169,7 @@ void Game::ShowMenu()
 		break;
 	}
 	Game::gameTime.restart();
+
 }
 
 void Game::ShowDieScreen()
@@ -183,9 +194,11 @@ GameObjectManager Game::_gameObjectManager;
 sf::View Game::view;
 SplashScreen Game::_splashscreen;
 Mainmenu Game::_mainmenu;
-DieScreen Game::_diescreen;
 PlayingLayer Game::_playinglayer;
 sf::Clock Game::gameTime;
 ObstacleManager Game::_obstacleManager;
 AssetManager Game::_assetManager;
 MonsterManager Game::_monsterManager;
+DieScreen Game::_diescreen;
+sf::Music Game::_BGM_Mainmenu;
+sf::Music Game::_BGM_Game;

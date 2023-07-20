@@ -10,7 +10,4 @@ public:
 
 	BackGroundManager();
 	~BackGroundManager();
-	void Update();
-private:
-	static int cnt;
 };

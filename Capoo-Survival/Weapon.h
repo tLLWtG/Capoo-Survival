@@ -23,10 +23,12 @@ public:
 
 	Weapon();
 
+	virtual void setHandle();
+	virtual void resetHandle();
 	virtual void Update(float elapsedTime);
 	virtual void Draw(sf::RenderWindow& window);
 	virtual void ChangeDirection(sf::Vector2i direction);
 	virtual void Fire();
 	virtual void Hold();
-	bool isHit(Monster& moster);
+	bool isHit(const Monster* moster);
 };

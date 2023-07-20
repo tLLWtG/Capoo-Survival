@@ -3,7 +3,7 @@
 
 
 Sword::Sword() : Weapon() {
-    attackPower = 10;
+    attackPower = 30;
     attackDuration = 0.5f;
 
     GetSprite().setOrigin(13, 89);

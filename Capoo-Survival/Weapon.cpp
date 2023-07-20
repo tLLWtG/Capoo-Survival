@@ -42,26 +42,34 @@ void Weapon::ChangeDirection(sf::Vector2i direction) {
 
 void Weapon::Fire() {
 	if (weaponstate == Holding) {
-		weaponstate = Attacking;
-		attackTime = 0.0f;
-		m_Animator.SwitchAnimation("Attack");
 
-		std::set<std::string>::iterator it = Game::GetMonsterManager().GetMonsterSet().begin();
-		std::set<std::string>::iterator end = Game::GetMonsterManager().GetMonsterSet().end();
-		/*
-		for (; it != end; ++it) {
-			std::string monsterName = *it;
-			Monster* monsterPtr = Game::GetMonsterManager().GetMonsterSet().find(monsterName);
+		std::set<std::string>& obs = Game::GetMonsterManager().GetMonsterSet();
+		GameObjectManager& gameObjectManager = Game::GetGameObjectManager();
 
-		}*/
+		for (auto& x : obs) {
+			Monster* monsterPtr = dynamic_cast<Monster*>(gameObjectManager.Get(x));
+			if (monsterPtr != nullptr && isHit(monsterPtr)) {
+				monsterPtr->getDamage(attackPower);
+
+				weaponstate = Attacking;
+				attackTime = 0.0f;
+				m_Animator.SwitchAnimation("Attack");
+				GetSprite().setScale(1.2f, 1.2f);
+
+				break;
+			}
+		}
 
 	}
 }
+
+
 
 void Weapon::Hold() {
 	if (weaponstate == Attacking) {
 		weaponstate = Holding;
 		m_Animator.SwitchAnimation("Hold");
+		GetSprite().setScale(1.0f, 1.0f);
 	}
 }
 
@@ -78,21 +86,19 @@ sf::IntRect getIntersectionInt(sf::FloatRect A, sf::FloatRect B) {
 	int right = min((int)(A.left + A.width), (int)(B.left + B.width));
 	return sf::IntRect(sf::Vector2i(left, top), sf::Vector2i(right - left, down - top));
 }
-bool Weapon::isHit(Monster& monster) {	// 还没测试不知道有没有bug
-	sf::FloatRect weaponBounds = GetBoundingRect();
-	sf::FloatRect monsterBounds = monster.GetBoundingRect();
-	if (weaponBounds.intersects(monsterBounds) == false)
-		return false;
-	sf::Image weaponImage = GetSprite().getTexture()->copyToImage();
-	sf::Image monsterImage = monster.GetTexture()->copyToImage();
 
-	sf::IntRect intersection = getIntersectionInt(weaponBounds, monsterBounds);		
-	for (int x = intersection.left; x <= intersection.left + intersection.width; x++)	
-		for (int y = intersection.top; y <= intersection.top + intersection.height; y++) {
-			sf::Color colorA = weaponImage.getPixel(x - GetSprite().getPosition().x, y - GetSprite().getPosition().y);	
-			sf::Color colorB = monsterImage.getPixel(x - monster.GetPosition().x, y - monster.GetPosition().y);
-			if (colorA.a > 0 && colorB.a > 0)
-				return true;
-		}
-	return false;
+bool Weapon::isHit(const Monster* monsterPtr) {
+	if (!monsterPtr)
+		return false;
+	sf::FloatRect weaponBounds = GetBoundingRect();
+	sf::FloatRect monsterBounds = monsterPtr->GetBoundingRect();
+	return weaponBounds.intersects(monsterBounds);
+}
+
+void Weapon::setHandle() {
+	GetSprite().setOrigin(0, 0);
+}
+
+void Weapon::resetHandle() {
+	GetSprite().setOrigin(0, 0);
 }

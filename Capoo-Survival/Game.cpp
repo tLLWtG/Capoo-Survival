@@ -123,6 +123,7 @@ void Game::GameLoop()
 		_gameObjectManager.DrawAll(_mainWindow);
 
 		_playinglayer.showHP(_mainWindow);
+		_playinglayer.drawMouse(_mainWindow);
 
 		_mainWindow.display();
 		if (currentEvent.type == sf::Event::Closed) _gameState = Game::Exiting;

@@ -72,6 +72,12 @@
     <ClCompile Include="Archive.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DieScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayingLayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -131,6 +137,15 @@
     <ClInclude Include="Archive.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DieScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayingLayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Image\IconButton\item_0.png">
@@ -177,5 +192,11 @@
     <Font Include="Font\pixel1.ttf">
       <Filter>Resource Files</Filter>
     </Font>
+    <Font Include="Font\pixel_title.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ttf1.bin">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

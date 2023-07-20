@@ -6,7 +6,7 @@
 PlayerChick::PlayerChick() :
 	_velocity({ 0.0f, 0.0f }),
 	_maxVelocity(150.0f),
-	health(100.0f),
+	health(200.0f),
 	maxHealth(200.0f),
 	baseDamage(50.0f),
 	direction({ -1, 0 }),
@@ -91,7 +91,10 @@ void PlayerChick::Update(float elapsedTime)
 	}
 
 	// ÑªÁ¿¼ì²â
-
+	if (health > maxHealth)
+	{
+		health = maxHealth;
+	}
 	if (health <= 0)
 	{
 		playerDie();

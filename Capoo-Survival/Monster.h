@@ -19,9 +19,9 @@ public:
 	float baseDamage;
 	float scores;
 	void getDamage(float damage);
+	void monsterDie();
 
 private:
-	void monsterDie();
 	void upgrade();
 	void chase();
 	void attack();

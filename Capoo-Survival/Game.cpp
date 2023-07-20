@@ -157,6 +157,23 @@ void Game::ShowSplashScreen()
 
 void Game::ShowMenu()
 {
+	PlayerChick* player = dynamic_cast<PlayerChick*>(Game::GetGameObjectManager().Get("player"));
+	player->SetPosition(0, 0);
+	player->getDamage(-200);
+	_monsterManager.lastUpdate = 0.0f;
+	std::set<std::string> monsterSet = _monsterManager.GetMonsterSet();
+	
+	for (auto& x : monsterSet)
+	{
+		Monster* monster = dynamic_cast<Monster*>(Game::GetGameObjectManager().Get(x));
+		monster->monsterDie();
+	}
+	_monsterManager.cnt = 0;
+
+	view.reset(sf::FloatRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT));
+	view.setCenter(sf::Vector2f(0, 0));
+
+	_mainWindow.setView(view);
 	Mainmenu::MenuResult result = _mainmenu.show(_mainWindow);
 	switch (result)
 	{

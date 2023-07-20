@@ -8,6 +8,7 @@
 #include "MonsterManager.h"
 #include "DieScreen.h"
 #include "PlayingLayer.h"
+#include "PauseScreen.h"
 
 class Game
 {
@@ -40,6 +41,7 @@ private:
 	static void ShowSplashScreen();
 	static void ShowMenu();
 	static void ShowDieScreen();
+	static void ShowPauseScreen();
 
 	static GameState _gameState;
 	static sf::RenderWindow _mainWindow;
@@ -48,6 +50,7 @@ private:
 	static SplashScreen _splashscreen;
 	static Mainmenu _mainmenu;
 	static DieScreen _diescreen;
+	static PauseScreen _pausescreen;
 	static PlayingLayer _playinglayer;
 	static ObstacleManager _obstacleManager;
 	static AssetManager _assetManager;

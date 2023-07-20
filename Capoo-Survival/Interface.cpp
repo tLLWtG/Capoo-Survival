@@ -161,3 +161,10 @@ void Interface::drawCrosshairs(sf::RenderWindow& window) {
 	window.draw(horizontalLine);
 }
 
+void Interface::darkenWindow(sf::RenderWindow& window) {
+	sf::Color darkenColor(0, 0, 0, 100);
+	sf::RectangleShape darkenRect(sf::Vector2f(window.getSize().x, window.getSize().y));
+	darkenRect.setPosition(getWindowStart());
+	darkenRect.setFillColor(darkenColor);
+	window.draw(darkenRect);
+}

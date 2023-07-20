@@ -130,7 +130,7 @@ void Game::GameLoop()
 
 		if (currentEvent.type == sf::Event::KeyPressed)
 		{
-			if (currentEvent.key.code == sf::Keyboard::Escape) ShowMenu();
+			if (currentEvent.key.code == sf::Keyboard::Escape) ShowPauseScreen();
 			/* 测试语句：按DI出现DieScreen */
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::I)) {
 				_gameState = Game::Dead;
@@ -189,6 +189,26 @@ void Game::ShowMenu()
 
 }
 
+void Game::ShowPauseScreen() {
+	switch (_pausescreen.show(_mainWindow))
+	{
+	case 0: {
+		_gameState = Exiting;
+		break;
+	}
+	case 1: {
+		_gameState = Playing;
+		break;
+	}
+	case 2: {
+		_gameState = ShowingMenu;
+		break;
+	}
+	default:
+		break;
+	}
+}
+
 void Game::ShowDieScreen()
 {
 	switch (_diescreen.show(_mainWindow))
@@ -212,6 +232,7 @@ sf::View Game::view;
 SplashScreen Game::_splashscreen;
 Mainmenu Game::_mainmenu;
 PlayingLayer Game::_playinglayer;
+PauseScreen Game::_pausescreen;
 sf::Clock Game::gameTime;
 ObstacleManager Game::_obstacleManager;
 AssetManager Game::_assetManager;

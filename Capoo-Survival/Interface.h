@@ -52,6 +52,8 @@ public:
 	std::string getClickButtonName(sf::Vector2i clickPosition);
 	void drawCrosshairs(sf::RenderWindow& window);
 
+	void darkenWindow(sf::RenderWindow& window);
+
 
 private:
 	std::vector<Button> _buttons;

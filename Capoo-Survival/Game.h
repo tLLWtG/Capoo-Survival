@@ -7,6 +7,7 @@
 #include "AssetManager.h"
 #include "MonsterManager.h"
 #include "DieScreen.h"
+#include "PlayingLayer.h"
 
 class Game
 {
@@ -47,6 +48,7 @@ private:
 	static SplashScreen _splashscreen;
 	static Mainmenu _mainmenu;
 	static DieScreen _diescreen;
+	static PlayingLayer _playinglayer;
 	static ObstacleManager _obstacleManager;
 	static AssetManager _assetManager;
 	static MonsterManager _monsterManager;

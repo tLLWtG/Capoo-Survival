@@ -58,6 +58,7 @@ private:
 	sf::Sprite _backgroundSprite;
 	sf::Sprite _mouse;
 
+protected:
 	sf::Font _font;
 };
 

@@ -9,6 +9,7 @@
 #include "MonsterManager.h"
 #include "Sword.h"
 #include "DieScreen.h"
+#include "PlayingLayer.h"
 
 
 void Game::Start(int frame_per_seconds)
@@ -113,6 +114,8 @@ void Game::GameLoop()
 		_gameObjectManager.UpdateAll();
 		_gameObjectManager.DrawAll(_mainWindow);
 		
+		_playinglayer.showHP(_mainWindow);
+
 		_mainWindow.display();
 		if (currentEvent.type == sf::Event::Closed) _gameState = Game::Exiting;
 
@@ -181,6 +184,7 @@ sf::View Game::view;
 SplashScreen Game::_splashscreen;
 Mainmenu Game::_mainmenu;
 DieScreen Game::_diescreen;
+PlayingLayer Game::_playinglayer;
 sf::Clock Game::gameTime;
 ObstacleManager Game::_obstacleManager;
 AssetManager Game::_assetManager;

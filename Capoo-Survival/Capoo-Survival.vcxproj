@@ -34,6 +34,7 @@
     <ClCompile Include="ObstacleManager.cpp" />
     <ClCompile Include="PlayerChick.cpp" />
     <ClCompile Include="Interface.cpp" />
+    <ClCompile Include="PlayingLayer.cpp" />
     <ClCompile Include="SplashScreen.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Sword.cpp" />
@@ -56,6 +57,7 @@
     <ClInclude Include="Archive.h" />
     <ClInclude Include="Interface.h" />
     <ClInclude Include="Mainmenu.h" />
+    <ClInclude Include="PlayingLayer.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SplashScreen.h" />
     <ClInclude Include="stdafx.h" />

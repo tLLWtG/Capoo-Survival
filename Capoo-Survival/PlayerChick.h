@@ -1,6 +1,7 @@
 #pragma once
 
 #include "VisibleGameObject.h"
+#include "Animator.h"
 
 class PlayerChick :
 	public VisibleGameObject
@@ -25,7 +26,7 @@ public:
 private:
 	sf::Vector2f _velocity;
 	float _maxVelocity;
-	
+	Animator animator;
 	void playerDie();
 	void boundCheck();
 	void upgrade();

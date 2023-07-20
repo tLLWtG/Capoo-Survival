@@ -30,5 +30,6 @@ private:
 	float lastAttackTime;
 	sf::Vector2f _velocity;
 	float _maxVelocity;
+	float deadTime;
 	Animator animator;
 };

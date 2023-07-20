@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "GameObjectManager.h"
 
+
 PlayerChick::PlayerChick() :
 	_velocity({ 0.0f, 0.0f }),
 	_maxVelocity(150.0f),
@@ -10,11 +11,19 @@ PlayerChick::PlayerChick() :
 	maxHealth(200.0f),
 	baseDamage(50.0f),
 	direction({ -1, 0 }),
-	scores(0)
+	scores(0),
+	animator(GetSprite())
 {
+	
 	Load("Image/Chick/Chick.png");
 	//assert(IsLoaded());
 
+	sf::Vector2i spriteSize1(73, 74);
+	
+	auto& idleAnimation1 = animator.CreateAnimation("Idle", "Image/Chick/PlayerChick.png", sf::seconds(0.5), true);
+
+	idleAnimation1.AddFrames(sf::Vector2i(0, 0), spriteSize1, 60);
+	
 	GetSprite().setOrigin(GetSprite().getLocalBounds().width / 2, GetSprite().getLocalBounds().height / 2);
 
 }
@@ -36,6 +45,11 @@ sf::Vector2f PlayerChick::GetVelocity() const
 
 void PlayerChick::Update(float elapsedTime)
 {
+
+	sf::Time t = sf::seconds(elapsedTime);
+	
+	animator.Update(t);
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		_velocity.x = -_maxVelocity * 0.707;

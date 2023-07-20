@@ -66,6 +66,13 @@ void Monster::Update(float elapsedTime)
 	//if (Game::gameTime.getElapsedTime() < sf::seconds(20))
 	animator.Update(t);
 
+	// ÑªÁ¿¼ì²â
+	if (health <= 0)
+	{
+		monsterDie();
+		return;
+	}
+
 	// upgrade
 	upgrade();
 
@@ -76,12 +83,6 @@ void Monster::Update(float elapsedTime)
 	attack();
 
 	GetSprite().move(_velocity.x * elapsedTime, _velocity.y * elapsedTime);
-
-	// ÑªÁ¿¼ì²â
-	if (health <= 0)
-	{
-		monsterDie();
-	}
 }
 
 void Monster::getDamage(float damage)
@@ -118,7 +119,6 @@ void Monster::monsterDie()
 	
 	
 	Game::GetMonsterManager().Erase(_name);
-	// Ïû³ý
 }
 
 void Monster::upgrade()
@@ -142,7 +142,6 @@ void Monster::chase()
 
 void Monster::attack()
 {
-	// BUG
 	sf::Time t = Game::gameTime.getElapsedTime();
 	float time = t.asSeconds();
 	if (time - lastAttackTime < 1.0)

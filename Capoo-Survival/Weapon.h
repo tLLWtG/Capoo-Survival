@@ -30,5 +30,6 @@ public:
 	virtual void ChangeDirection(sf::Vector2i direction);
 	virtual void Fire();
 	virtual void Hold();
+	void setSize(float multiple);
 	bool isHit(const Monster* moster);
 };

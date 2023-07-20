@@ -54,9 +54,7 @@ void Weapon::Fire() {
 				weaponstate = Attacking;
 				attackTime = 0.0f;
 				m_Animator.SwitchAnimation("Attack");
-				GetSprite().setScale(1.2f, 1.2f);
-
-				break;
+			//	GetSprite().setScale(1.2f, 1.2f);
 			}
 		}
 
@@ -69,7 +67,7 @@ void Weapon::Hold() {
 	if (weaponstate == Attacking) {
 		weaponstate = Holding;
 		m_Animator.SwitchAnimation("Hold");
-		GetSprite().setScale(1.0f, 1.0f);
+	//	GetSprite().setScale(1.0f, 1.0f);
 	}
 }
 
@@ -101,4 +99,8 @@ void Weapon::setHandle() {
 
 void Weapon::resetHandle() {
 	GetSprite().setOrigin(0, 0);
+}
+
+void Weapon::setSize(float multiple) {
+	GetSprite().setScale(multiple, multiple);
 }

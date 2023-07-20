@@ -7,7 +7,7 @@ Sword::Sword() : Weapon() {
     attackDuration = 0.5f;
 
     GetSprite().setOrigin(13, 89);
-    startAngle = 37;
+    setSize(2.0f);
 
     auto& holdAnimation = m_Animator.CreateAnimation("Hold", "Image/Weapon/sword_hold_160x160.png", sf::seconds(0.5), true);
     holdAnimation.AddFrames(sf::Vector2i(0, 0), sf::Vector2i(160, 160), 30);

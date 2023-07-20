@@ -97,6 +97,7 @@ void PlayerChick::Update(float elapsedTime)
 	}
 	if (health <= 0)
 	{
+		health = 200;
 		playerDie();
 	}
 

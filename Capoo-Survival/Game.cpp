@@ -8,6 +8,7 @@
 #include "Animator.h"
 #include "MonsterManager.h"
 #include "Sword.h"
+#include "DieScreen.h"
 
 
 void Game::Start(int frame_per_seconds)
@@ -118,6 +119,11 @@ void Game::GameLoop()
 		if (currentEvent.type == sf::Event::KeyPressed)
 		{
 			if (currentEvent.key.code == sf::Keyboard::Escape) ShowMenu();
+			/* 测试语句：按DI出现DieScreen */
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::I)) {
+				_gameState = Game::Dead;
+				ShowDieScreen();
+			}
 		}
 
 		break;
@@ -154,7 +160,18 @@ void Game::ShowMenu()
 
 void Game::ShowDieScreen()
 {
-
+	switch (_diescreen.show(_mainWindow))
+	{
+	case 1: {
+		_gameState = ShowingMenu;
+		break;
+	}
+	case 0: {
+		_gameState = Exiting;
+	}
+	default:
+		break;
+	}
 }
 
 Game::GameState Game::_gameState = Uninitialized;
@@ -163,6 +180,7 @@ GameObjectManager Game::_gameObjectManager;
 sf::View Game::view;
 SplashScreen Game::_splashscreen;
 Mainmenu Game::_mainmenu;
+DieScreen Game::_diescreen;
 sf::Clock Game::gameTime;
 ObstacleManager Game::_obstacleManager;
 AssetManager Game::_assetManager;

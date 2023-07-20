@@ -45,6 +45,16 @@ void Weapon::Fire() {
 		weaponstate = Attacking;
 		attackTime = 0.0f;
 		m_Animator.SwitchAnimation("Attack");
+
+		std::set<std::string>::iterator it = Game::GetMonsterManager().GetMonsterSet().begin();
+		std::set<std::string>::iterator end = Game::GetMonsterManager().GetMonsterSet().end();
+		/*
+		for (; it != end; ++it) {
+			std::string monsterName = *it;
+			Monster* monsterPtr = Game::GetMonsterManager().GetMonsterSet().find(monsterName);
+
+		}*/
+
 	}
 }
 

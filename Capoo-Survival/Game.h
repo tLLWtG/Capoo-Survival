@@ -6,6 +6,7 @@
 #include "ObstacleManager.h"
 #include "AssetManager.h"
 #include "MonsterManager.h"
+#include "DieScreen.h"
 
 class Game
 {
@@ -45,6 +46,7 @@ private:
 	static GameObjectManager _gameObjectManager;
 	static SplashScreen _splashscreen;
 	static Mainmenu _mainmenu;
+	static DieScreen _diescreen;
 	static ObstacleManager _obstacleManager;
 	static AssetManager _assetManager;
 	static MonsterManager _monsterManager;

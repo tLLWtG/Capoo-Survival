@@ -144,3 +144,20 @@ std::string Interface::getClickButtonName(sf::Vector2i clickPosition) {
 			return button.name;
 	return "";
 }
+void Interface::drawCrosshairs(sf::RenderWindow& window) {
+	static sf::RectangleShape verticalLine(sf::Vector2f(2.f, 20.f));
+	static sf::RectangleShape horizontalLine(sf::Vector2f(20.f, 2.f));
+	static bool uninitialized = true;
+	if (uninitialized) {
+		verticalLine.setFillColor(sf::Color::Red);
+		verticalLine.setOrigin(verticalLine.getSize().x / 2, verticalLine.getSize().y / 2);
+		horizontalLine.setFillColor(sf::Color::Red);
+		horizontalLine.setOrigin(horizontalLine.getSize().x / 2, horizontalLine.getSize().y / 2);
+		uninitialized = true;
+	}
+	verticalLine.setPosition(Game::view.getCenter());
+	horizontalLine.setPosition(Game::view.getCenter());
+	window.draw(verticalLine);
+	window.draw(horizontalLine);
+}
+

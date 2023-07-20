@@ -22,6 +22,7 @@
     <ClCompile Include="Archive.cpp" />
     <ClCompile Include="Animator.cpp" />
     <ClCompile Include="AssetManager.cpp" />
+    <ClCompile Include="DieScreen.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Capoo_Survival.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
@@ -42,6 +43,7 @@
   <ItemGroup>
     <ClInclude Include="Animator.h" />
     <ClInclude Include="AssetManager.h" />
+    <ClInclude Include="DieScreen.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="json\json-forwards.h" />
@@ -54,6 +56,7 @@
     <ClInclude Include="Archive.h" />
     <ClInclude Include="Interface.h" />
     <ClInclude Include="Mainmenu.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SplashScreen.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Sword.h" />
@@ -63,6 +66,7 @@
   <ItemGroup>
     <Font Include="Font\pixel.ttf" />
     <Font Include="Font\pixel1.ttf" />
+    <Font Include="Font\pixel_title.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Image\Capoo\Capoo_14.png" />
@@ -77,6 +81,9 @@
     <Image Include="Image\Mouse\mouse.png" />
     <Image Include="Image\Weapon\sword_attack_160x160.png" />
     <Image Include="Image\Weapon\sword_hold_160x160.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ttf1.bin" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

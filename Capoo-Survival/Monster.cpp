@@ -13,6 +13,7 @@ Monster::Monster(std::string filename, std::string name) :
 	scores(10.0f),
 	lastAttackTime(0.0f),
 	_name(name),
+	deadTime(0.0f),
 	animator(GetSprite())
 {
 	//Load("images/paddle.png");
@@ -21,9 +22,12 @@ Monster::Monster(std::string filename, std::string name) :
 	Load(filename);
 	
 	sf::Vector2i spriteSize1(100, 85);
+	sf::Vector2i spriteSize2(100, 80);
 	auto& idleAnimation1 = animator.CreateAnimation("Idle", "Image/Capoo/Capoo_8.png", sf::seconds(1), true);
+	auto& idleAnimation2 = animator.CreateAnimation("DieIdle", "Image/Capoo/CapooDie.png", sf::seconds(1), true);
 
 	idleAnimation1.AddFrames(sf::Vector2i(0, 0), spriteSize1, 8);
+	idleAnimation2.AddFrames(sf::Vector2i(0, 0), spriteSize2, 45);
 
 	GetSprite().setOrigin(GetSprite().getLocalBounds().width / 2, GetSprite().getLocalBounds().height / 2);
 	//std::cout << GetBoundingRect().width << std::endl;
@@ -62,13 +66,6 @@ void Monster::Update(float elapsedTime)
 	//if (Game::gameTime.getElapsedTime() < sf::seconds(20))
 	animator.Update(t);
 
-	
-	// ÑªÁ¿¼ì²â
-	if (health <= 0)
-	{
-		monsterDie();
-	}
-	
 	// upgrade
 	upgrade();
 
@@ -79,20 +76,48 @@ void Monster::Update(float elapsedTime)
 	attack();
 
 	GetSprite().move(_velocity.x * elapsedTime, _velocity.y * elapsedTime);
+
+	// ÑªÁ¿¼ì²â
+	if (health <= 0)
+	{
+		monsterDie();
+	}
 }
 
 void Monster::getDamage(float damage)
 {
 	health -= damage;
 	// ¶¯»­¡¢ÉùÒô
+	
 }
 
 void Monster::monsterDie()
 {
-	PlayerChick* player = dynamic_cast<PlayerChick*>(Game::GetGameObjectManager().Get("player"));
-	player->getScore(scores);
-	Game::GetMonsterManager().Erase(_name);
+	if (fabs(deadTime - 0.0f) < 1e-6)
+	{
+		sf::Time t = Game::gameTime.getElapsedTime();
+		float time = t.asSeconds();
+		deadTime = time;
+		PlayerChick* player = dynamic_cast<PlayerChick*>(Game::GetGameObjectManager().Get("player"));
+		player->getScore(scores);
+		animator.SwitchAnimation("DieIdle");
+		return;
+	}
+	else
+	{
+		sf::Time t = Game::gameTime.getElapsedTime();
+		float time = t.asSeconds();
+		if (time - deadTime < 1.0)
+		{
+			return;
+		}
+	}
+	
 	// ¶¯»­¡¢ÉùÒô
+	
+	
+	
+	Game::GetMonsterManager().Erase(_name);
 	// Ïû³ý
 }
 

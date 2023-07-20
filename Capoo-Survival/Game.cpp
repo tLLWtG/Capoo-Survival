@@ -165,10 +165,10 @@ void Game::ShowMenu()
 	
 	for (auto& x : monsterSet)
 	{
-		Monster* monster = dynamic_cast<Monster*>(Game::GetGameObjectManager().Get(x));
-		monster->monsterDie();
+		_gameObjectManager.Remove(x);
 	}
 	_monsterManager.cnt = 0;
+	_monsterManager.GetMonsterSet().clear();
 
 	view.reset(sf::FloatRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT));
 	view.setCenter(sf::Vector2f(0, 0));

@@ -9,30 +9,31 @@ ObstacleManager::ObstacleManager()
 	int height = Game::SCREEN_HEIGHT;
 	int width = Game::SCREEN_WIDTH;
 	std::string filename = "Image/Obstacle/test1.png";
-	std::string name = "Obstacle1";
 	int i;
 	for (i = 0; i <= 9; i++)
 	{
-		filename.erase(filename.begin() + 19);
-		filename.insert(filename.begin() + 19, '0' + i);
-		name.pop_back();
-		name.push_back(i + '0');
-
+		std::string name = "BackGround" + std::to_string(++i);
 		Obstacle* obstacle = new Obstacle(filename);
 
 		Game::GetGameObjectManager().Add(name, obstacle);
 		ObstacleSet.insert(name);
 		
 	}
-	filename = "Image/Obstacle/test10.png";
-	name = "Obstacle10";
-	for (i = 0; i <= 9; i++)
-	{
-		filename.erase(filename.begin() + 20);
-		filename.insert(filename.begin() + 20, '0' + i);
-		name.pop_back();
-		name.push_back(i + '0');
 
+	filename = "Image/Obstacle/test2.png";
+	for (; i <= 19; i++)
+	{
+		std::string name = "BackGround" + std::to_string(++i);
+		Obstacle* obstacle = new Obstacle(filename);
+
+		Game::GetGameObjectManager().Add(name, obstacle);
+		ObstacleSet.insert(name);
+
+	}
+	filename = "Image/Obstacle/test3.png";
+	for (; i <= 29; i++)
+	{
+		std::string name = "BackGround" + std::to_string(++i);
 		Obstacle* obstacle = new Obstacle(filename);
 
 		Game::GetGameObjectManager().Add(name, obstacle);

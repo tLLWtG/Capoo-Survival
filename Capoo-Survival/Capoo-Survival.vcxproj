@@ -78,6 +78,7 @@
     <Font Include="Font\pixel_title.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Image\Animator\healing_135x145.png" />
     <Image Include="Image\Capoo\Capoo_14.png" />
     <Image Include="Image\Capoo\Capoo_8.png" />
     <Image Include="Image\IconButton\item_0.png" />

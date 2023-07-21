@@ -2,6 +2,7 @@
 
 #include "VisibleGameObject.h"
 #include "Animator.h"
+#include "JumpText.h"
 
 class PlayerChick :
 	public VisibleGameObject
@@ -31,4 +32,6 @@ private:
 	void playerDie();
 	void boundCheck();
 	void upgrade();
+
+	JumpText _jumptext;
 };

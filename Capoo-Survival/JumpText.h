@@ -4,6 +4,7 @@
 #define JUMPTEXT_H
 
 #include "VisibleGameObject.h"
+#include "Animator.h"
 
 class JumpText {
 public:
@@ -14,12 +15,16 @@ public:
 	
 
 private:
+	bool isDamage;
+
 	void SetAlpha(float alpha);
 
 	sf::Font& _font;
 	sf::Text _damegeText;
-	const float dieoutTime = 0.35f;
+	const float dieoutTime = 0.66f;
 	float remainder;
+	sf::Sprite _healing;
+	Animator m_healingAnimator;
 
 	VisibleGameObject* _master;	// ¸úËæµÄÖ÷Ìå
 };

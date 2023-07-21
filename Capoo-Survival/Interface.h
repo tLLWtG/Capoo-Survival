@@ -50,6 +50,9 @@ public:
 	void drawButton(sf::RenderWindow& window);
 	void drawMouse(sf::RenderWindow& window);
 	std::string getClickButtonName(sf::Vector2i clickPosition);
+	void drawCrosshairs(sf::RenderWindow& window);
+
+	void darkenWindow(sf::RenderWindow& window);
 
 
 private:
@@ -57,6 +60,7 @@ private:
 	sf::Sprite _backgroundSprite;
 	sf::Sprite _mouse;
 
+protected:
 	sf::Font _font;
 };
 

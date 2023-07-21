@@ -81,3 +81,7 @@ bool VisibleGameObject::IsLoaded() const
 {
 	return _isLoaded;
 }
+const sf::Texture* VisibleGameObject::GetTexture() const
+{
+	return _sprite.getTexture();
+}

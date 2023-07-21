@@ -22,16 +22,24 @@
     <ClCompile Include="Archive.cpp" />
     <ClCompile Include="Animator.cpp" />
     <ClCompile Include="AssetManager.cpp" />
+    <ClCompile Include="BackGround.cpp" />
+    <ClCompile Include="BackGroundManager.cpp" />
+    <ClCompile Include="JumpText.cpp" />
+    <ClCompile Include="DieScreen.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Capoo_Survival.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="jsoncpp.cpp" />
     <ClCompile Include="Mainmenu.cpp" />
     <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="MonsterManager.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
+    <ClCompile Include="ObstacleManager.cpp" />
+    <ClCompile Include="PauseScreen.cpp" />
     <ClCompile Include="PlayerChick.cpp" />
     <ClCompile Include="Interface.cpp" />
+    <ClCompile Include="PlayingLayer.cpp" />
     <ClCompile Include="SplashScreen.cpp" />
-    <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Sword.cpp" />
     <ClCompile Include="VisibleGameObject.cpp" />
@@ -40,16 +48,24 @@
   <ItemGroup>
     <ClInclude Include="Animator.h" />
     <ClInclude Include="AssetManager.h" />
+    <ClInclude Include="BackGround.h" />
+    <ClInclude Include="BackGroundManager.h" />
+    <ClInclude Include="JumpText.h" />
+    <ClInclude Include="DieScreen.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="json\json-forwards.h" />
     <ClInclude Include="json\json.h" />
     <ClInclude Include="Monster.h" />
+    <ClInclude Include="MonsterManager.h" />
     <ClInclude Include="Obstacle.h" />
+    <ClInclude Include="ObstacleManager.h" />
+    <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="PlayerChick.h" />
     <ClInclude Include="Archive.h" />
     <ClInclude Include="Interface.h" />
     <ClInclude Include="Mainmenu.h" />
+    <ClInclude Include="PlayingLayer.h" />
     <ClInclude Include="SplashScreen.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Sword.h" />
@@ -59,8 +75,11 @@
   <ItemGroup>
     <Font Include="Font\pixel.ttf" />
     <Font Include="Font\pixel1.ttf" />
+    <Font Include="Font\pixel_title.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Image\Capoo\Capoo_14.png" />
+    <Image Include="Image\Capoo\Capoo_8.png" />
     <Image Include="Image\IconButton\item_0.png" />
     <Image Include="Image\IconButton\item_1.png" />
     <Image Include="Image\IconButton\music.png" />
@@ -71,6 +90,9 @@
     <Image Include="Image\Mouse\mouse.png" />
     <Image Include="Image\Weapon\sword_attack_160x160.png" />
     <Image Include="Image\Weapon\sword_hold_160x160.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ttf1.bin" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -136,13 +158,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>SFML_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\tllwtg\Documents\cpp_lib\SFML-2.6.0-windows-vc17-32-bit\SFML-2.6.0\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\SFML-2.6.0-windows-vc17-32-bit\SFML-2.6.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\tllwtg\Documents\cpp_lib\SFML-2.6.0-windows-vc17-32-bit\SFML-2.6.0\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\SFML-2.6.0-windows-vc17-32-bit\SFML-2.6.0\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-audio-s-d.lib;sfml-network-s-d.lib;sfml-system-s-d.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -154,7 +176,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>SFML_STATIC;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\tllwtg\Documents\cpp_lib\SFML-2.6.0-windows-vc17-32-bit\SFML-2.6.0\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\SFML\SFML-2.6.0\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
@@ -162,9 +184,12 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\tllwtg\Documents\cpp_lib\SFML-2.6.0-windows-vc17-32-bit\SFML-2.6.0\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\SFML\SFML-2.6.0\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-s.lib;sfml-window-s.lib;sfml-audio-s.lib;sfml-network-s.lib;sfml-system-s.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

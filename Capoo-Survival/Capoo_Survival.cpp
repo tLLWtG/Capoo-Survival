@@ -3,7 +3,7 @@
 
 int main(int argc, char* argv[])
 {
-	Game::Start(60);
+	Game::Start(120);
 
 	return 0;
 }

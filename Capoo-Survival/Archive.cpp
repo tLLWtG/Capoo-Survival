@@ -28,7 +28,7 @@ bool Archive::save()
 	root["Score"] = Json::Value(saveScore);
 	root["MonsterNum"] = Json::Value(saveMonsterNum);
 
-	out_file << fastWriter.write(root) << std::endl;
+	out_file << fastWriter.write(root);
 	out_file.close();
 	return true;
 }
@@ -47,6 +47,7 @@ std::vector<float> Archive::load()
 	Json::Reader reader;
 
 	in_file >> jsonContent;
+	in_file.close();
 	reader.parse(jsonContent, root);
 
 	float saveTime = root["Time"].asFloat();
@@ -54,7 +55,7 @@ std::vector<float> Archive::load()
 	float saveScore = root["Score"].asFloat();
 	int saveMonsterNum = root["MonsterNum"].asInt();
 
-	in_file.close();
+	
 
 	std::vector<float> res;
 	res.push_back(saveTime);

@@ -4,8 +4,7 @@
 
 int main(int argc, char* argv[])
 {
-	Archive::save();
-	//Game::Start(120);
+	Game::Start(120);
 
 	return 0;
 }

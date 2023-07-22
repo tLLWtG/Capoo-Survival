@@ -241,3 +241,4 @@ BackGroundManager Game::_backgroundManager;
 DieScreen Game::_diescreen;
 sf::Music Game::_BGM_Mainmenu;
 sf::Music Game::_BGM_Game;
+float Game::addTime = 0;

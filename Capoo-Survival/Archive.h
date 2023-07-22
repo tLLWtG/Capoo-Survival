@@ -4,7 +4,7 @@ class Archive
 {
 public:
 	static bool save();
-	static bool load();
+	static std::vector<float> load();
 
 private:
 	const static std::string fileName;

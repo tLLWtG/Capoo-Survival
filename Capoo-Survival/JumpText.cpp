@@ -13,7 +13,7 @@ JumpText::JumpText(VisibleGameObject* master) : _master(master), _font(AssetMana
     auto& healAnimation = m_healingAnimator.CreateAnimation("Healing", "Image/Animator/healing_135x145.png", sf::seconds(0.66f), true);
     healAnimation.AddFrames(sf::Vector2i(0, 0), sf::Vector2i(135, 145), 40);
     _healing.setOrigin(_healing.getLocalBounds().width / 2, _healing.getLocalBounds().height / 2);
-    _healing.setScale(2.0f, 2.0f);
+    _healing.setScale(10.0f, 10.0f);
   
 }
 
@@ -39,8 +39,8 @@ void JumpText::Update(float elapsedTime) {
         // 还没做跳跃效果
         remainder -= elapsedTime;
         if (isDamage == false) {
-            _healing.setPosition(_master->GetPosition());
-            //_healing.setPosition(Game::view.getCenter());
+            //_healing.setPosition(_master->GetPosition());
+            _healing.setPosition(Game::view.getCenter());
             m_healingAnimator.Update(sf::seconds(elapsedTime));
         }
     }

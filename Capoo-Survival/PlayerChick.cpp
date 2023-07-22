@@ -28,6 +28,7 @@ PlayerChick::PlayerChick() :
 
 	GetSprite().setOrigin(GetSprite().getLocalBounds().width / 2, GetSprite().getLocalBounds().height / 2);
 
+	_skill = new Skill_Spurt();
 }
 
 
@@ -39,6 +40,7 @@ void PlayerChick::Draw(sf::RenderWindow& rw)
 {
 	VisibleGameObject::Draw(rw);
 	_jumptext.Draw(rw);
+	_skill->Draw(rw);
 }
 
 sf::Vector2f PlayerChick::GetVelocity() const
@@ -53,6 +55,7 @@ void PlayerChick::Update(float elapsedTime)
 
 	animator.Update(t);
 	_jumptext.Update(elapsedTime);
+	_skill->Update(elapsedTime);
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
@@ -107,6 +110,9 @@ void PlayerChick::Update(float elapsedTime)
 		_velocity.x = 0.0f;
 		_velocity.y = 0.0f;
 	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		_skill->Fire();
 
 	if (health > maxHealth)
 	{

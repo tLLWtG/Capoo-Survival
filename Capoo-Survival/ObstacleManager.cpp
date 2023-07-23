@@ -12,7 +12,7 @@ ObstacleManager::ObstacleManager()
 	int i;
 	for (i = 0; i <= 9; i++)
 	{
-		std::string name = "BackGround" + std::to_string(++i);
+		std::string name = "Obstacle" + std::to_string(++i);
 		Obstacle* obstacle = new Obstacle(filename);
 
 		Game::GetGameObjectManager().Add(name, obstacle);
@@ -23,7 +23,7 @@ ObstacleManager::ObstacleManager()
 	filename = "Image/Obstacle/test2.png";
 	for (; i <= 19; i++)
 	{
-		std::string name = "BackGround" + std::to_string(++i);
+		std::string name = "Obstacle" + std::to_string(++i);
 		Obstacle* obstacle = new Obstacle(filename);
 
 		Game::GetGameObjectManager().Add(name, obstacle);
@@ -33,7 +33,7 @@ ObstacleManager::ObstacleManager()
 	filename = "Image/Obstacle/test3.png";
 	for (; i <= 29; i++)
 	{
-		std::string name = "BackGround" + std::to_string(++i);
+		std::string name = "Obstacle" + std::to_string(++i);
 		Obstacle* obstacle = new Obstacle(filename);
 
 		Game::GetGameObjectManager().Add(name, obstacle);

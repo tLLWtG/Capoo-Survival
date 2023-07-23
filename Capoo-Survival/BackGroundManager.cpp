@@ -15,7 +15,7 @@ BackGroundManager::BackGroundManager()
 	int cnt = 0;
 	for (cnt = 0; cnt < 30; cnt++)
 	{
-		std::string name = "BackGround" + std::to_string(++cnt);
+		std::string name = "ABackGround" + std::to_string(++cnt);
 		VisibleGameObject* background = new BackGround(filename);
 
 		Game::GetGameObjectManager().Add(name, background);
@@ -25,7 +25,7 @@ BackGroundManager::BackGroundManager()
 	
 	for (; cnt <= 60; cnt++)
 	{
-		std::string name = "BackGround" + std::to_string(++cnt);
+		std::string name = "ABackGround" + std::to_string(++cnt);
 		VisibleGameObject* background = new BackGround(filename);
 
 		Game::GetGameObjectManager().Add(name, background);
@@ -34,7 +34,7 @@ BackGroundManager::BackGroundManager()
 
 	for (; cnt <= 90; cnt++)
 	{
-		std::string name = "BackGround" + std::to_string(++cnt);
+		std::string name = "ABackGround" + std::to_string(++cnt);
 		VisibleGameObject* background = new BackGround(filename);
 
 		Game::GetGameObjectManager().Add(name, background);
@@ -43,7 +43,7 @@ BackGroundManager::BackGroundManager()
 
 	for (; cnt <= 120; cnt++)
 	{
-		std::string name = "BackGround" + std::to_string(++cnt);
+		std::string name = "ABackGround" + std::to_string(++cnt);
 		VisibleGameObject* background = new BackGround(filename);
 
 		Game::GetGameObjectManager().Add(name, background);
@@ -52,7 +52,7 @@ BackGroundManager::BackGroundManager()
 
 	for (; cnt <= 150; cnt++)
 	{
-		std::string name = "BackGround" + std::to_string(++cnt);
+		std::string name = "ABackGround" + std::to_string(++cnt);
 		VisibleGameObject* background = new BackGround(filename);
 
 		Game::GetGameObjectManager().Add(name, background);
@@ -61,7 +61,7 @@ BackGroundManager::BackGroundManager()
 
 	for (; cnt <= 180; cnt++)
 	{
-		std::string name = "BackGround" + std::to_string(++cnt);
+		std::string name = "ABackGround" + std::to_string(++cnt);
 		VisibleGameObject* background = new BackGround(filename);
 
 		Game::GetGameObjectManager().Add(name, background);

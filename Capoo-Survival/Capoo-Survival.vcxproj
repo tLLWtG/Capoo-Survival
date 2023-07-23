@@ -83,8 +83,18 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Image\Animator\healing_135x145.png" />
+    <Image Include="Image\BackGround\test1.png" />
+    <Image Include="Image\BackGround\test2.png" />
+    <Image Include="Image\BackGround\test3.png" />
+    <Image Include="Image\BackGround\test4.png" />
+    <Image Include="Image\BackGround\test5.png" />
+    <Image Include="Image\BackGround\test6.png" />
+    <Image Include="Image\Capoo\Capoo.png" />
+    <Image Include="Image\Capoo\CapooDie.png" />
     <Image Include="Image\Capoo\Capoo_14.png" />
     <Image Include="Image\Capoo\Capoo_8.png" />
+    <Image Include="Image\Chick\Chick.png" />
+    <Image Include="Image\Chick\PlayerChick.png" />
     <Image Include="Image\IconButton\item_0.png" />
     <Image Include="Image\IconButton\item_1.png" />
     <Image Include="Image\IconButton\music.png" />
@@ -92,8 +102,13 @@
     <Image Include="Image\IconButton\volume.png" />
     <Image Include="Image\Mainmenu\background_glass.png" />
     <Image Include="Image\Mainmenu\cloud_1285x61.png" />
+    <Image Include="Image\Mainmenu\PauseMenu.png" />
     <Image Include="Image\Mouse\mouse.png" />
+    <Image Include="Image\Obstacle\test1.png" />
+    <Image Include="Image\Obstacle\test2.png" />
+    <Image Include="Image\Obstacle\test3.png" />
     <Image Include="Image\Skill\skill_spurt_94x205.png" />
+    <Image Include="Image\Weapon\healing_135x145.png" />
     <Image Include="Image\Weapon\sword_attack_160x160.png" />
     <Image Include="Image\Weapon\sword_hold_160x160.png" />
   </ItemGroup>

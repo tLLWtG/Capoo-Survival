@@ -24,7 +24,7 @@ bool Archive::save()
 	int saveMonsterNum = Game::GetMonsterManager().GetMonsterSet().size();
 
 	root["Time"] = Json::Value(saveTime);
-	root["Helth"] = Json::Value(saveScore);
+	root["Health"] = Json::Value(saveScore);
 	root["Score"] = Json::Value(saveScore);
 	root["MonsterNum"] = Json::Value(saveMonsterNum);
 
@@ -51,7 +51,7 @@ std::vector<float> Archive::load()
 	reader.parse(jsonContent, root);
 
 	float saveTime = root["Time"].asFloat();
-	float saveHealth = root["Helth"].asFloat();
+	float saveHealth = root["Health"].asFloat();
 	float saveScore = root["Score"].asFloat();
 	int saveMonsterNum = root["MonsterNum"].asInt();
 

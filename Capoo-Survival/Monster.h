@@ -2,6 +2,8 @@
 
 #include "VisibleGameObject.h"
 #include "Animator.h"
+#include "JumpText.h"
+
 class Monster :
 	public VisibleGameObject
 {
@@ -32,4 +34,6 @@ private:
 	float _maxVelocity;
 	float deadTime;
 	Animator animator;
+
+	JumpText _jumptext;
 };

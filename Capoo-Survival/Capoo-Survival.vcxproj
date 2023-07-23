@@ -39,6 +39,8 @@
     <ClCompile Include="PlayerChick.cpp" />
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="PlayingLayer.cpp" />
+    <ClCompile Include="Skill.cpp" />
+    <ClCompile Include="Skill_Spurt.cpp" />
     <ClCompile Include="SplashScreen.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Sword.cpp" />
@@ -66,6 +68,8 @@
     <ClInclude Include="Interface.h" />
     <ClInclude Include="Mainmenu.h" />
     <ClInclude Include="PlayingLayer.h" />
+    <ClInclude Include="Skill.h" />
+    <ClInclude Include="Skill_Spurt.h" />
     <ClInclude Include="SplashScreen.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Sword.h" />
@@ -78,8 +82,19 @@
     <Font Include="Font\pixel_title.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Image\Animator\healing_135x145.png" />
+    <Image Include="Image\BackGround\test1.png" />
+    <Image Include="Image\BackGround\test2.png" />
+    <Image Include="Image\BackGround\test3.png" />
+    <Image Include="Image\BackGround\test4.png" />
+    <Image Include="Image\BackGround\test5.png" />
+    <Image Include="Image\BackGround\test6.png" />
+    <Image Include="Image\Capoo\Capoo.png" />
+    <Image Include="Image\Capoo\CapooDie.png" />
     <Image Include="Image\Capoo\Capoo_14.png" />
     <Image Include="Image\Capoo\Capoo_8.png" />
+    <Image Include="Image\Chick\Chick.png" />
+    <Image Include="Image\Chick\PlayerChick.png" />
     <Image Include="Image\IconButton\item_0.png" />
     <Image Include="Image\IconButton\item_1.png" />
     <Image Include="Image\IconButton\music.png" />
@@ -87,7 +102,13 @@
     <Image Include="Image\IconButton\volume.png" />
     <Image Include="Image\Mainmenu\background_glass.png" />
     <Image Include="Image\Mainmenu\cloud_1285x61.png" />
+    <Image Include="Image\Mainmenu\PauseMenu.png" />
     <Image Include="Image\Mouse\mouse.png" />
+    <Image Include="Image\Obstacle\test1.png" />
+    <Image Include="Image\Obstacle\test2.png" />
+    <Image Include="Image\Obstacle\test3.png" />
+    <Image Include="Image\Skill\skill_spurt_94x205.png" />
+    <Image Include="Image\Weapon\healing_135x145.png" />
     <Image Include="Image\Weapon\sword_attack_160x160.png" />
     <Image Include="Image\Weapon\sword_hold_160x160.png" />
   </ItemGroup>
@@ -176,7 +197,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>SFML_STATIC;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\SFML\SFML-2.6.0\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\tllwtg\Documents\cpp_lib\SFML-2.6.0-windows-vc17-32-bit\SFML-2.6.0\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
@@ -184,7 +205,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\SFML\SFML-2.6.0\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\tllwtg\Documents\cpp_lib\SFML-2.6.0-windows-vc17-32-bit\SFML-2.6.0\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-s.lib;sfml-window-s.lib;sfml-audio-s.lib;sfml-network-s.lib;sfml-system-s.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ProjectReference>

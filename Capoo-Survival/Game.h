@@ -26,6 +26,7 @@ public:
 
 	static sf::View view;
 	static sf::Clock gameTime;
+	static float addTime;
 	const static int SCREEN_WIDTH = 1280;
 	const static int SCREEN_HEIGHT = 720;
 
@@ -59,4 +60,5 @@ private:
 	static BackGroundManager _backgroundManager;
 	static sf::Music _BGM_Mainmenu;
 	static sf::Music _BGM_Game;
+	
 };

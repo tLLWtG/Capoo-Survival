@@ -14,7 +14,8 @@ PlayerChick::PlayerChick() :
 	direction({ -1, 0 }),
 	lastHeal(0.0f),
 	scores(0),
-	animator(GetSprite())
+	animator(GetSprite()),
+	_jumptext(this)
 {
 
 	Load("Image/Chick/Chick.png");
@@ -27,6 +28,7 @@ PlayerChick::PlayerChick() :
 
 	GetSprite().setOrigin(GetSprite().getLocalBounds().width / 2, GetSprite().getLocalBounds().height / 2);
 
+	_skill = new Skill_Spurt();
 }
 
 
@@ -37,6 +39,8 @@ PlayerChick::~PlayerChick()
 void PlayerChick::Draw(sf::RenderWindow& rw)
 {
 	VisibleGameObject::Draw(rw);
+	_jumptext.Draw(rw);
+	_skill->Draw(rw);
 }
 
 sf::Vector2f PlayerChick::GetVelocity() const
@@ -50,6 +54,8 @@ void PlayerChick::Update(float elapsedTime)
 	sf::Time t = sf::seconds(elapsedTime);
 
 	animator.Update(t);
+	_jumptext.Update(elapsedTime);
+	_skill->Update(elapsedTime);
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
@@ -105,6 +111,9 @@ void PlayerChick::Update(float elapsedTime)
 		_velocity.y = 0.0f;
 	}
 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		_skill->Fire();
+
 	if (health > maxHealth)
 	{
 		health = maxHealth;
@@ -136,6 +145,7 @@ void PlayerChick::playerDie()
 void PlayerChick::getDamage(float damage)
 {
 	health -= damage;
+	_jumptext.SetDamage((int)damage);
 	// ÉùÒô¡¢ÊıÖµÏÔÊ¾
 }
 

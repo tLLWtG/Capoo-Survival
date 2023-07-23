@@ -205,6 +205,9 @@
     <Image Include="Image\Capoo\Capoo_14.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Image\Animator\healing_135x145.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="Font\pixel.ttf">
@@ -213,7 +216,9 @@
     <Font Include="Font\pixel1.ttf">
       <Filter>Resource Files</Filter>
     </Font>
-    <Font Include="Font\pixel_title.ttf" />
+    <Font Include="Font\pixel_title.ttf">
+      <Filter>Resource Files</Filter>
+    </Font>
   </ItemGroup>
   <ItemGroup>
     <None Include="ttf1.bin">

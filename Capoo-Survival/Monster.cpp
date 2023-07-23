@@ -3,13 +3,15 @@
 #include "Game.h"
 #include "PlayerChick.h"
 #include "Animator.h"
+#include "JumpText.h"
 
 Monster::Monster(std::string filename, std::string name) :
 	_velocity({ 0.0f, 0.0f }),
 	lastAttackTime(0.0f),
 	_name(name),
 	deadTime(0.0f),
-	animator(GetSprite())
+	animator(GetSprite()),
+	_jumptext(this)
 {
 	Load(filename);
 
@@ -52,6 +54,7 @@ Monster::~Monster()
 void Monster::Draw(sf::RenderWindow& rw)
 {
 	VisibleGameObject::Draw(rw);
+	_jumptext.Draw(rw);
 }
 
 sf::Vector2f Monster::GetVelocity() const
@@ -77,13 +80,15 @@ void Monster::Update(float elapsedTime)
 	attack();
 
 	GetSprite().move(_velocity.x * elapsedTime, _velocity.y * elapsedTime);
+
+	_jumptext.Update(elapsedTime);
 }
 
 void Monster::getDamage(float damage)
 {
 	health -= damage;
 	// …˘“Ù°¢ ˝÷µœ‘ æ
-
+	_jumptext.SetDamage((int)damage);
 }
 
 void Monster::monsterDie()

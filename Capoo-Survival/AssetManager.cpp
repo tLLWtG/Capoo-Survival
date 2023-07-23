@@ -51,6 +51,7 @@ sf::Texture& AssetManager::GetTexture(std::string const& filename) {
 	}
 
 	auto& texture = TextureMap[filename];
-	texture.loadFromFile(filename);
+	if (texture.loadFromFile(filename)==false)
+		printf("False to get %s\n", filename.c_str());
 	return texture;
 }

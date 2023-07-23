@@ -25,7 +25,7 @@ void Weapon::Draw(sf::RenderWindow& window) {
 	window.draw(GetSprite());
 }
 #define PI (3.1415926)
-float getAngle(const sf::Vector2i& direction) {
+inline float getAngle(const sf::Vector2i& direction) {
 	float angle = (std::atan2(direction.y, direction.x)) * 180.0f / PI;
 	return angle;
 }

@@ -33,7 +33,7 @@ public:
 
 	enum GameState {
 		Uninitialized, ShowingSplash, Paused,
-		ShowingMenu, Playing, Dead, Exiting
+		ShowingMenu, Playing, Loading, Dead, Exiting
 	};
 
 private:
@@ -44,6 +44,8 @@ private:
 	static void ShowMenu();
 	static void ShowDieScreen();
 	static void ShowPauseScreen();
+	static void SaveArchive();
+	static void LoadArchive();
 
 	static GameState _gameState;
 	static sf::RenderWindow _mainWindow;

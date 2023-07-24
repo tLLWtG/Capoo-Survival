@@ -7,6 +7,7 @@ public:
 	MonsterManager();
 	~MonsterManager();
 	void Update();
+	void NewMonster();
 	void Erase(std::string);
 	int cnt;
 	float lastUpdate;

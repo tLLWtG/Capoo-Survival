@@ -23,9 +23,16 @@ void MonsterManager::Update()
 	}
 	lastUpdate = time;
 
-	int height = Game::SCREEN_HEIGHT;
-	int width = Game::SCREEN_WIDTH;
+	std::string filename = "Image/Capoo/Capoo.png";
+	std::string name = "monster" + std::to_string(++cnt);
 
+	Monster* monster = new Monster(filename, name);
+	MonsterSet.insert(name);
+	Game::GetGameObjectManager().Add(name, monster);
+}
+
+void MonsterManager::NewMonster()
+{
 	std::string filename = "Image/Capoo/Capoo.png";
 	std::string name = "monster" + std::to_string(++cnt);
 

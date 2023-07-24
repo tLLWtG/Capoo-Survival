@@ -11,6 +11,7 @@
 #include "DieScreen.h"
 #include "PlayingLayer.h"
 #include "BackGroundManager.h"
+#include "Archive.h"
 
 void Game::Start(int frame_per_seconds)
 {
@@ -223,6 +224,40 @@ void Game::ShowDieScreen()
 	default:
 		break;
 	}
+}
+
+void Game::SaveArchive()
+{
+	if (Archive::save())
+	{
+		// save成功提示
+	}
+	else
+	{
+		// save失败提示
+	}
+	// 回到暂停menu
+}
+
+void Game::LoadArchive()
+{
+	std::vector<float> archive = Archive::load();
+	if (archive.empty())
+	{
+		// load失败提示，然后回到mainmenu
+	}
+	
+	float saveTime = archive[0];
+	float saveHealth = archive[1];
+	float saveScore = archive[2];
+	int saveMonsterNum = archive[3];
+	addTime = saveTime;
+	PlayerChick* player = dynamic_cast<PlayerChick*>(Game::GetGameObjectManager().Get("player"));
+	player->health = saveHealth;
+	player->scores = saveScore;
+	for (int i = 1; i <= saveMonsterNum; ++i)
+		_monsterManager.NewMonster();
+	// 跳到Playing
 }
 
 Game::GameState Game::_gameState = Uninitialized;

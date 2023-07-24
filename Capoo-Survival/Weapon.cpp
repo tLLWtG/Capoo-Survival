@@ -4,7 +4,7 @@
 #include "Game.h"
 #include <cmath>
 
-Weapon::Weapon() : weaponstate(Holding), m_Animator(GetSprite()) {
+Weapon::Weapon() : weaponstate(Holding), m_Animator(GetSprite()), m_special(_special_sprite) {
 
 }
 
@@ -12,17 +12,24 @@ void Weapon::Update(float elapsedTime) {
 	PlayerChick* player = dynamic_cast<PlayerChick*>(Game::GetGameObjectManager().Get("player"));
 	ChangeDirection(player->direction);
 	GetSprite().setPosition(Game::view.getCenter());
+	_special_sprite.setPosition(Game::view.getCenter());
 	Fire();
 	if (weaponstate == Attacking) {
 		attackTime += elapsedTime;
 		if (attackTime >= attackDuration)
 			Hold();
+		m_Animator.Update(sf::seconds(elapsedTime));
 	}
-	m_Animator.Update(sf::seconds(elapsedTime));
+	else {
+		m_Animator.Update(sf::seconds(elapsedTime));
+		m_special.Update(sf::seconds(elapsedTime));
+	}
 }
 
 void Weapon::Draw(sf::RenderWindow& window) {
 	window.draw(GetSprite());
+	if (weaponstate == Holding)
+		window.draw(_special_sprite);
 }
 #define PI (3.1415926)
 inline float getAngle(const sf::Vector2i& direction) {
@@ -38,6 +45,7 @@ void Weapon::ChangeDirection(sf::Vector2i direction) {
 		angle -= 360.0f * ((float)((int)((int)angle) / 360));
 	}
 	GetSprite().setRotation(angle);
+	_special_sprite.setRotation(angle);
 }
 
 void Weapon::Fire() {
@@ -103,4 +111,10 @@ void Weapon::resetHandle() {
 
 void Weapon::setSize(float multiple) {
 	GetSprite().setScale(multiple, multiple);
+	_special_sprite.setScale(multiple, multiple);
+}
+
+void Weapon::SetPosition(float x, float y) {
+	GetSprite().setPosition(x, y);
+	_special_sprite.setPosition(x, y);
 }

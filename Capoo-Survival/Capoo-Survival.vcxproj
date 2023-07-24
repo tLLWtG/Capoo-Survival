@@ -110,7 +110,8 @@
     <Image Include="Image\Skill\skill_spurt_94x205.png" />
     <Image Include="Image\Weapon\healing_135x145.png" />
     <Image Include="Image\Weapon\sword_attack_160x160.png" />
-    <Image Include="Image\Weapon\sword_hold_160x160.png" />
+    <Image Include="Image\Weapon\sword_hold_90x33.png" />
+    <Image Include="Image\Weapon\sword_hold_special_109x107.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ttf1.bin" />

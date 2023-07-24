@@ -90,6 +90,12 @@
     <ClCompile Include="BackGroundManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Skill.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Skill_Spurt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -167,6 +173,12 @@
     <ClInclude Include="BackGroundManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Skill_Spurt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Image\IconButton\item_0.png">
@@ -196,9 +208,6 @@
     <Image Include="Image\Weapon\sword_attack_160x160.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Image\Weapon\sword_hold_160x160.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="Image\Capoo\Capoo_8.png">
       <Filter>Resource Files</Filter>
     </Image>
@@ -206,6 +215,60 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Image\Animator\healing_135x145.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\BackGround\test1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\BackGround\test2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\BackGround\test3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\BackGround\test4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\BackGround\test5.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\BackGround\test6.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\Capoo\Capoo.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\Capoo\CapooDie.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\Chick\Chick.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\Chick\PlayerChick.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\Mainmenu\PauseMenu.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\Obstacle\test1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\Obstacle\test2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\Obstacle\test3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\Skill\skill_spurt_94x205.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\Weapon\healing_135x145.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\Weapon\sword_hold_special_109x107.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image\Weapon\sword_hold_90x33.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

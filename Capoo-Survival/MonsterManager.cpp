@@ -6,6 +6,7 @@ MonsterManager::MonsterManager()
 {
 	cnt = 0;
 	lastUpdate = 0.0f;
+	lastWave = 0.0f;
 }
 
 MonsterManager::~MonsterManager()
@@ -22,6 +23,15 @@ void MonsterManager::Update()
 		return;
 	}
 	lastUpdate = time;
+
+	if (time - lastWave > 30.0f)
+	{
+		lastWave = time;
+		time += Game::addTime;
+		int cal = pow(time / 10, 0.95);
+		for (int i = 1; i <= 10 + cal / 3; ++i)
+			NewMonster();
+	}
 
 	std::string filename = "Image/Capoo/Capoo.png";
 	std::string name = "monster" + std::to_string(++cnt);

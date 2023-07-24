@@ -12,8 +12,9 @@ void Skill::Update(float elapsedTime) {
 	if (skillstate == Attacking) {
 		m_Animator.Update(sf::seconds(elapsedTime));
 		attackTime += elapsedTime;
-		if (attackTime >= attackDuration)
+		if (attackTime >= attackDuration) {
 			Wait();
+		}
 	}
 	else {
 		if (remainingWaitingTime > 0.0f)
@@ -30,22 +31,6 @@ void Skill::Fire() {
 
 		skillstate = Attacking;
 		attackTime = 0.0f;
-
-		// 还没做攻击判定
-		/*
-		std::set<std::string>& obs = Game::GetMonsterManager().GetMonsterSet();
-		GameObjectManager& gameObjectManager = Game::GetGameObjectManager();
-		for (auto& x : obs) {
-			Monster* monsterPtr = dynamic_cast<Monster*>(gameObjectManager.Get(x));
-			if (monsterPtr != nullptr && isHit(monsterPtr)) {
-				monsterPtr->getDamage(attackPower);
-
-				weaponstate = Attacking;
-				attackTime = 0.0f;
-				m_Animator.SwitchAnimation("Attack");
-				//	GetSprite().setScale(1.2f, 1.2f);
-			}
-		}*/
 
 	}
 }
@@ -77,10 +62,10 @@ void Skill::ChangeDirection(sf::Vector2i direction) {
 	GetSprite().setRotation(angle);
 }
 
-bool Skill::isHit(const Monster* monsterPtr) { /*
+bool Skill::isHit(const Monster* monsterPtr) { 
 	if (!monsterPtr)
 		return false;
-	sf::FloatRect weaponBounds = GetBoundingRect();
+	sf::FloatRect skillBounds = GetBoundingRect();
 	sf::FloatRect monsterBounds = monsterPtr->GetBoundingRect();
-	return weaponBounds.intersects(monsterBounds);*/
+	return skillBounds.intersects(monsterBounds);
 }

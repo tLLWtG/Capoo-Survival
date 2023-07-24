@@ -18,6 +18,8 @@ protected:
 	Animator m_Animator;
 	int startAngle;
 
+	float attackPower;
+
 	float cdTime;	// 最大冷却时间
 	float remainingWaitingTime;	// 剩余冷却时间
 

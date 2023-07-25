@@ -46,6 +46,7 @@ private:
 	static void ShowPauseScreen();
 	static void SaveArchive();
 	static void LoadArchive();
+	static void EmptyUpdate();
 
 	static GameState _gameState;
 	static sf::RenderWindow _mainWindow;

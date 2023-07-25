@@ -199,6 +199,7 @@ void Game::ShowPauseScreen() {
 		break;
 	}
 	case 1: {
+		EmptyUpdate();
 		_gameState = Playing;
 		break;
 	}
@@ -259,6 +260,11 @@ void Game::LoadArchive()
 	for (int i = 1; i <= saveMonsterNum; ++i)
 		_monsterManager.NewMonster();
 	// 跳到Playing
+}
+
+void Game::EmptyUpdate()
+{
+	_gameObjectManager.clock.restart();
 }
 
 Game::GameState Game::_gameState = Uninitialized;

@@ -18,6 +18,7 @@ private:
 	bool isDamage;
 
 	void SetAlpha(float alpha);
+	bool belongtoPlayer();
 
 	sf::Font& _font;
 	sf::Text _damegeText;

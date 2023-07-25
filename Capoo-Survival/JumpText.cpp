@@ -4,6 +4,8 @@
 #include "Animator.h"
 #include "Game.h"
 
+#include "PlayerChick.h"
+
 JumpText::JumpText(VisibleGameObject* master) : _master(master), _font(AssetManager::GetFont("Font/pixel.ttf")), remainder(0.0f), isDamage(true),m_healingAnimator(_healing) {
     _damegeText.setFont(_font);
     _damegeText.setCharacterSize(50);
@@ -54,9 +56,20 @@ void JumpText::Draw(sf::RenderWindow& window) {
     }
 }
 
+bool JumpText::belongtoPlayer() {
+    VisibleGameObject* temp = _master;
+    if (dynamic_cast<PlayerChick*> (temp) != nullptr)
+        return true;
+    else
+        return false;
+}
+
 void JumpText::SetAlpha(float alpha) {
     if (isDamage) {
-        _damegeText.setFillColor(sf::Color(220.0f, 20.0f, 60.0f, alpha));
+        if (belongtoPlayer())
+            _damegeText.setFillColor(sf::Color(220.0f, 20.0f, 60.0f, alpha));
+        else
+            _damegeText.setFillColor(sf::Color(255.0f, 255.0f, 255.0f, alpha));
         _damegeText.setOutlineColor(sf::Color(0.0f, 0.0f, 0.0f, alpha));
     }
     else {

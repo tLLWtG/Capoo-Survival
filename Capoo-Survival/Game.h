@@ -42,6 +42,8 @@ public:
 	static sf::Music _BGM_Mainmenu;
 	static sf::Music _BGM_Game;
 
+	static SettingScreen _settingscreen;
+
 private:
 	static bool IsExiting();
 	static void GameLoop();
@@ -61,7 +63,6 @@ private:
 	static GameObjectManager _gameObjectManager;
 	static SplashScreen _splashscreen;
 	static Mainmenu _mainmenu;
-	static SettingScreen _settingscreen;
 	static DieScreen _diescreen;
 	static PauseScreen _pausescreen;
 	static PlayingLayer _playinglayer;

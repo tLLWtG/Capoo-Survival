@@ -3,6 +3,7 @@
 #include "PauseScreen.h"
 #include "AssetManager.h"
 #include "Game.h"
+#include "SettingScreen.h"
 
 PauseScreen::PauseScreen() :_font_title(AssetManager::GetFont("Font/pixel_title.ttf")) {
 	_text_title.setFont(_font_title);
@@ -40,6 +41,10 @@ int PauseScreen::show(sf::RenderWindow& window) {
 				}
 				else if (buttonName == "quit")
 					return 2;
+				else if (buttonName == "setting") {
+					if (Game::_settingscreen.show(window, 1) == 0)
+						return 0;
+				}
 			}
 		}
 		window.clear(sf::Color(52, 103, 49));

@@ -62,7 +62,11 @@ int SettingScreen::show(sf::RenderWindow& window, int _from) {
 			drawBackground(window);
 			window.draw(background_sprite);
 		}
-
+		case 1: {
+			window.clear(sf::Color(52, 103, 49));
+			Game::GetGameObjectManager().DrawAll(window);
+			darkenWindow(window);
+		}
 		default:
 			break;
 		}

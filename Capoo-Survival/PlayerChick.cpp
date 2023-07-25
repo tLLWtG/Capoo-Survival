@@ -293,6 +293,5 @@ void PlayerChick::showHurt()
 	image_hurt.setColor(sf::Color::Color(168, 15, 2, cal));
 	//Game::GetWindow().draw(image_hurt);
 }
-}
 
 sf::Music PlayerChick::voice_hurt;

@@ -42,5 +42,4 @@ private:
 
 	JumpText _jumptext;
 	Skill* _skill;
-	sf::Music voice_hurt;
 };

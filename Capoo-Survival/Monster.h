@@ -22,6 +22,7 @@ public:
 	float scores;
 	void getDamage(float damage);
 	void monsterDie();
+	enum Direction{Left,Right};
 
 private:
 	//void upgrade();
@@ -31,8 +32,9 @@ private:
 	std::string _name;
 	float lastAttackTime;
 	sf::Vector2f _velocity;
-	float _maxVelocity;
+	float _maxVelocity; 
 	float deadTime;
+	Direction _direction;
 	Animator animator;
 
 	JumpText _jumptext;

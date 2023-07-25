@@ -17,10 +17,12 @@ Monster::Monster(std::string filename, std::string name, bool isBoss) :
 
 	sf::Vector2i spriteSize1(100, 85);
 	sf::Vector2i spriteSize2(100, 80);
-	auto& idleAnimation1 = animator.CreateAnimation("Idle", "Image/Capoo/Capoo_14.png", sf::seconds(1), true);
+	auto& idleAnimationL = animator.CreateAnimation("IdleL", "Image/Capoo/Capoo_14_L.png", sf::seconds(1), true);
+	auto& idleAnimationR = animator.CreateAnimation("IdleR", "Image/Capoo/Capoo_14_R.png", sf::seconds(1), true);
 	auto& idleAnimation2 = animator.CreateAnimation("DieIdle", "Image/Capoo/CapooDie.png", sf::seconds(1), true);
 
-	idleAnimation1.AddFrames(sf::Vector2i(0, 0), spriteSize1, 14);
+	idleAnimationL.AddFrames(sf::Vector2i(0, 0), spriteSize1, 14);
+	idleAnimationR.AddFrames(sf::Vector2i(0, 0), spriteSize1, 14);
 	idleAnimation2.AddFrames(sf::Vector2i(0, 0), spriteSize2, 45);
 
 	GetSprite().setOrigin(GetSprite().getLocalBounds().width / 2, GetSprite().getLocalBounds().height / 2);
@@ -80,8 +82,18 @@ sf::Vector2f Monster::GetVelocity() const
 void Monster::Update(float elapsedTime)
 {
 	sf::Time t = sf::seconds(elapsedTime);
+	if (_direction == Left && GetPosition().x < Game::view.getCenter().x)
+	{
+		animator.SwitchAnimation("IdleR");
+		_direction = Right;
+	}
+	else if (_direction == Right && GetPosition().x > Game::view.getCenter().x)
+	{
+		animator.SwitchAnimation("IdleL");
+		_direction = Left;
+	}
 	animator.Update(t);
-
+	
 	if (health <= 0)
 	{
 		monsterDie();
@@ -167,3 +179,5 @@ void Monster::attack()
 		player->getDamage(baseDamage);
 	}
 }
+
+Monster::Direction _direction;

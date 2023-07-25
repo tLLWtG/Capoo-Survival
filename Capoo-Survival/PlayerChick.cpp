@@ -20,6 +20,8 @@ PlayerChick::PlayerChick() :
 
 	Load("Image/Chick/Chick.png");
 
+	voice_hurt.openFromFile("Music/Hurt.flac");
+
 	sf::Vector2i spriteSize1(73, 74);
 
 	auto& idleAnimation1 = animator.CreateAnimation("Idle", "Image/Chick/PlayerChick.png", sf::seconds(0.5), true);
@@ -146,6 +148,10 @@ void PlayerChick::getDamage(float damage)
 {
 	health -= damage;
 	_jumptext.SetDamage((int)damage);
+	if (damage > 0)
+	{
+		voice_hurt.play();
+	}
 	// ÉùÒô¡¢ÊıÖµÏÔÊ¾
 }
 

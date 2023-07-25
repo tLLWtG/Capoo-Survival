@@ -107,6 +107,11 @@ void Button::draw(sf::RenderWindow& window) {
 		window.draw(_text);
 	}
 }
+void Button::darken() {
+	sf::Color color = _sprite.getColor();
+	color.a = 75;
+	_sprite.setColor(color);
+}
 
 Interface::Interface() :_font(AssetManager::GetFont("Font/pixel.ttf")) {
 	sf::Texture& texture = AssetManager::GetTexture("Image/Mouse/mouse.png");

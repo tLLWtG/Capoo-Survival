@@ -25,6 +25,7 @@ public:
 	void getDamage(float damage);
 	void getScore(float score);
 	float lastHeal;
+	static sf::Music voice_hurt;
 
 private:
 	sf::Vector2f _velocity;
@@ -37,5 +38,4 @@ private:
 
 	JumpText _jumptext;
 	Skill* _skill;
-	sf::Music voice_hurt;
 };

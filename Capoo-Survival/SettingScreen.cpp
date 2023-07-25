@@ -5,6 +5,7 @@
 #include "Game.h"
 
 #include "Mainmenu.h"
+#include "PlayerChick.h"
 
 SettingScreen::SettingScreen() :_title_texture(AssetManager::GetTexture("Image/Screen/setting_title.png")), _music(250.0f, 15.0f, 100.0f, 100.0f), _volume(250.0f, 15.0f, 100.0f, 100.0f),
 _music_icon(AssetManager::GetTexture("Image/IconButton/music.png")), _volume_icon(AssetManager::GetTexture("Image/IconButton/volume.png")) {
@@ -31,6 +32,9 @@ int SettingScreen::show(sf::RenderWindow& window, int _from) {
 	cloudAnimation.AddFrames(sf::Vector2i(0, 0), sf::Vector2i(1285, 61), 30);
 	sf::Clock clock;
 
+	_music.setValue(100.0f, getMusic());
+	_volume.setValue(100.0f, getVolume());
+
 	while (window.isOpen()) {
 		while (window.pollEvent(_event)) {
 			if (_event.type == sf::Event::Closed)
@@ -42,6 +46,8 @@ int SettingScreen::show(sf::RenderWindow& window, int _from) {
 				_music.state = false;
 				_volume.state = false;
 			}
+			else if (_event.type == sf::Event::KeyPressed && _event.key.code == sf::Keyboard::Escape)
+				return 1;
 		}
 		window.clear();
 		static bool uninitialized = true;
@@ -65,7 +71,7 @@ int SettingScreen::show(sf::RenderWindow& window, int _from) {
 
 		if (_music.state) {
 			_music.follow(window);
-			sf::Listener::setGlobalVolume(_music.getValue());
+			setMusic(_music.getValue());
 		}
 		_music_icon.setPosition(Game::view.getCenter().x - 150, Game::view.getCenter().y - 50);
 		window.draw(_music_icon);
@@ -74,6 +80,7 @@ int SettingScreen::show(sf::RenderWindow& window, int _from) {
 
 		if (_volume.state) {
 			_volume.follow(window);
+			setVolume(_volume.getValue());
 		}
 		_volume_icon.setPosition(Game::view.getCenter().x - 150, Game::view.getCenter().y + 30);
 		window.draw(_volume_icon);
@@ -98,12 +105,29 @@ void SettingScreen::draw_frame(sf::RenderWindow& window) {
 }
 
 void SettingScreen::detectPressMouse(sf::RenderWindow& window) {
-	printf("dect\n");
 	sf::Vector2i mousePosition = getMousePosition(window);
 	if (_music.getGlobalBounds().contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y)))
 		_music.state = true;
 	else if (_volume.getGlobalBounds().contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y)))
 		_volume.state = true;
+}
+
+void SettingScreen::setMusic(float value) {
+	Game::_BGM_Game.setVolume(value);
+	Game::_BGM_Mainmenu.setVolume(value);
+}
+
+void SettingScreen::setVolume(float value) {
+	PlayerChick::voice_hurt.setVolume(value);
+
+}
+
+float SettingScreen::getMusic() {
+	return Game::_BGM_Game.getVolume();
+}
+
+float SettingScreen::getVolume() {
+	return PlayerChick::voice_hurt.getVolume();
 }
 
 /*

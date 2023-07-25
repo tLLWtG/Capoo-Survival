@@ -39,6 +39,8 @@ public:
 		Uninitialized, ShowingSplash, Paused,
 		ShowingMenu, Playing, Loading, Dead, Exiting
 	};
+	static sf::Music _BGM_Mainmenu;
+	static sf::Music _BGM_Game;
 
 private:
 	static bool IsExiting();
@@ -67,7 +69,5 @@ private:
 	static AssetManager _assetManager;
 	static MonsterManager _monsterManager;
 	static BackGroundManager _backgroundManager;
-	static sf::Music _BGM_Mainmenu;
-	static sf::Music _BGM_Game;
 	
 };

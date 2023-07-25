@@ -268,3 +268,5 @@ void PlayerChick::upgrade()
 		getDamage(health - maxHealth);
 	lastHeal = time;
 }
+
+sf::Music PlayerChick::voice_hurt;

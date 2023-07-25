@@ -37,6 +37,7 @@ public:
 	const float stress_factor = 1.1;
 	void updateStatus(sf::RenderWindow& window);
 	void draw(sf::RenderWindow& window);
+	void darken();
 };
 
 class Interface {
@@ -53,9 +54,9 @@ public:
 	void drawCrosshairs(sf::RenderWindow& window);
 
 	void darkenWindow(sf::RenderWindow& window);
+	
 
-
-private:
+protected:
 	std::vector<Button> _buttons;
 	sf::Sprite _backgroundSprite;
 	sf::Sprite _mouse;

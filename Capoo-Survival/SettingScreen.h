@@ -30,6 +30,10 @@ public:
 	float getValue() {
 		return _current_slider.getSize().x / _width * _max_value;
 	}
+	void setValue(float max_value, float current_value) {
+		_max_value = max_value, _current_value = current_value;
+		_current_slider.setSize(sf::Vector2f(_width * _current_value / _max_value, _height));
+	}
 	void draw(sf::RenderWindow& window) {
 		window.draw(_background);
 		window.draw(_current_slider);
@@ -50,6 +54,11 @@ public:
 	SettingScreen();
 	int show(sf::RenderWindow& window, int _from);	// op£º¿ªÆôÉèÖÃµÄ±³¾°
 
+	static void setMusic(float value);
+	static void setVolume(float value);
+
+	static float getMusic();
+	static float getVolume();
 
 private:
 	sf::Event _event;

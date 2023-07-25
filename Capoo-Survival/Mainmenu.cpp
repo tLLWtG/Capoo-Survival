@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Game.h"
 #include "Mainmenu.h"
+#include "SettingScreen.h"
 
 
 Mainmenu::Mainmenu() : Interface() {
@@ -15,6 +16,7 @@ Mainmenu::MenuResult Mainmenu::show(sf::RenderWindow& window) {
 	addTextButton(sf::Vector2f(640, 260), L"START", "START");
 	addTextButton(sf::Vector2f(640, 360), L"CONTINUE", "CONTINUE");
 	addTextButton(sf::Vector2f(640, 460), L"ACHIEVEMENT", "ACHIEVEMENT");
+	
 
 	static sf::Sprite background_sprite;
 	background_sprite.setPosition(0 + getWindowStart().x, 300.0f + getWindowStart().y);
@@ -34,6 +36,19 @@ Mainmenu::MenuResult Mainmenu::show(sf::RenderWindow& window) {
 					return Mainmenu::MenuResult::Playing;
 				else if (buttonName == "setting")
 					return Mainmenu::MenuResult::Setting;
+				else if (buttonName == "music") {
+					for (Button& button : _buttons)
+						if (button.name == "music")
+							button.darken();
+					SettingScreen::setMusic(0.0f);
+
+				}
+				else if (buttonName == "volume") {
+					for (Button& button : _buttons)
+						if (button.name == "volume")
+							button.darken();
+					SettingScreen::setVolume(0.0f);
+				}
 			}
 		}
 		animator.Update(clock.restart());

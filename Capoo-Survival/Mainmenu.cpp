@@ -38,16 +38,24 @@ Mainmenu::MenuResult Mainmenu::show(sf::RenderWindow& window) {
 					return Mainmenu::MenuResult::Setting;
 				else if (buttonName == "music") {
 					for (Button& button : _buttons)
-						if (button.name == "music")
-							button.darken();
-					SettingScreen::setMusic(0.0f);
+						if (button.name == "music") {
+							button.state ^= 1;
+							if (button.state)
+								SettingScreen::setMusic(0.0f);
+							else
+								SettingScreen::setMusic(100.0f);
+						}
 
 				}
 				else if (buttonName == "volume") {
 					for (Button& button : _buttons)
-						if (button.name == "volume")
-							button.darken();
-					SettingScreen::setVolume(0.0f);
+						if (button.name == "volume") {
+							button.state ^= 1;
+							if (button.state)
+								SettingScreen::setVolume(0.0f);
+							else
+								SettingScreen::setVolume(100.0f);
+						}
 				}
 			}
 		}

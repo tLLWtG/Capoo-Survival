@@ -94,6 +94,10 @@ void Button::updateStatus(sf::RenderWindow& window) {
 }
 
 void Button::draw(sf::RenderWindow& window) {
+	if (state)
+		darken();
+	else
+		lighten();
 	updateStatus(window);
 	if (_type == Icon) {
 		_sprite.setPosition(_position.x + getWindowStart().x, _position.y + getWindowStart().y);
@@ -110,6 +114,12 @@ void Button::draw(sf::RenderWindow& window) {
 void Button::darken() {
 	sf::Color color = _sprite.getColor();
 	color.a = 75;
+	_sprite.setColor(color);
+}
+
+void Button::lighten() {
+	sf::Color color = _sprite.getColor();
+	color.a = 255;
 	_sprite.setColor(color);
 }
 

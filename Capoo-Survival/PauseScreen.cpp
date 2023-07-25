@@ -4,6 +4,7 @@
 #include "AssetManager.h"
 #include "Game.h"
 #include "SettingScreen.h"
+#include "ExitScreen.h"
 
 PauseScreen::PauseScreen() :_font_title(AssetManager::GetFont("Font/pixel_title.ttf")) {
 	_text_title.setFont(_font_title);
@@ -23,9 +24,11 @@ int PauseScreen::show(sf::RenderWindow& window) {
 	_text_title.setPosition(getWindowStart().x + 640, getWindowStart().y + 100);
 	addTextButton(sf::Vector2f(640, 250), L"RESUME", "resume");
 	addTextButton(sf::Vector2f(640, 350), L"SETTING", "setting");
-	addTextButton(sf::Vector2f(640, 450), L"QUIT", "quit");
+	addTextButton(sf::Vector2f(640, 450), L"MAIN", "main");
+	addTextButton(sf::Vector2f(640, 550), L"Quit", "quit");
 
-	_frame_sprite.setPosition(Game::view.getCenter());
+	_frame_sprite.setPosition(Game::view.getCenter().x, Game::view.getCenter().y + 30);
+	_frame_sprite.setScale(1.2f, 1.3f);
 
 	while (window.isOpen()) {
 		sf::Event event;
@@ -39,11 +42,26 @@ int PauseScreen::show(sf::RenderWindow& window) {
 					sf::sleep(sf::milliseconds(200));	// È¥¶¶¶¯
 					return 1;
 				}
-				else if (buttonName == "quit")
+				else if (buttonName == "main")
 					return 2;
 				else if (buttonName == "setting") {
 					if (Game::_settingscreen.show(window, 1) == 0)
 						return 0;
+				}
+				else if (buttonName == "quit") {
+					ExitScreen _exitscreen;
+					switch (_exitscreen.show(window))
+					{
+					case 0:
+						return 0;
+						break;
+					case 1:
+						break;
+					case 2:
+						break;
+					default:
+						break;
+					}
 				}
 			}
 		}

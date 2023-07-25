@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "Mainmenu.h"
 #include "SettingScreen.h"
+#include "Archive.h"
 
 
 Mainmenu::Mainmenu() : Interface() {
@@ -34,6 +35,10 @@ Mainmenu::MenuResult Mainmenu::show(sf::RenderWindow& window) {
 				std::string buttonName = getClickButtonName(getMousePosition(window));
 				if (buttonName == "START")
 					return Mainmenu::MenuResult::Playing;
+				else if (buttonName == "CONTINUE") {
+					Archive::load();
+					return Mainmenu::MenuResult::Playing;
+				}
 				else if (buttonName == "setting")
 					return Mainmenu::MenuResult::Setting;
 				else if (buttonName == "music") {

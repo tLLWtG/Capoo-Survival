@@ -24,6 +24,7 @@
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="BackGroundManager.cpp" />
+    <ClCompile Include="ExitScreen.cpp" />
     <ClCompile Include="HelpScreen.cpp" />
     <ClCompile Include="JumpText.cpp" />
     <ClCompile Include="DieScreen.cpp" />
@@ -54,6 +55,7 @@
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="BackGroundManager.h" />
+    <ClInclude Include="ExitScreen.h" />
     <ClInclude Include="HelpScreen.h" />
     <ClInclude Include="JumpText.h" />
     <ClInclude Include="DieScreen.h" />

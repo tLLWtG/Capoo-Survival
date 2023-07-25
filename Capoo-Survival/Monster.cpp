@@ -5,7 +5,7 @@
 #include "Animator.h"
 #include "JumpText.h"
 
-Monster::Monster(std::string filename, std::string name) :
+Monster::Monster(std::string filename, std::string name, bool isBoss) :
 	_velocity({ 0.0f, 0.0f }),
 	lastAttackTime(0.0f),
 	_name(name),
@@ -17,10 +17,10 @@ Monster::Monster(std::string filename, std::string name) :
 
 	sf::Vector2i spriteSize1(100, 85);
 	sf::Vector2i spriteSize2(100, 80);
-	auto& idleAnimation1 = animator.CreateAnimation("Idle", "Image/Capoo/Capoo_8.png", sf::seconds(1), true);
+	auto& idleAnimation1 = animator.CreateAnimation("Idle", "Image/Capoo/Capoo_14.png", sf::seconds(1), true);
 	auto& idleAnimation2 = animator.CreateAnimation("DieIdle", "Image/Capoo/CapooDie.png", sf::seconds(1), true);
 
-	idleAnimation1.AddFrames(sf::Vector2i(0, 0), spriteSize1, 8);
+	idleAnimation1.AddFrames(sf::Vector2i(0, 0), spriteSize1, 14);
 	idleAnimation2.AddFrames(sf::Vector2i(0, 0), spriteSize2, 45);
 
 	GetSprite().setOrigin(GetSprite().getLocalBounds().width / 2, GetSprite().getLocalBounds().height / 2);
@@ -36,15 +36,29 @@ Monster::Monster(std::string filename, std::string name) :
 	birthpos.y -= 300;
 	GetSprite().setPosition(birthpos.x + Game::view.getCenter().x, birthpos.y + Game::view.getCenter().y);
 
+
 	sf::Time t = Game::gameTime.getElapsedTime();
 	int time = t.asSeconds();
 	time += Game::addTime;
 	int cal = pow(time / 10, 0.95);
-	baseDamage = 10 + cal / 3;
-	_maxVelocity = 80.0f + cal;
-	health = 100.0f + cal * 5;
-	maxHealth = health;
-	scores = 10.0f + cal;
+	if (isBoss)
+	{
+		baseDamage = 20 + cal;
+		_maxVelocity = 80.0f + cal;
+		health = 200.0f + cal * 10;
+		maxHealth = health;
+		scores = 50.0f + cal;
+		GetSprite().setScale(3, 3);
+	}
+	else
+	{
+		baseDamage = 10 + cal / 3;
+		_maxVelocity = 80.0f + cal;
+		health = 100.0f + cal * 5;
+		maxHealth = health;
+		scores = 10.0f + cal;
+	}
+
 }
 
 

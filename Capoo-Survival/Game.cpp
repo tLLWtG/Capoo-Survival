@@ -167,6 +167,8 @@ void Game::ShowMenu()
 {
 	Mainmenu::MenuResult result = _mainmenu.show(_mainWindow);
 	PlayerChick* player = dynamic_cast<PlayerChick*>(Game::GetGameObjectManager().Get("player"));
+	_monsterManager.lastWave = 0.0f;
+	_monsterManager.lastBoss = 0.0f;
 	player->lastHeal = 0.0f;
 	player->lastHurt = -1.0f;
 	player->SetPosition(0, 0);

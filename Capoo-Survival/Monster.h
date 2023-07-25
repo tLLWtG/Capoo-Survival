@@ -8,7 +8,7 @@ class Monster :
 	public VisibleGameObject
 {
 public:
-	Monster(std::string filename, std::string name);
+	Monster(std::string filename, std::string name, bool isBoss);
 	~Monster();
 
 	void Update(float elapsedTime);

@@ -21,11 +21,13 @@ Monster::Monster(std::string filename, std::string name, bool isBoss) :
 		sf::Vector2i spriteSize2(300, 240);
 		auto& idleAnimationL = animator.CreateAnimation("IdleL", "Image/Capoo/Capoo_14_L_3x.png", sf::seconds(1), true);
 		auto& idleAnimationR = animator.CreateAnimation("IdleR", "Image/Capoo/Capoo_14_R_3x.png", sf::seconds(1), true);
-		auto& idleAnimation2 = animator.CreateAnimation("DieIdle", "Image/Capoo/CapooDie_3x.png", sf::seconds(1), true);
+		auto& idleAnimationDL = animator.CreateAnimation("DieIdleL", "Image/Capoo/CapooDie_L_3x.png", sf::seconds(1), true);
+		auto& idleAnimationDR = animator.CreateAnimation("DieIdleR", "Image/Capoo/CapooDie_R_3x.png", sf::seconds(1), true);
 
 		idleAnimationL.AddFrames(sf::Vector2i(0, 0), spriteSize1, 14);
 		idleAnimationR.AddFrames(sf::Vector2i(0, 0), spriteSize1, 14);
-		idleAnimation2.AddFrames(sf::Vector2i(0, 0), spriteSize2, 45);
+		idleAnimationDL.AddFrames(sf::Vector2i(0, 0), spriteSize2, 45);
+		idleAnimationDR.AddFrames(sf::Vector2i(0, 0), spriteSize2, 45);
 	}
 	else
 	{
@@ -33,11 +35,13 @@ Monster::Monster(std::string filename, std::string name, bool isBoss) :
 		sf::Vector2i spriteSize2(100, 80);
 		auto& idleAnimationL = animator.CreateAnimation("IdleL", "Image/Capoo/Capoo_14_L.png", sf::seconds(1), true);
 		auto& idleAnimationR = animator.CreateAnimation("IdleR", "Image/Capoo/Capoo_14_R.png", sf::seconds(1), true);
-		auto& idleAnimation2 = animator.CreateAnimation("DieIdle", "Image/Capoo/CapooDie.png", sf::seconds(1), true);
+		auto& idleAnimationDL = animator.CreateAnimation("DieIdleL", "Image/Capoo/CapooDie_L.png", sf::seconds(1), true);
+		auto& idleAnimationDR = animator.CreateAnimation("DieIdleR", "Image/Capoo/CapooDie_R.png", sf::seconds(1), true);
 
 		idleAnimationL.AddFrames(sf::Vector2i(0, 0), spriteSize1, 14);
 		idleAnimationR.AddFrames(sf::Vector2i(0, 0), spriteSize1, 14);
-		idleAnimation2.AddFrames(sf::Vector2i(0, 0), spriteSize2, 45);
+		idleAnimationDL.AddFrames(sf::Vector2i(0, 0), spriteSize2, 45);
+		idleAnimationDR.AddFrames(sf::Vector2i(0, 0), spriteSize2, 45);
 	}
 
 
@@ -143,7 +147,9 @@ void Monster::monsterDie()
 		deadTime = time;
 		PlayerChick* player = dynamic_cast<PlayerChick*>(Game::GetGameObjectManager().Get("player"));
 		player->getScore(scores);
-		animator.SwitchAnimation("DieIdle");
+		if (_direction == Right)
+			animator.SwitchAnimation("DieIdleR");
+		else animator.SwitchAnimation("DieIdleL");
 		return;
 	}
 	else

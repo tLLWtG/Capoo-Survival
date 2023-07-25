@@ -34,7 +34,7 @@ void MonsterManager::Update()
 			NewMonster();
 	}
 
-	if (time - lastBoss > 60.0f)
+	if (time - lastBoss > 45.0f)
 	{
 		lastBoss = time;
 		NewBoss();

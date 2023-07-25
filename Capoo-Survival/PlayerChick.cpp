@@ -7,7 +7,7 @@
 
 PlayerChick::PlayerChick() :
 	_velocity({ 0.0f, 0.0f }),
-	_maxVelocity(150.0f),
+	_maxVelocity(200.0f),
 	health(200.0f),
 	maxHealth(200.0f),
 	baseDamage(5.0f),
@@ -247,9 +247,10 @@ void PlayerChick::boundCheck()
 void PlayerChick::upgrade()
 {
 	int cal = pow(scores / 100, 0.95);
-	baseDamage = 5 + cal;
-	maxHealth = 200.0f + cal / 3 * 5;
-	_maxVelocity = 150.0f + cal;
+	cal /= 3;
+	baseDamage = 5 + cal * 3;
+	maxHealth = 200.0f + cal * 5;
+	_maxVelocity = 200.0f + cal * 2;
 
 	if (cal >= 30)
 	{

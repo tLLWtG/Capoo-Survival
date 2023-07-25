@@ -68,16 +68,16 @@ Monster::Monster(std::string filename, std::string name, bool isBoss) :
 	{
 		baseDamage = 20 + cal;
 		_maxVelocity = 80.0f + cal;
-		health = 200.0f + cal * 10;
+		health = 200.0f + cal * 20;
 		maxHealth = health;
-		scores = 50.0f + cal;
+		scores = 100.0f + cal;
 		//GetSprite().setScale(3, 3);
 	}
 	else
 	{
 		baseDamage = 10 + cal / 3;
 		_maxVelocity = 80.0f + cal;
-		health = 100.0f + cal * 5;
+		health = 100.0f + cal * 10;
 		maxHealth = health;
 		scores = 10.0f + cal;
 	}

@@ -130,7 +130,8 @@ void Game::GameLoop()
 
 		_playinglayer.showHP(_mainWindow);
 		_playinglayer.drawMouse(_mainWindow);
-
+		PlayerChick* player = dynamic_cast<PlayerChick*>(Game::GetGameObjectManager().Get("player"));
+		_mainWindow.draw(player->image_hurt);
 		_mainWindow.display();
 		if (currentEvent.type == sf::Event::Closed) _gameState = Game::Exiting;
 
@@ -164,8 +165,10 @@ void Game::ShowSplashScreen()
 
 void Game::ShowMenu()
 {
+	Mainmenu::MenuResult result = _mainmenu.show(_mainWindow);
 	PlayerChick* player = dynamic_cast<PlayerChick*>(Game::GetGameObjectManager().Get("player"));
 	player->lastHeal = 0.0f;
+	player->lastHurt = -1.0f;
 	player->SetPosition(0, 0);
 	_monsterManager.lastUpdate = 0.0f;
 	std::set<std::string> monsterSet = _monsterManager.GetMonsterSet();
@@ -181,7 +184,6 @@ void Game::ShowMenu()
 	view.setCenter(sf::Vector2f(0, 0));
 
 	_mainWindow.setView(view);
-	Mainmenu::MenuResult result = _mainmenu.show(_mainWindow);
 	switch (result)
 	{
 	case Mainmenu::Exiting:

@@ -16,6 +16,8 @@ public:
 	void Draw(sf::RenderWindow& rw);
 
 	sf::Vector2f GetVelocity() const;
+	sf::Texture hurt_tex;
+	sf::Sprite image_hurt;
 
 	float health;
 	float maxHealth;
@@ -25,6 +27,7 @@ public:
 	void getDamage(float damage);
 	void getScore(float score);
 	float lastHeal;
+	float lastHurt;
 	static sf::Music voice_hurt;
 
 private:
@@ -35,7 +38,9 @@ private:
 	void playerDie();
 	void boundCheck();
 	void upgrade();
+	void showHurt();
 
 	JumpText _jumptext;
 	Skill* _skill;
+	sf::Music voice_hurt;
 };

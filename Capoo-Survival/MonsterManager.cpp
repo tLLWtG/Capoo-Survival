@@ -61,7 +61,7 @@ void MonsterManager::NewMonster()
 
 void MonsterManager::NewBoss()
 {
-	std::string filename = "Image/Capoo/Capoo.png";
+	std::string filename = "Image/Capoo/Capoo_3x.png";
 	std::string name = "monster" + std::to_string(++cnt);
 
 	Monster* monster = new Monster(filename, name, true);

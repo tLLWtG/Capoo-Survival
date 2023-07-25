@@ -15,17 +15,34 @@ Monster::Monster(std::string filename, std::string name, bool isBoss) :
 {
 	Load(filename);
 
-	sf::Vector2i spriteSize1(100, 85);
-	sf::Vector2i spriteSize2(100, 80);
-	auto& idleAnimationL = animator.CreateAnimation("IdleL", "Image/Capoo/Capoo_14_L.png", sf::seconds(1), true);
-	auto& idleAnimationR = animator.CreateAnimation("IdleR", "Image/Capoo/Capoo_14_R.png", sf::seconds(1), true);
-	auto& idleAnimation2 = animator.CreateAnimation("DieIdle", "Image/Capoo/CapooDie.png", sf::seconds(1), true);
+	if (isBoss)
+	{
+		sf::Vector2i spriteSize1(300, 255);
+		sf::Vector2i spriteSize2(300, 240);
+		auto& idleAnimationL = animator.CreateAnimation("IdleL", "Image/Capoo/Capoo_14_L_3x.png", sf::seconds(1), true);
+		auto& idleAnimationR = animator.CreateAnimation("IdleR", "Image/Capoo/Capoo_14_R_3x.png", sf::seconds(1), true);
+		auto& idleAnimation2 = animator.CreateAnimation("DieIdle", "Image/Capoo/CapooDie_3x.png", sf::seconds(1), true);
 
-	idleAnimationL.AddFrames(sf::Vector2i(0, 0), spriteSize1, 14);
-	idleAnimationR.AddFrames(sf::Vector2i(0, 0), spriteSize1, 14);
-	idleAnimation2.AddFrames(sf::Vector2i(0, 0), spriteSize2, 45);
+		idleAnimationL.AddFrames(sf::Vector2i(0, 0), spriteSize1, 14);
+		idleAnimationR.AddFrames(sf::Vector2i(0, 0), spriteSize1, 14);
+		idleAnimation2.AddFrames(sf::Vector2i(0, 0), spriteSize2, 45);
+	}
+	else
+	{
+		sf::Vector2i spriteSize1(100, 85);
+		sf::Vector2i spriteSize2(100, 80);
+		auto& idleAnimationL = animator.CreateAnimation("IdleL", "Image/Capoo/Capoo_14_L.png", sf::seconds(1), true);
+		auto& idleAnimationR = animator.CreateAnimation("IdleR", "Image/Capoo/Capoo_14_R.png", sf::seconds(1), true);
+		auto& idleAnimation2 = animator.CreateAnimation("DieIdle", "Image/Capoo/CapooDie.png", sf::seconds(1), true);
+
+		idleAnimationL.AddFrames(sf::Vector2i(0, 0), spriteSize1, 14);
+		idleAnimationR.AddFrames(sf::Vector2i(0, 0), spriteSize1, 14);
+		idleAnimation2.AddFrames(sf::Vector2i(0, 0), spriteSize2, 45);
+	}
+
 
 	GetSprite().setOrigin(GetSprite().getLocalBounds().width / 2, GetSprite().getLocalBounds().height / 2);
+	
 	srand(clock());
 	sf::Vector2f birthpos = { float(rand() % 1100), float(rand() % 600) };
 	while (5 != 3)
@@ -50,7 +67,7 @@ Monster::Monster(std::string filename, std::string name, bool isBoss) :
 		health = 200.0f + cal * 10;
 		maxHealth = health;
 		scores = 50.0f + cal;
-		GetSprite().setScale(3, 3);
+		//GetSprite().setScale(3, 3);
 	}
 	else
 	{
@@ -80,8 +97,16 @@ sf::Vector2f Monster::GetVelocity() const
 }
 
 void Monster::Update(float elapsedTime)
-{
+{	
 	sf::Time t = sf::seconds(elapsedTime);
+	animator.Update(t);
+	
+	if (health <= 0)
+	{
+		monsterDie();
+		return;
+	}
+
 	if (_direction == Left && GetPosition().x < Game::view.getCenter().x)
 	{
 		animator.SwitchAnimation("IdleR");
@@ -92,15 +117,6 @@ void Monster::Update(float elapsedTime)
 		animator.SwitchAnimation("IdleL");
 		_direction = Left;
 	}
-	animator.Update(t);
-	
-	if (health <= 0)
-	{
-		monsterDie();
-		return;
-	}
-
-	//upgrade();
 
 	chase();
 

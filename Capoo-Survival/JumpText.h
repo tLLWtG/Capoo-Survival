@@ -22,7 +22,8 @@ private:
 
 	sf::Font& _font;
 	sf::Text _damegeText;
-	const float dieoutTime = 0.66f;
+	const float dieoutTime = 1.0f;
+	const float waitingTime = 0.3f;
 	float remainder;
 	sf::Sprite _healing;
 	Animator m_healingAnimator;

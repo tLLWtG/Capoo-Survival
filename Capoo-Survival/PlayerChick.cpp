@@ -252,7 +252,6 @@ void PlayerChick::upgrade()
 
 	sf::Time t = Game::gameTime.getElapsedTime();
 	float time = t.asSeconds();
-
 	if (time - lastHeal < 1.0)
 	{
 		return;

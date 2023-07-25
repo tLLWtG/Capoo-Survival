@@ -1,12 +1,11 @@
 #include "stdafx.h"
 #include "Interface.h"
 #include "HelpScreen.h"
-#include "AssetManager.h"
 #include "Animator.h"
 #include "Game.h"
 
 
-HelpScreen::HelpScreen():_title_texture(AssetManager::GetTexture("Image/Screen/help_title.png")), _font(AssetManager::GetFont("Font/Fixedsys62.ttf")) {
+HelpScreen::HelpScreen() :_title_texture(AssetManager::GetTexture("Image/Screen/help_title.png")),_help_font(AssetManager::GetFont("Font/Fixedsys62.ttf")) {
 	_text_title.setTexture(_title_texture);
 	_text_title.setScale(1.0f, 1.2f);
 	_text_title.setOrigin(_text_title.getLocalBounds().width / 2, _text_title.getLocalBounds().height / 2);
@@ -15,6 +14,29 @@ HelpScreen::HelpScreen():_title_texture(AssetManager::GetTexture("Image/Screen/h
 	_frame_sprite.setTexture(texture);
 	_frame_sprite.setOrigin(_frame_sprite.getLocalBounds().width / 2, _frame_sprite.getLocalBounds().height / 2);
 	_frame_sprite.setScale(1.24f, 1.24f);
+
+	sf::Text temp;
+	temp.setFont(_help_font);
+	temp.setCharacterSize(30);
+	temp.setFillColor(sf::Color(165, 42, 42));
+
+	temp.setString(L"[esc] 	Return or Pause");
+	_paragraph.push_back(temp);
+
+	temp.setString(L"[Up] 	 Move Up");
+	_paragraph.push_back(temp);
+	
+	temp.setString(L"[Down]    Move Down");
+	_paragraph.push_back(temp);
+
+	temp.setString(L"[Left]    Move Left");
+	_paragraph.push_back(temp);
+
+	temp.setString(L"[Right]   Move Right");
+	_paragraph.push_back(temp);
+
+	temp.setString(L"[S] 	  Release Skills!");
+	_paragraph.push_back(temp);
 }
 
 bool HelpScreen::show(sf::RenderWindow& window) {
@@ -25,6 +47,8 @@ bool HelpScreen::show(sf::RenderWindow& window) {
 	cloudAnimation.AddFrames(sf::Vector2i(0, 0), sf::Vector2i(1285, 61), 30);
 
 	setBackground("Image/Mainmenu/background_glass.png");
+
+
 	
 	sf::Clock clock;
 	sf::Event _event;
@@ -43,9 +67,15 @@ bool HelpScreen::show(sf::RenderWindow& window) {
 		
 		draw_title(window);
 		draw_frame(window);
-		
-		drawMouse(window);
 
+		float h = Game::view.getCenter().y - 90;
+		for (int i = 0; i < _paragraph.size(); i++) {
+			_paragraph[i].setPosition(Game::view.getCenter().x - 190, h);
+			h += 50;
+			window.draw(_paragraph[i]);
+		}
+
+		drawMouse(window);
 		window.display();
 	}
 

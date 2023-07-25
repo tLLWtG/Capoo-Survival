@@ -32,6 +32,8 @@ Mainmenu::MenuResult Mainmenu::show(sf::RenderWindow& window) {
 				std::string buttonName = getClickButtonName(getMousePosition(window));
 				if (buttonName == "START")
 					return Mainmenu::MenuResult::Playing;
+				else if (buttonName == "setting")
+					return Mainmenu::MenuResult::Setting;
 			}
 		}
 		animator.Update(clock.restart());
@@ -43,6 +45,7 @@ Mainmenu::MenuResult Mainmenu::show(sf::RenderWindow& window) {
 		window.display();
 	}
 }
+
 void Mainmenu::click(sf::RenderWindow& window) {
 	sf::Vector2i clickPosition = getMousePosition(window);
 	std::string clickbottonName = getClickButtonName(clickPosition);

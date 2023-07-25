@@ -12,6 +12,7 @@
 #include "PlayingLayer.h"
 #include "BackGroundManager.h"
 #include "Archive.h"
+#include "SettingScreen.h"
 
 void Game::Start(int frame_per_seconds)
 {
@@ -185,9 +186,28 @@ void Game::ShowMenu()
 		_gameObjectManager.clock.restart();
 		_gameState = Playing;
 		break;
+	case Mainmenu::Setting:
+		ShowSettingScreen();
+		break;
 	}
 	Game::gameTime.restart();
 
+}
+
+void Game::ShowSettingScreen() {
+	switch (_settingscreen.show(_mainWindow, 0))
+	{
+	case 0: {
+		_gameState = Exiting;
+		break;
+	}
+	case 1: {
+		_gameState = ShowingMenu;
+		break;
+	}
+	default:
+		break;
+	}
 }
 
 void Game::ShowPauseScreen() {
@@ -266,6 +286,7 @@ GameObjectManager Game::_gameObjectManager;
 sf::View Game::view;
 SplashScreen Game::_splashscreen;
 Mainmenu Game::_mainmenu;
+SettingScreen Game::_settingscreen;
 PlayingLayer Game::_playinglayer;
 PauseScreen Game::_pausescreen;
 sf::Clock Game::gameTime;

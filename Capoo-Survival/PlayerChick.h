@@ -24,11 +24,12 @@ public:
 	float scores;
 	void getDamage(float damage);
 	void getScore(float score);
+	float lastHeal;
 
 private:
 	sf::Vector2f _velocity;
 	float _maxVelocity;
-	float lastHeal;
+	
 	Animator animator;
 	void playerDie();
 	void boundCheck();
@@ -36,5 +37,5 @@ private:
 
 	JumpText _jumptext;
 	Skill* _skill;
-	
+	sf::Music voice_hurt;
 };

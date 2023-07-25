@@ -10,7 +10,7 @@ PlayerChick::PlayerChick() :
 	_maxVelocity(150.0f),
 	health(200.0f),
 	maxHealth(200.0f),
-	baseDamage(50.0f),
+	baseDamage(5.0f),
 	direction({ -1, 0 }),
 	lastHeal(0.0f),
 	scores(0),
@@ -19,6 +19,8 @@ PlayerChick::PlayerChick() :
 {
 
 	Load("Image/Chick/Chick.png");
+
+	voice_hurt.openFromFile("Music/Hurt.flac");
 
 	sf::Vector2i spriteSize1(73, 74);
 
@@ -146,6 +148,10 @@ void PlayerChick::getDamage(float damage)
 {
 	health -= damage;
 	_jumptext.SetDamage((int)damage);
+	if (damage > 0)
+	{
+		voice_hurt.play();
+	}
 	// …˘“Ù°¢ ˝÷µœ‘ æ
 }
 
@@ -230,7 +236,7 @@ void PlayerChick::boundCheck()
 void PlayerChick::upgrade()
 {
 	int cal = pow(scores / 100, 0.95);
-	baseDamage = 50 + cal;
+	baseDamage = 5 + cal;
 	maxHealth = 200.0f + cal / 3 * 5;
 	_maxVelocity = 150.0f + cal;
 
@@ -252,7 +258,6 @@ void PlayerChick::upgrade()
 
 	sf::Time t = Game::gameTime.getElapsedTime();
 	float time = t.asSeconds();
-
 	if (time - lastHeal < 1.0)
 	{
 		return;

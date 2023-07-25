@@ -9,5 +9,5 @@ public:
 
 	void Update(float elapsedTime);
 	void Draw(sf::RenderWindow& rw);
-
+	static int cnt;
 };

@@ -21,7 +21,10 @@ public:
 	static GameObjectManager& GetGameObjectManager();
 	static ObstacleManager& GetObstacleManager();
 	static MonsterManager& GetMonsterManager();
+	static BackGroundManager& GetBackGroundManager();
 	const static sf::Event& GetInput();
+
+	
 
 	//const static sf::Vector2f GetPlayerPosition();
 
@@ -48,6 +51,7 @@ private:
 	static void ShowSettingScreen();
 	static void SaveArchive();
 	static void LoadArchive();
+	static void EmptyUpdate();
 
 	static GameState _gameState;
 	static sf::RenderWindow _mainWindow;

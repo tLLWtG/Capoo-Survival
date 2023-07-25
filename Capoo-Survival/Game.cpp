@@ -91,6 +91,10 @@ MonsterManager& Game::GetMonsterManager()
 {
 	return Game::_monsterManager;
 }
+BackGroundManager& Game::GetBackGroundManager()
+{
+	return Game::_backgroundManager;
+}
 
 void Game::GameLoop()
 {
@@ -161,6 +165,7 @@ void Game::ShowSplashScreen()
 void Game::ShowMenu()
 {
 	PlayerChick* player = dynamic_cast<PlayerChick*>(Game::GetGameObjectManager().Get("player"));
+	player->lastHeal = 0.0f;
 	player->SetPosition(0, 0);
 	_monsterManager.lastUpdate = 0.0f;
 	std::set<std::string> monsterSet = _monsterManager.GetMonsterSet();
@@ -218,6 +223,7 @@ void Game::ShowPauseScreen() {
 		break;
 	}
 	case 1: {
+		EmptyUpdate();
 		_gameState = Playing;
 		break;
 	}
@@ -278,6 +284,11 @@ void Game::LoadArchive()
 	for (int i = 1; i <= saveMonsterNum; ++i)
 		_monsterManager.NewMonster();
 	// 跳到Playing
+}
+
+void Game::EmptyUpdate()
+{
+	_gameObjectManager.clock.restart();
 }
 
 Game::GameState Game::_gameState = Uninitialized;

@@ -291,7 +291,7 @@ void PlayerChick::showHurt()
 		image_hurt.setColor(temp);
 		return;
 	}
-	float cal = 200 * (-16 * diff * diff + 8 * diff);
+	float cal = 255 * (-16 * diff * diff + 8 * diff);
 	//std::cout << cal << std::endl;
 	//image_hurt.setColor(sf::Color::Color(168, 15, 2, cal));
 	sf::Color temp = image_hurt.getColor();

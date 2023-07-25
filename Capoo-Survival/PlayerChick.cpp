@@ -285,12 +285,18 @@ void PlayerChick::showHurt()
 	float diff = Game::gameTime.getElapsedTime().asSeconds() - lastHurt;
 	if (diff < 0 || diff > 0.5)
 	{
-		image_hurt.setColor(sf::Color::Color(0, 0, 0, 0));
+		//image_hurt.setColor(sf::Color::Color(0, 0, 0, 0));
+		sf::Color temp = image_hurt.getColor();
+		temp.a = 0;
+		image_hurt.setColor(temp);
 		return;
 	}
 	float cal = 200 * (-16 * diff * diff + 8 * diff);
-	std::cout << cal << std::endl;
-	image_hurt.setColor(sf::Color::Color(168, 15, 2, cal));
+	//std::cout << cal << std::endl;
+	//image_hurt.setColor(sf::Color::Color(168, 15, 2, cal));
+	sf::Color temp = image_hurt.getColor();
+	temp.a = cal;
+	image_hurt.setColor(temp);
 	//Game::GetWindow().draw(image_hurt);
 }
 

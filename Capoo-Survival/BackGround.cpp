@@ -22,33 +22,11 @@ BackGround::BackGround(std::string filename)
 
 	GetSprite().setOrigin(HalfWidth, HalfHeight);
 
-	int x1, y1, x2, y2, x3, y3;
-	int x, y;
 
-
-	x1 = playerposx + rand() % ((int)ScreenHalfWidth / 2) + (int)(ScreenHalfWidth);
-	y1 = playerposy + rand() % ((int)ScreenHalfHeight * 2) - (int)ScreenHalfHeight;
-	x2 = playerposx - rand() % ((int)ScreenHalfWidth / 2) - (int)(ScreenHalfWidth);
-
-	y2 = playerposy + rand() % ((int)ScreenHalfHeight / 2) + (int)(ScreenHalfHeight);
-	x3 = playerposx + rand() % ((int)ScreenHalfWidth * 2) - (int)ScreenHalfWidth;
-	y3 = playerposy - rand() % ((int)ScreenHalfHeight / 2) - (int)(ScreenHalfHeight);
-
-	std::pair<int, int>Pos[4] = { {x1,y1},{x2,y1},{x3,y2},{x3,y3} };
-	int pos = rand() % 4;
-
-	x = Pos[pos].first, y = Pos[pos].second;
-	std::set<std::string>& myset = Game::GetObstacleManager().GetObstacleSet();
-
-	GameObjectManager& gamemanager = Game::GetGameObjectManager();
-
-	sf::Rect<float> nowRect = GetBoundingRect();
-
-	if (cnt < 5)
-	{
-		this->GetSprite().setPosition(x, y);
-		cnt++;
-	}
+	int x = cnt + ScreenHalfWidth + playerposx;
+	int y = cnt + ScreenHalfHeight + playerposy;
+	cnt += (ScreenHalfHeight + ScreenHalfWidth) / 2;
+	GetSprite().setPosition(x, y);
 }
 
 BackGround::~BackGround()

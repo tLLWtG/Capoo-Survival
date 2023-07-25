@@ -61,11 +61,13 @@ int SettingScreen::show(sf::RenderWindow& window, int _from) {
 			}
 			drawBackground(window);
 			window.draw(background_sprite);
+			break;
 		}
 		case 1: {
 			window.clear(sf::Color(52, 103, 49));
 			Game::GetGameObjectManager().DrawAll(window);
 			darkenWindow(window);
+			break;
 		}
 		default:
 			break;
@@ -133,33 +135,3 @@ float SettingScreen::getMusic() {
 float SettingScreen::getVolume() {
 	return PlayerChick::voice_hurt.getVolume();
 }
-
-/*
-
-f (event.type == sf::Event::MouseButtonPressed) {
-				if (event.mouseButton.button == sf::Mouse::Left) {
-					sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
-					if (slider.getGlobalBounds().contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y))) {
-						// 如果鼠标点击在滑动条上，则允许拖动
-						sf::Vector2f sliderPosition = slider.getPosition();
-						float yOffset = mousePosition.y - static_cast<int>(sliderPosition.y);
-						while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-							mousePosition = sf::Mouse::getPosition(window);
-							float newY = static_cast<float>(mousePosition.y) - yOffset;
-							if (newY < 200.f) {
-								newY = 200.f;
-							} else if (newY > 400.f) {
-								newY = 400.f;
-							}
-							slider.setPosition(sliderPosition.x, newY);
-							// 根据滑动条位置更新音量
-							float volumeLevel = 100.f - ((newY - 200.f) / sliderMaxHeight) * 100.f;
-							music.setVolume(volumeLevel);
-							window.clear();
-							window.draw(slider);
-							window.display();
-						}
-					}
-				}
-			}
-*/

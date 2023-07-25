@@ -15,7 +15,7 @@ Mainmenu::MenuResult Mainmenu::show(sf::RenderWindow& window) {
 	addIconButton(sf::Vector2f(1208, 675), "Image/IconButton/volume.png", "volume");
 	addTextButton(sf::Vector2f(640, 260), L"START", "START");
 	addTextButton(sf::Vector2f(640, 360), L"CONTINUE", "CONTINUE");
-	addTextButton(sf::Vector2f(640, 460), L"ACHIEVEMENT", "ACHIEVEMENT");
+	addTextButton(sf::Vector2f(640, 460), L"HELP", "HELP");
 	
 
 	static sf::Sprite background_sprite;
@@ -55,6 +55,13 @@ Mainmenu::MenuResult Mainmenu::show(sf::RenderWindow& window) {
 								SettingScreen::setVolume(0.0f);
 							else
 								SettingScreen::setVolume(100.0f);
+						}
+				}
+				else if (buttonName == "HELP") {
+					for (Button& button : _buttons)
+						if (button.name == "HELP") {
+							if (Game::_helpscreen.show(window) == 0)
+								return Mainmenu::MenuResult::Exiting;
 						}
 				}
 			}

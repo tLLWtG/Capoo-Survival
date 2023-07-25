@@ -11,6 +11,7 @@
 #include "PlayingLayer.h"
 #include "PauseScreen.h"
 #include "SettingScreen.h"
+#include "HelpScreen.h"
 
 class Game
 {
@@ -43,6 +44,7 @@ public:
 	static sf::Music _BGM_Game;
 
 	static SettingScreen _settingscreen;
+	static HelpScreen _helpscreen;
 
 private:
 	static bool IsExiting();

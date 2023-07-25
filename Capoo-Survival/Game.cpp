@@ -204,7 +204,7 @@ void Game::ShowMenu()
 }
 
 void Game::ShowSettingScreen() {
-	switch (_settingscreen.show(_mainWindow, 0))
+	switch (_settingscreen.show(_mainWindow, _gameState == ShowingMenu ? 0 : 1))
 	{
 	case 0: {
 		_gameState = Exiting;
@@ -304,6 +304,7 @@ Mainmenu Game::_mainmenu;
 SettingScreen Game::_settingscreen;
 PlayingLayer Game::_playinglayer;
 PauseScreen Game::_pausescreen;
+HelpScreen Game::_helpscreen;
 sf::Clock Game::gameTime;
 ObstacleManager Game::_obstacleManager;
 AssetManager Game::_assetManager;

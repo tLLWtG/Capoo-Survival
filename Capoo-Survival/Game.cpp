@@ -90,6 +90,10 @@ MonsterManager& Game::GetMonsterManager()
 {
 	return Game::_monsterManager;
 }
+BackGroundManager& Game::GetBackGroundManager()
+{
+	return Game::_backgroundManager;
+}
 
 void Game::GameLoop()
 {

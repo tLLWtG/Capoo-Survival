@@ -20,7 +20,10 @@ public:
 	static GameObjectManager& GetGameObjectManager();
 	static ObstacleManager& GetObstacleManager();
 	static MonsterManager& GetMonsterManager();
+	static BackGroundManager& GetBackGroundManager();
 	const static sf::Event& GetInput();
+
+	
 
 	//const static sf::Vector2f GetPlayerPosition();
 

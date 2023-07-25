@@ -10,6 +10,7 @@
 #include "DieScreen.h"
 #include "PlayingLayer.h"
 #include "PauseScreen.h"
+#include "SettingScreen.h"
 
 class Game
 {
@@ -47,6 +48,7 @@ private:
 	static void ShowMenu();
 	static void ShowDieScreen();
 	static void ShowPauseScreen();
+	static void ShowSettingScreen();
 	static void SaveArchive();
 	static void LoadArchive();
 	static void EmptyUpdate();
@@ -57,6 +59,7 @@ private:
 	static GameObjectManager _gameObjectManager;
 	static SplashScreen _splashscreen;
 	static Mainmenu _mainmenu;
+	static SettingScreen _settingscreen;
 	static DieScreen _diescreen;
 	static PauseScreen _pausescreen;
 	static PlayingLayer _playinglayer;

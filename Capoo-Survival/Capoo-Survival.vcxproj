@@ -39,6 +39,7 @@
     <ClCompile Include="PlayerChick.cpp" />
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="PlayingLayer.cpp" />
+    <ClCompile Include="SettingScreen.cpp" />
     <ClCompile Include="Skill.cpp" />
     <ClCompile Include="Skill_Spurt.cpp" />
     <ClCompile Include="SplashScreen.cpp" />
@@ -68,6 +69,7 @@
     <ClInclude Include="Interface.h" />
     <ClInclude Include="Mainmenu.h" />
     <ClInclude Include="PlayingLayer.h" />
+    <ClInclude Include="SettingScreen.h" />
     <ClInclude Include="Skill.h" />
     <ClInclude Include="Skill_Spurt.h" />
     <ClInclude Include="SplashScreen.h" />

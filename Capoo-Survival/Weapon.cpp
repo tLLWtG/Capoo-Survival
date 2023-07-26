@@ -53,7 +53,8 @@ void Weapon::Fire() {
 
 		std::set<std::string>& obs = Game::GetMonsterManager().GetMonsterSet();
 		GameObjectManager& gameObjectManager = Game::GetGameObjectManager();
-
+		PlayerChick* player = dynamic_cast<PlayerChick*>(Game::GetGameObjectManager().Get("player"));
+		attackPower = 30.0f + player->baseDamage;
 		for (auto& x : obs) {
 			Monster* monsterPtr = dynamic_cast<Monster*>(gameObjectManager.Get(x));
 			if (monsterPtr != nullptr && isHit(monsterPtr)) {

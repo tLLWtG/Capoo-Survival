@@ -203,6 +203,8 @@ void Game::ShowMenu()
 		break;
 	case Mainmenu::Loading:
 		Game::LoadArchive();
+		Game::gameTime.restart();
+		_gameObjectManager.clock.restart();
 		_gameState = Playing;
 		break;
 	}

@@ -39,6 +39,8 @@ Button::Button(const sf::Vector2f position, std::string const& filepath, std::st
 	_position = position;
 
 	_rect = getSpriteBounds(_sprite);
+
+	_sound.openFromFile("Music/Button.flac");
 }
 Button::Button(const sf::Vector2f position, const std::wstring& str, std::string const& buttonName) :_font(AssetManager::GetFont("Font/pixel.ttf")) {
 	_type = Text;
@@ -64,7 +66,8 @@ Button::Button(const sf::Vector2f position, const std::wstring& str, std::string
 	//	_text.setPosition(position.x, position.y - 10);
 
 	_rect = getSpriteBounds(_icon_unpointed);
-
+	
+	_sound.openFromFile("Music/Button.flac");
 }
 
 bool Button::isPointed(sf::Vector2i clickPosition) {
@@ -155,8 +158,9 @@ void Interface::drawMouse(sf::RenderWindow& window) {
 }
 std::string Interface::getClickButtonName(sf::Vector2i clickPosition) {
 	for (Button& button : _buttons)
-		if (button.isPointed(clickPosition))
+		if (button.isPointed(clickPosition)) {
 			return button.name;
+		}
 	return "";
 }
 void Interface::drawCrosshairs(sf::RenderWindow& window) {
@@ -183,3 +187,5 @@ void Interface::darkenWindow(sf::RenderWindow& window) {
 	darkenRect.setFillColor(darkenColor);
 	window.draw(darkenRect);
 }
+
+sf::Music Button::_sound;

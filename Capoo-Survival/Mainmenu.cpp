@@ -44,6 +44,8 @@ Mainmenu::MenuResult Mainmenu::show(sf::RenderWindow& window) {
 				return Mainmenu::MenuResult::Exiting;
 			else if (event.type == sf::Event::MouseButtonPressed) {
 				std::string buttonName = getClickButtonName(getMousePosition(window));
+				if (buttonName != "")
+					Button::_sound.play();
 				if (buttonName == "NEW") {
 					return Mainmenu::MenuResult::Playing;
 				}

@@ -19,6 +19,8 @@ protected:
 	int startAngle;
 
 public:
+	static sf::Music _sound;
+
 	enum WeaponState {
 		Attacking, Holding
 	};

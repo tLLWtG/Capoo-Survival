@@ -41,6 +41,8 @@ public:
 	
 	void darken();
 	void lighten();
+
+	static sf::Music _sound;
 };
 
 class Interface {

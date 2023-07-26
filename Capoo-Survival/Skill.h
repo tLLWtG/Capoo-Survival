@@ -17,6 +17,8 @@ public:
 	static float cdTime;	// 最大冷却时间
 	static float remainingWaitingTime;	// 剩余冷却时间
 
+	static sf::Music _sound;
+
 protected:
 	Animator m_Animator;
 	int startAngle;

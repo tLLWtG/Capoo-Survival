@@ -13,7 +13,10 @@ Skill_Spurt::Skill_Spurt() {
 
     attackPower = 20.0f;
     GetSprite().setScale(3.0f, 3.0f);
+
+    _sound.openFromFile("Music/FireBall.flac");
 }
+
 
 Skill_Spurt::~Skill_Spurt() {
 

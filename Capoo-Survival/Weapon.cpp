@@ -63,6 +63,8 @@ void Weapon::Fire() {
 				weaponstate = Attacking;
 				attackTime = 0.0f;
 				m_Animator.SwitchAnimation("Attack");
+
+				_sound.play();
 			//	GetSprite().setScale(1.2f, 1.2f);
 			}
 		}
@@ -74,6 +76,7 @@ void Weapon::Fire() {
 
 void Weapon::Hold() {
 	if (weaponstate == Attacking) {
+		_sound.stop();
 		weaponstate = Holding;
 		m_Animator.SwitchAnimation("Hold");
 	//	GetSprite().setScale(1.0f, 1.0f);
@@ -119,3 +122,5 @@ void Weapon::SetPosition(float x, float y) {
 	GetSprite().setPosition(x, y);
 	_special_sprite.setPosition(x, y);
 }
+
+sf::Music Weapon::_sound;

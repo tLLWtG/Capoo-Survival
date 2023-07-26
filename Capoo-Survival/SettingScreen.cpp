@@ -3,7 +3,7 @@
 #include "SettingScreen.h"
 #include "AssetManager.h"
 #include "Game.h"
-
+#include "Weapon.h"
 #include "Mainmenu.h"
 #include "PlayerChick.h"
 
@@ -125,7 +125,9 @@ void SettingScreen::setMusic(float value) {
 
 void SettingScreen::setVolume(float value) {
 	PlayerChick::voice_hurt.setVolume(value);
-
+	Button::_sound.setVolume(value);
+	Skill::_sound.setVolume(value);
+	Weapon::_sound.setVolume(value);
 }
 
 float SettingScreen::getMusic() {

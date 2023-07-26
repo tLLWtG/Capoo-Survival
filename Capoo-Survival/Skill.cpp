@@ -5,8 +5,9 @@
 #include "Game.h"
 
 Skill::Skill() :skillstate(Waiting), m_Animator(GetSprite()) {
-
+	
 }
+sf::Music Skill::_sound;
 
 void Skill::Update(float elapsedTime) {
 	if (skillstate == Attacking) {
@@ -32,11 +33,13 @@ void Skill::Fire() {
 		skillstate = Attacking;
 		attackTime = 0.0f;
 
+		_sound.play();
 	}
 }
 
 void Skill::Wait() {
 	if (skillstate == Attacking) {
+		_sound.stop();
 		skillstate = Waiting;
 		m_Animator.SwitchAnimation("Hold");
 		remainingWaitingTime = cdTime;

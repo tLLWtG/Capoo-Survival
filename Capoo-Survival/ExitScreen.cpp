@@ -29,6 +29,8 @@ int ExitScreen::show(sf::RenderWindow& window) {
 				return 1;
 			else if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
 				std::string buttonName = getClickButtonName(getMousePosition(window));
+				if (buttonName != "")
+					Button::_sound.play();
 				if (buttonName == "save") {
 					if (Archive::save())
 						text.setString("SAVE SUCCEEDED!");

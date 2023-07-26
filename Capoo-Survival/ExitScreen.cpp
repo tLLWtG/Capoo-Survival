@@ -64,7 +64,7 @@ int ExitScreen::show(sf::RenderWindow& window) {
 				window.draw(text);
 			}
 			else
-				return 1;
+				return 3;
 		}
 		drawMouse(window);
 		window.display();

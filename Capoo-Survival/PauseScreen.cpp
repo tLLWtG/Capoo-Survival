@@ -86,6 +86,9 @@ int PauseScreen::show(sf::RenderWindow& window) {
 					case 2:
 						return 2;
 						break;
+					case 3:
+						return 2;
+						break;
 					default:
 						break;
 					}

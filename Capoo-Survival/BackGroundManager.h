@@ -10,4 +10,8 @@ public:
 
 	BackGroundManager();
 	~BackGroundManager();
+
+	std::set<std::string>&GetBackGroundSet();
+private:
+	std::set<std::string>BackGroundSet;
 };

@@ -8,6 +8,9 @@ class Weapon :public VisibleGameObject {
 
 protected:
 	Animator m_Animator;
+	Animator m_special;
+	sf::Sprite _special_sprite;
+
 	int attackPower;
 	float attackTime;
 	float attackDuration;
@@ -16,6 +19,8 @@ protected:
 	int startAngle;
 
 public:
+	static sf::Music _sound;
+
 	enum WeaponState {
 		Attacking, Holding
 	};
@@ -30,6 +35,8 @@ public:
 	virtual void ChangeDirection(sf::Vector2i direction);
 	virtual void Fire();
 	virtual void Hold();
+	void SetPosition(float x, float y);
 	void setSize(float multiple);
 	bool isHit(const Monster* moster);
+
 };

@@ -5,7 +5,7 @@
 #include "Animator.h"
 #include "JumpText.h"
 
-Monster::Monster(std::string filename, std::string name) :
+Monster::Monster(std::string filename, std::string name, bool isBoss) :
 	_velocity({ 0.0f, 0.0f }),
 	lastAttackTime(0.0f),
 	_name(name),
@@ -15,15 +15,38 @@ Monster::Monster(std::string filename, std::string name) :
 {
 	Load(filename);
 
-	sf::Vector2i spriteSize1(100, 85);
-	sf::Vector2i spriteSize2(100, 80);
-	auto& idleAnimation1 = animator.CreateAnimation("Idle", "Image/Capoo/Capoo_8.png", sf::seconds(1), true);
-	auto& idleAnimation2 = animator.CreateAnimation("DieIdle", "Image/Capoo/CapooDie.png", sf::seconds(1), true);
+	if (isBoss)
+	{
+		sf::Vector2i spriteSize1(300, 255);
+		sf::Vector2i spriteSize2(300, 240);
+		auto& idleAnimationL = animator.CreateAnimation("IdleL", "Image/Capoo/Capoo_14_L_3x.png", sf::seconds(1), true);
+		auto& idleAnimationR = animator.CreateAnimation("IdleR", "Image/Capoo/Capoo_14_R_3x.png", sf::seconds(1), true);
+		auto& idleAnimationDL = animator.CreateAnimation("DieIdleL", "Image/Capoo/CapooDie_L_3x.png", sf::seconds(1), true);
+		auto& idleAnimationDR = animator.CreateAnimation("DieIdleR", "Image/Capoo/CapooDie_R_3x.png", sf::seconds(1), true);
 
-	idleAnimation1.AddFrames(sf::Vector2i(0, 0), spriteSize1, 8);
-	idleAnimation2.AddFrames(sf::Vector2i(0, 0), spriteSize2, 45);
+		idleAnimationL.AddFrames(sf::Vector2i(0, 0), spriteSize1, 14);
+		idleAnimationR.AddFrames(sf::Vector2i(0, 0), spriteSize1, 14);
+		idleAnimationDL.AddFrames(sf::Vector2i(0, 0), spriteSize2, 45);
+		idleAnimationDR.AddFrames(sf::Vector2i(0, 0), spriteSize2, 45);
+	}
+	else
+	{
+		sf::Vector2i spriteSize1(100, 85);
+		sf::Vector2i spriteSize2(100, 80);
+		auto& idleAnimationL = animator.CreateAnimation("IdleL", "Image/Capoo/Capoo_14_L.png", sf::seconds(1), true);
+		auto& idleAnimationR = animator.CreateAnimation("IdleR", "Image/Capoo/Capoo_14_R.png", sf::seconds(1), true);
+		auto& idleAnimationDL = animator.CreateAnimation("DieIdleL", "Image/Capoo/CapooDie_L.png", sf::seconds(1), true);
+		auto& idleAnimationDR = animator.CreateAnimation("DieIdleR", "Image/Capoo/CapooDie_R.png", sf::seconds(1), true);
+
+		idleAnimationL.AddFrames(sf::Vector2i(0, 0), spriteSize1, 14);
+		idleAnimationR.AddFrames(sf::Vector2i(0, 0), spriteSize1, 14);
+		idleAnimationDL.AddFrames(sf::Vector2i(0, 0), spriteSize2, 45);
+		idleAnimationDR.AddFrames(sf::Vector2i(0, 0), spriteSize2, 45);
+	}
+
 
 	GetSprite().setOrigin(GetSprite().getLocalBounds().width / 2, GetSprite().getLocalBounds().height / 2);
+	
 	srand(clock());
 	sf::Vector2f birthpos = { float(rand() % 1100), float(rand() % 600) };
 	while (5 != 3)
@@ -36,14 +59,29 @@ Monster::Monster(std::string filename, std::string name) :
 	birthpos.y -= 300;
 	GetSprite().setPosition(birthpos.x + Game::view.getCenter().x, birthpos.y + Game::view.getCenter().y);
 
+
 	sf::Time t = Game::gameTime.getElapsedTime();
 	int time = t.asSeconds();
+	time += Game::addTime;
 	int cal = pow(time / 10, 0.95);
-	baseDamage = 10 + cal / 3;
-	_maxVelocity = 80.0f + cal;
-	health = 100.0f + cal * 5;
-	maxHealth = health;
-	scores = 10.0f + cal;
+	if (isBoss)
+	{
+		baseDamage = 20 + cal;
+		_maxVelocity = 80.0f + cal;
+		health = 200.0f + cal * 20;
+		maxHealth = health;
+		scores = 100.0f + cal;
+		//GetSprite().setScale(3, 3);
+	}
+	else
+	{
+		baseDamage = 10 + cal / 3;
+		_maxVelocity = 80.0f + cal;
+		health = 100.0f + cal * 10;
+		maxHealth = health;
+		scores = 10.0f + cal;
+	}
+
 }
 
 
@@ -63,17 +101,26 @@ sf::Vector2f Monster::GetVelocity() const
 }
 
 void Monster::Update(float elapsedTime)
-{
+{	
 	sf::Time t = sf::seconds(elapsedTime);
 	animator.Update(t);
-
+	
 	if (health <= 0)
 	{
 		monsterDie();
 		return;
 	}
 
-	//upgrade();
+	if (_direction == Left && GetPosition().x < Game::view.getCenter().x)
+	{
+		animator.SwitchAnimation("IdleR");
+		_direction = Right;
+	}
+	else if (_direction == Right && GetPosition().x > Game::view.getCenter().x)
+	{
+		animator.SwitchAnimation("IdleL");
+		_direction = Left;
+	}
 
 	chase();
 
@@ -100,7 +147,9 @@ void Monster::monsterDie()
 		deadTime = time;
 		PlayerChick* player = dynamic_cast<PlayerChick*>(Game::GetGameObjectManager().Get("player"));
 		player->getScore(scores);
-		animator.SwitchAnimation("DieIdle");
+		if (_direction == Right)
+			animator.SwitchAnimation("DieIdleR");
+		else animator.SwitchAnimation("DieIdleL");
 		return;
 	}
 	else
@@ -152,3 +201,5 @@ void Monster::attack()
 		player->getDamage(baseDamage);
 	}
 }
+
+Monster::Direction _direction;

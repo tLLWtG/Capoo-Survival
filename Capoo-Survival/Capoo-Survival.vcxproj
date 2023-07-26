@@ -24,6 +24,8 @@
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="BackGroundManager.cpp" />
+    <ClCompile Include="ExitScreen.cpp" />
+    <ClCompile Include="HelpScreen.cpp" />
     <ClCompile Include="JumpText.cpp" />
     <ClCompile Include="DieScreen.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -39,6 +41,7 @@
     <ClCompile Include="PlayerChick.cpp" />
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="PlayingLayer.cpp" />
+    <ClCompile Include="SettingScreen.cpp" />
     <ClCompile Include="Skill.cpp" />
     <ClCompile Include="Skill_Spurt.cpp" />
     <ClCompile Include="SplashScreen.cpp" />
@@ -52,6 +55,8 @@
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="BackGroundManager.h" />
+    <ClInclude Include="ExitScreen.h" />
+    <ClInclude Include="HelpScreen.h" />
     <ClInclude Include="JumpText.h" />
     <ClInclude Include="DieScreen.h" />
     <ClInclude Include="Game.h" />
@@ -68,6 +73,7 @@
     <ClInclude Include="Interface.h" />
     <ClInclude Include="Mainmenu.h" />
     <ClInclude Include="PlayingLayer.h" />
+    <ClInclude Include="SettingScreen.h" />
     <ClInclude Include="Skill.h" />
     <ClInclude Include="Skill_Spurt.h" />
     <ClInclude Include="SplashScreen.h" />
@@ -110,7 +116,8 @@
     <Image Include="Image\Skill\skill_spurt_94x205.png" />
     <Image Include="Image\Weapon\healing_135x145.png" />
     <Image Include="Image\Weapon\sword_attack_160x160.png" />
-    <Image Include="Image\Weapon\sword_hold_160x160.png" />
+    <Image Include="Image\Weapon\sword_hold_90x33.png" />
+    <Image Include="Image\Weapon\sword_hold_special_109x107.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ttf1.bin" />
@@ -175,7 +182,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level1</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>SFML_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
@@ -191,7 +198,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level1</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>

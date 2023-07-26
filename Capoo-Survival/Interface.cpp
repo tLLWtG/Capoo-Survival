@@ -39,6 +39,8 @@ Button::Button(const sf::Vector2f position, std::string const& filepath, std::st
 	_position = position;
 
 	_rect = getSpriteBounds(_sprite);
+
+	_sound.openFromFile("Music/Button.flac");
 }
 Button::Button(const sf::Vector2f position, const std::wstring& str, std::string const& buttonName) :_font(AssetManager::GetFont("Font/pixel.ttf")) {
 	_type = Text;
@@ -64,7 +66,8 @@ Button::Button(const sf::Vector2f position, const std::wstring& str, std::string
 	//	_text.setPosition(position.x, position.y - 10);
 
 	_rect = getSpriteBounds(_icon_unpointed);
-
+	
+	_sound.openFromFile("Music/Button.flac");
 }
 
 bool Button::isPointed(sf::Vector2i clickPosition) {
@@ -81,7 +84,7 @@ void Button::updateStatus(sf::RenderWindow& window) {
 	sf::Vector2i mousePos = getMousePosition(window);
 	bool status = isPointed(mousePos);
 	if (status != _clickState) {
-		printf("button %s is pointed CHANGE  %d\n", this->name.c_str(), status);
+	//	printf("button %s is pointed CHANGE  %d\n", this->name.c_str(), status);
 		_clickState = status;
 		if (_type == Icon) {
 			_sprite.setScale(status ? stressFactor : 1.0f, status ? stressFactor : 1.0f);
@@ -94,6 +97,10 @@ void Button::updateStatus(sf::RenderWindow& window) {
 }
 
 void Button::draw(sf::RenderWindow& window) {
+	if (state)
+		darken();
+	else
+		lighten();
 	updateStatus(window);
 	if (_type == Icon) {
 		_sprite.setPosition(_position.x + getWindowStart().x, _position.y + getWindowStart().y);
@@ -106,6 +113,17 @@ void Button::draw(sf::RenderWindow& window) {
 		_text.setPosition(_position.x + getWindowStart().x, _position.y - 10 + getWindowStart().y);
 		window.draw(_text);
 	}
+}
+void Button::darken() {
+	sf::Color color = _sprite.getColor();
+	color.a = 75;
+	_sprite.setColor(color);
+}
+
+void Button::lighten() {
+	sf::Color color = _sprite.getColor();
+	color.a = 255;
+	_sprite.setColor(color);
 }
 
 Interface::Interface() :_font(AssetManager::GetFont("Font/pixel.ttf")) {
@@ -140,8 +158,9 @@ void Interface::drawMouse(sf::RenderWindow& window) {
 }
 std::string Interface::getClickButtonName(sf::Vector2i clickPosition) {
 	for (Button& button : _buttons)
-		if (button.isPointed(clickPosition))
+		if (button.isPointed(clickPosition)) {
 			return button.name;
+		}
 	return "";
 }
 void Interface::drawCrosshairs(sf::RenderWindow& window) {
@@ -168,3 +187,5 @@ void Interface::darkenWindow(sf::RenderWindow& window) {
 	darkenRect.setFillColor(darkenColor);
 	window.draw(darkenRect);
 }
+
+sf::Music Button::_sound;

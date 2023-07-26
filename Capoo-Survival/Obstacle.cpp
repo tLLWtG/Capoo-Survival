@@ -113,7 +113,7 @@ void Obstacle::Update(float elapsedTime)
 
 			x = Pos[pos].first, y = Pos[pos].second;
 			std::set<std::string>& myset = Game::GetObstacleManager().GetObstacleSet();
-			
+			std::set<std::string>& mybacset = Game::GetBackGroundManager().GetBackGroundSet();
 			GameObjectManager& gamemanager = Game::GetGameObjectManager();
 
 			sf::Rect<float> nowRect = GetBoundingRect();
@@ -123,13 +123,23 @@ void Obstacle::Update(float elapsedTime)
 			{
 				auto alrobs = gamemanager.Get((*it));
 				sf::Rect<float> haveRect = alrobs->GetBoundingRect();
+
+				for (auto bac : mybacset)
+				{
+					auto bacg = gamemanager.Get(bac);
+					int bacx = bacg->GetPosition().x;
+					int bacy = bacg->GetPosition().y;
+					
+					if ((bacx - x) * (bacx - x) + (bacy - y) * (bacy - y) < 40000)isOk = false;
+				}
+
 				if (haveRect == nowRect)continue;
 				if (nowRect.intersects(haveRect)||
 					haveRect.contains(x,y)||
-					haveRect.contains(x+ObsHalfHeight,y+ObsHalfHeight)||
-					haveRect.contains(x + ObsHalfHeight*2, y + 2*ObsHalfHeight)||
-					haveRect.contains(x + ObsHalfHeight * 2, y + ObsHalfHeight)||
-					haveRect.contains(x + ObsHalfHeight , y + 2 * ObsHalfHeight))
+					haveRect.contains(x+ ObsHalfWidth,y+ObsHalfHeight)||
+					haveRect.contains(x + ObsHalfWidth *2, y + 2*ObsHalfHeight)||
+					haveRect.contains(x + ObsHalfWidth * 2, y + ObsHalfHeight)||
+					haveRect.contains(x + ObsHalfWidth, y + 2 * ObsHalfHeight))
 					isOk = false;
 				
 			}

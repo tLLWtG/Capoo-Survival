@@ -28,6 +28,7 @@ private:
 	const float stressFactor = 1.2f;
 
 public:
+	bool state = false;
 	std::string name;
 	Button(const sf::Vector2f position, std::string const& filepath, std::string const& buttonName);
 	Button(const sf::Vector2f position, const std::wstring& str, std::string const& buttonName);
@@ -37,6 +38,11 @@ public:
 	const float stress_factor = 1.1;
 	void updateStatus(sf::RenderWindow& window);
 	void draw(sf::RenderWindow& window);
+	
+	void darken();
+	void lighten();
+
+	static sf::Music _sound;
 };
 
 class Interface {
@@ -53,9 +59,9 @@ public:
 	void drawCrosshairs(sf::RenderWindow& window);
 
 	void darkenWindow(sf::RenderWindow& window);
+	
 
-
-private:
+protected:
 	std::vector<Button> _buttons;
 	sf::Sprite _backgroundSprite;
 	sf::Sprite _mouse;

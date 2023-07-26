@@ -7,18 +7,24 @@
 
 PlayerChick::PlayerChick() :
 	_velocity({ 0.0f, 0.0f }),
-	_maxVelocity(150.0f),
+	_maxVelocity(200.0f),
 	health(200.0f),
 	maxHealth(200.0f),
-	baseDamage(50.0f),
+	baseDamage(5.0f),
 	direction({ -1, 0 }),
 	lastHeal(0.0f),
 	scores(0),
 	animator(GetSprite()),
+	lastHurt(-1.0f),
 	_jumptext(this)
 {
 
 	Load("Image/Chick/Chick.png");
+
+	voice_hurt.openFromFile("Music/Hurt.flac");
+	hurt_tex.loadFromFile("Image/Animator/hurt.png");
+	image_hurt.setTexture(hurt_tex);
+	image_hurt.setOrigin(image_hurt.getLocalBounds().width / 2, image_hurt.getLocalBounds().height / 2);
 
 	sf::Vector2i spriteSize1(73, 74);
 
@@ -126,6 +132,7 @@ void PlayerChick::Update(float elapsedTime)
 	}
 
 	// fire in weapon
+	showHurt();
 
 	boundCheck();
 
@@ -134,6 +141,7 @@ void PlayerChick::Update(float elapsedTime)
 	GetSprite().move(_velocity.x * elapsedTime, _velocity.y * elapsedTime);
 	Game::view.setCenter(GetPosition());
 	Game::GetWindow().setView(Game::view);
+	image_hurt.setPosition(GetPosition());
 }
 
 void PlayerChick::playerDie()
@@ -146,6 +154,15 @@ void PlayerChick::getDamage(float damage)
 {
 	health -= damage;
 	_jumptext.SetDamage((int)damage);
+	if (damage > 0)
+	{
+		voice_hurt.play();
+		if (Game::gameTime.getElapsedTime().asSeconds() - lastHurt > 0.5f)
+		{
+			lastHurt = Game::gameTime.getElapsedTime().asSeconds();
+		}
+	}
+
 	// ÉùÒô¡¢ÊýÖµÏÔÊ¾
 }
 
@@ -230,9 +247,10 @@ void PlayerChick::boundCheck()
 void PlayerChick::upgrade()
 {
 	int cal = pow(scores / 100, 0.95);
-	baseDamage = 50 + cal;
-	maxHealth = 200.0f + cal / 3 * 5;
-	_maxVelocity = 150.0f + cal;
+	cal /= 3;
+	baseDamage = 5 + cal * 3;
+	maxHealth = 200.0f + cal * 5;
+	_maxVelocity = 200.0f + cal * 2;
 
 	if (cal >= 30)
 	{
@@ -252,7 +270,6 @@ void PlayerChick::upgrade()
 
 	sf::Time t = Game::gameTime.getElapsedTime();
 	float time = t.asSeconds();
-
 	if (time - lastHeal < 1.0)
 	{
 		return;
@@ -263,3 +280,25 @@ void PlayerChick::upgrade()
 		getDamage(health - maxHealth);
 	lastHeal = time;
 }
+
+void PlayerChick::showHurt()
+{
+	float diff = Game::gameTime.getElapsedTime().asSeconds() - lastHurt;
+	if (diff < 0 || diff > 0.5)
+	{
+		//image_hurt.setColor(sf::Color::Color(0, 0, 0, 0));
+		sf::Color temp = image_hurt.getColor();
+		temp.a = 0;
+		image_hurt.setColor(temp);
+		return;
+	}
+	float cal = 255 * (-16 * diff * diff + 8 * diff);
+	//std::cout << cal << std::endl;
+	//image_hurt.setColor(sf::Color::Color(168, 15, 2, cal));
+	sf::Color temp = image_hurt.getColor();
+	temp.a = cal;
+	image_hurt.setColor(temp);
+	//Game::GetWindow().draw(image_hurt);
+}
+
+sf::Music PlayerChick::voice_hurt;

@@ -8,6 +8,8 @@ class Skill_Spurt :public Skill {
 public:
     Skill_Spurt();
     ~Skill_Spurt();
+
+    void Update(float elapsedTime);
 };
 
 #endif

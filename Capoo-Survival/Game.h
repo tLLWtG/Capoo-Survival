@@ -10,6 +10,8 @@
 #include "DieScreen.h"
 #include "PlayingLayer.h"
 #include "PauseScreen.h"
+#include "SettingScreen.h"
+#include "HelpScreen.h"
 
 class Game
 {
@@ -20,7 +22,10 @@ public:
 	static GameObjectManager& GetGameObjectManager();
 	static ObstacleManager& GetObstacleManager();
 	static MonsterManager& GetMonsterManager();
+	static BackGroundManager& GetBackGroundManager();
 	const static sf::Event& GetInput();
+
+	
 
 	//const static sf::Vector2f GetPlayerPosition();
 
@@ -33,8 +38,14 @@ public:
 
 	enum GameState {
 		Uninitialized, ShowingSplash, Paused,
-		ShowingMenu, Playing, Dead, Exiting
+		ShowingMenu, Playing, Loading, Dead, Exiting
 	};
+	static sf::Music _BGM_Mainmenu;
+	static sf::Music _BGM_Game;
+
+	static SettingScreen _settingscreen;
+	static HelpScreen _helpscreen;
+	static void LoadArchive();
 
 private:
 	static bool IsExiting();
@@ -44,6 +55,9 @@ private:
 	static void ShowMenu();
 	static void ShowDieScreen();
 	static void ShowPauseScreen();
+	static void ShowSettingScreen();
+	static void SaveArchive();
+	static void EmptyUpdate();
 
 	static GameState _gameState;
 	static sf::RenderWindow _mainWindow;
@@ -58,7 +72,5 @@ private:
 	static AssetManager _assetManager;
 	static MonsterManager _monsterManager;
 	static BackGroundManager _backgroundManager;
-	static sf::Music _BGM_Mainmenu;
-	static sf::Music _BGM_Game;
 	
 };

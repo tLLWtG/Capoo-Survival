@@ -7,7 +7,7 @@ class Mainmenu : public Interface {
 public:
 
 	enum MenuResult {
-		Playing, Exiting, Setting
+		Playing, Exiting, Setting, Loading
 	};
 
 	Mainmenu();

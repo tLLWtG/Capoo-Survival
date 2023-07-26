@@ -201,6 +201,10 @@ void Game::ShowMenu()
 	case Mainmenu::Setting:
 		ShowSettingScreen();
 		break;
+	case Mainmenu::Loading:
+		Game::LoadArchive();
+		_gameState = Playing;
+		break;
 	}
 }
 

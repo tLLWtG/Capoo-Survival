@@ -45,16 +45,10 @@ Mainmenu::MenuResult Mainmenu::show(sf::RenderWindow& window) {
 			else if (event.type == sf::Event::MouseButtonPressed) {
 				std::string buttonName = getClickButtonName(getMousePosition(window));
 				if (buttonName == "NEW") {
-					Game::addTime = 0.0f;
-					Game::GetGameObjectManager().Remove("player");
-					PlayerChick* player = new PlayerChick();
-					player->SetPosition(0, 0);
-					Game::GetGameObjectManager().Add("player", player);
 					return Mainmenu::MenuResult::Playing;
 				}
 				else if (buttonName == "CONTINUE") {
-					Game::LoadArchive();
-					return Mainmenu::MenuResult::Playing;
+					return Mainmenu::MenuResult::Loading;
 				}
 				else if (buttonName == "QUIT") {
 					return Mainmenu::MenuResult::Exiting;

@@ -10,7 +10,6 @@ Skill_Spurt::Skill_Spurt() {
     GetSprite().setOrigin(sf::Vector2f(47.0f, 23.0f));
     startAngle = -90;
     attackDuration = 1.0f;
-    cdTime = 2.0f;
 
     attackPower = 20.0f;
     GetSprite().setScale(3.0f, 3.0f);
@@ -19,6 +18,8 @@ Skill_Spurt::Skill_Spurt() {
 Skill_Spurt::~Skill_Spurt() {
 
 }
+
+float Skill::cdTime = 2.0f;
 
 void Skill_Spurt::Update(float elapsedTime) {
     static const float damage_interval = 0.3f;

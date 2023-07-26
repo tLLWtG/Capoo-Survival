@@ -14,14 +14,14 @@ public:
 	virtual void Wait();
 	bool isHit(const Monster* moster);
 
+	static float cdTime;	// 最大冷却时间
+	static float remainingWaitingTime;	// 剩余冷却时间
+
 protected:
 	Animator m_Animator;
 	int startAngle;
 
 	float attackPower;
-
-	float cdTime;	// 最大冷却时间
-	float remainingWaitingTime;	// 剩余冷却时间
 
 	float attackTime;	// 攻击动画已经播放时间
 	float attackDuration;	// 攻击动画最大播放时间

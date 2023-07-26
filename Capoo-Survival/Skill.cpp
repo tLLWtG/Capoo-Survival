@@ -4,7 +4,7 @@
 #include "PlayerChick.h"
 #include "Game.h"
 
-Skill::Skill() :skillstate(Waiting), remainingWaitingTime(0.0f), m_Animator(GetSprite()) {
+Skill::Skill() :skillstate(Waiting), m_Animator(GetSprite()) {
 
 }
 
@@ -21,7 +21,7 @@ void Skill::Update(float elapsedTime) {
 			remainingWaitingTime -= elapsedTime;
 	}
 }
-
+float Skill::remainingWaitingTime = 0.0f;
 
 void Skill::Fire() {
 	if (skillstate == Waiting && remainingWaitingTime <= 0.0f) {	// 转换为攻击模式

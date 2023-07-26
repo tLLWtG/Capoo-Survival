@@ -106,6 +106,7 @@ void Game::GameLoop()
 	{
 	case Game::ShowingMenu:
 	{
+		_BGM_Game.stop();
 		_BGM_Mainmenu.setLoop(true);
 		_BGM_Mainmenu.play();
 		ShowMenu();
@@ -167,12 +168,16 @@ void Game::ShowMenu()
 {
 	Mainmenu::MenuResult result = _mainmenu.show(_mainWindow);
 	PlayerChick* player = dynamic_cast<PlayerChick*>(Game::GetGameObjectManager().Get("player"));
+	_monsterManager.lastUpdate = 0.0f;
 	_monsterManager.lastWave = 0.0f;
 	_monsterManager.lastBoss = 0.0f;
 	player->lastHeal = 0.0f;
 	player->lastHurt = -1.0f;
 	player->SetPosition(0, 0);
-	_monsterManager.lastUpdate = 0.0f;
+	player->maxHealth = 200.0f;
+	player->health = 200.0f;
+	player->scores = 0;
+	
 	std::set<std::string> monsterSet = _monsterManager.GetMonsterSet();
 	
 	for (auto& x : monsterSet)
@@ -193,14 +198,14 @@ void Game::ShowMenu()
 		break;
 	case Mainmenu::Playing:
 		_gameObjectManager.clock.restart();
+		Game::gameTime.restart();
+		Game::addTime = 0;
 		_gameState = Playing;
 		break;
 	case Mainmenu::Setting:
 		ShowSettingScreen();
 		break;
 	}
-	Game::gameTime.restart();
-
 }
 
 void Game::ShowSettingScreen() {

@@ -24,7 +24,7 @@ bool Archive::save()
 	int saveMonsterNum = Game::GetMonsterManager().GetMonsterSet().size();
 
 	root["Time"] = Json::Value(saveTime);
-	root["Health"] = Json::Value(saveScore);
+	root["Health"] = Json::Value(saveHealth);
 	root["Score"] = Json::Value(saveScore);
 	root["MonsterNum"] = Json::Value(saveMonsterNum);
 

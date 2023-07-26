@@ -19,12 +19,7 @@ void MonsterManager::Update()
 {
 	sf::Time t = Game::gameTime.getElapsedTime();
 	float time = t.asSeconds();
-	if (time - lastUpdate < 2.7)
-	{
-		return;
-	}
-	lastUpdate = time;
-
+	
 	if (time - lastWave > 30.0f)
 	{
 		lastWave = time;
@@ -34,12 +29,24 @@ void MonsterManager::Update()
 			NewMonster();
 	}
 
+	t = Game::gameTime.getElapsedTime();
+	time = t.asSeconds();
+
 	if (time - lastBoss > 45.0f)
 	{
 		lastBoss = time;
 		NewBoss();
 		//time += Game::addTime;
 	}
+
+	t = Game::gameTime.getElapsedTime();
+	time = t.asSeconds();
+
+	if (time - lastUpdate < 2.7)
+	{
+		return;
+	}
+	lastUpdate = time;
 
 	std::string filename = "Image/Capoo/Capoo.png";
 	std::string name = "monster" + std::to_string(++cnt);

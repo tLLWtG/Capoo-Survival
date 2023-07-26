@@ -131,6 +131,7 @@ void Game::GameLoop()
 
 		_playinglayer.showHP(_mainWindow);
 		_playinglayer.showCD(_mainWindow);
+		_playinglayer.showSCORE(_mainWindow);
 		_playinglayer.drawMouse(_mainWindow);
 		PlayerChick* player = dynamic_cast<PlayerChick*>(Game::GetGameObjectManager().Get("player"));
 		_mainWindow.draw(player->image_hurt);

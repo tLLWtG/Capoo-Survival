@@ -33,6 +33,21 @@ PlayingLayer::PlayingLayer() {
 	_cd_value.setStyle(sf::Text::Style::Bold);
 	_cd_value.setOutlineColor(sf::Color::Black);
 	_cd_value.setOutlineThickness(2.0f);
+
+	_score_text.setFont(_font);
+	_score_text.setCharacterSize(42);
+	_score_text.setFillColor(sf::Color::White);
+	_score_text.setStyle(sf::Text::Style::Bold);
+	_score_text.setOutlineColor(sf::Color::Black);
+	_score_text.setOutlineThickness(2.0f);
+	_score_text.setString("Score: ");
+
+	_score_value.setFont(_font);
+	_score_value.setCharacterSize(42);
+	_score_value.setFillColor(sf::Color::White);
+	_score_value.setStyle(sf::Text::Style::Bold);
+	_score_value.setOutlineColor(sf::Color::Black);
+	_score_value.setOutlineThickness(2.0f);
 }
 
 
@@ -83,4 +98,25 @@ void PlayingLayer::showCD(sf::RenderWindow& window) {
 		_cd_value.setPosition(_cd_text.getGlobalBounds().left + _cd_text.getGlobalBounds().width, getWindowStart().y + 80);
 	}
 	window.draw(_cd_value);
+}
+
+
+void PlayingLayer::showSCORE(sf::RenderWindow& window) {
+
+	const int precision = 1;
+
+	PlayerChick* player = dynamic_cast<PlayerChick*>(Game::GetGameObjectManager().Get("player"));
+	std::string scoreValue = (std::to_string(player->scores));
+	size_t dotPosition = scoreValue.find('.');
+	if (dotPosition != std::string::npos && dotPosition + precision + 1 < scoreValue.size())
+		scoreValue = scoreValue.substr(0, dotPosition + precision + 1);
+
+	_score_value.setString(scoreValue);
+
+	_score_text.setPosition(getWindowStart().x + 1280 - _score_text.getLocalBounds().width - _score_value.getLocalBounds().width - 30, getWindowStart().y + 30);
+	//	_score_text.setPosition(getWindowStart().x + 640, getWindowStart().y + 30);
+	_score_value.setPosition(_score_text.getGlobalBounds().left + _score_text.getGlobalBounds().width, getWindowStart().y + 30);
+
+	window.draw(_score_text);
+	window.draw(_score_value);
 }

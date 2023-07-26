@@ -45,6 +45,7 @@ public:
 
 	static SettingScreen _settingscreen;
 	static HelpScreen _helpscreen;
+	static void LoadArchive();
 
 private:
 	static bool IsExiting();
@@ -56,7 +57,6 @@ private:
 	static void ShowPauseScreen();
 	static void ShowSettingScreen();
 	static void SaveArchive();
-	static void LoadArchive();
 	static void EmptyUpdate();
 
 	static GameState _gameState;

@@ -48,17 +48,16 @@ bool HelpScreen::show(sf::RenderWindow& window) {
 
 	setBackground("Image/Mainmenu/background_glass.png");
 
-
 	
 	sf::Clock clock;
-	sf::Event _event;
+	sf::Event event;
+	while (window.pollEvent(event));
 	while (window.isOpen()) {
-		while (window.pollEvent(_event)) {
-			if (_event.type == sf::Event::Closed)
+		while (window.pollEvent(event)) {
+			if (event.type == sf::Event::Closed)
 				return 0;
-			if (_event.type == sf::Event::KeyPressed && _event.key.code == sf::Keyboard::Escape)
+			else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
 				return 1;
-
 		}
 		window.clear();
 		animator.Update(clock.restart());

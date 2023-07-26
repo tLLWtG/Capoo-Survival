@@ -55,7 +55,6 @@ std::vector<float> Archive::load()
 	float saveScore = root["Score"].asFloat();
 	int saveMonsterNum = root["MonsterNum"].asInt();
 
-	
 
 	std::vector<float> res;
 	res.push_back(saveTime);

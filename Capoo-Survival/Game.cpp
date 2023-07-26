@@ -139,11 +139,6 @@ void Game::GameLoop()
 		if (currentEvent.type == sf::Event::KeyPressed)
 		{
 			if (currentEvent.key.code == sf::Keyboard::Escape) ShowPauseScreen();
-			/* 测试语句：按DI出现DieScreen */
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::I)) {
-				_gameState = Game::Dead;
-				ShowDieScreen();
-			}
 		}
 
 		break;

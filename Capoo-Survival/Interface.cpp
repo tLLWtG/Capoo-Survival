@@ -81,7 +81,7 @@ void Button::updateStatus(sf::RenderWindow& window) {
 	sf::Vector2i mousePos = getMousePosition(window);
 	bool status = isPointed(mousePos);
 	if (status != _clickState) {
-		printf("button %s is pointed CHANGE  %d\n", this->name.c_str(), status);
+	//	printf("button %s is pointed CHANGE  %d\n", this->name.c_str(), status);
 		_clickState = status;
 		if (_type == Icon) {
 			_sprite.setScale(status ? stressFactor : 1.0f, status ? stressFactor : 1.0f);

@@ -3,7 +3,7 @@
 #include "Mainmenu.h"
 #include "SettingScreen.h"
 #include "Archive.h"
-
+#include "PlayerChick.h"
 
 Mainmenu::Mainmenu() : Interface() {
 
@@ -14,9 +14,20 @@ Mainmenu::MenuResult Mainmenu::show(sf::RenderWindow& window) {
 	addIconButton(sf::Vector2f(1203, 520), "Image/IconButton/setting.png", "setting");
 	addIconButton(sf::Vector2f(1203, 600), "Image/IconButton/music.png", "music");
 	addIconButton(sf::Vector2f(1208, 675), "Image/IconButton/volume.png", "volume");
-	addTextButton(sf::Vector2f(640, 260), L"START", "START");
-	addTextButton(sf::Vector2f(640, 360), L"CONTINUE", "CONTINUE");
-	addTextButton(sf::Vector2f(640, 460), L"HELP", "HELP");
+	
+	Archive::load();
+	printf("Game::time =%f\n", Game::addTime);
+	if (!Archive::load().empty()) {
+		addTextButton(sf::Vector2f(640, 260), L"NEW", "NEW");
+		addTextButton(sf::Vector2f(640, 360), L"CONTINUE", "CONTINUE");
+		addTextButton(sf::Vector2f(640, 460), L"HELP", "HELP");
+		addTextButton(sf::Vector2f(640, 560), L"QUIT", "QUIT");
+	}
+	else {
+		addTextButton(sf::Vector2f(640, 260), L"NEW", "NEW");
+		addTextButton(sf::Vector2f(640, 360), L"HELP", "HELP");
+		addTextButton(sf::Vector2f(640, 460), L"QUIT", "QUIT");
+	}
 	
 
 	static sf::Sprite background_sprite;
@@ -33,11 +44,20 @@ Mainmenu::MenuResult Mainmenu::show(sf::RenderWindow& window) {
 				return Mainmenu::MenuResult::Exiting;
 			else if (event.type == sf::Event::MouseButtonPressed) {
 				std::string buttonName = getClickButtonName(getMousePosition(window));
-				if (buttonName == "START")
+				if (buttonName == "NEW") {
+					Game::addTime = 0.0f;
+					Game::GetGameObjectManager().Remove("player");
+					PlayerChick* player = new PlayerChick();
+					player->SetPosition(0, 0);
+					Game::GetGameObjectManager().Add("player", player);
 					return Mainmenu::MenuResult::Playing;
+				}
 				else if (buttonName == "CONTINUE") {
-					Archive::load();
+					Game::LoadArchive();
 					return Mainmenu::MenuResult::Playing;
+				}
+				else if (buttonName == "QUIT") {
+					return Mainmenu::MenuResult::Exiting;
 				}
 				else if (buttonName == "setting")
 					return Mainmenu::MenuResult::Setting;

@@ -2,6 +2,7 @@
 #include "ExitScreen.h"
 #include "Game.h"
 #include "Archive.h"
+#include "PlayerChick.h"
 
 ExitScreen::ExitScreen():_font_exit(AssetManager::GetFont("Font/Fixedsys62.ttf")) {
 }
@@ -41,7 +42,12 @@ int ExitScreen::show(sf::RenderWindow& window) {
 					break;
 				}
 				else if (buttonName == "notsave") {
-					return 1;
+					Game::addTime = 0.0f;
+					Game::GetGameObjectManager().Remove("player");
+					PlayerChick* player = new PlayerChick();
+					player->SetPosition(0, 0);
+					Game::GetGameObjectManager().Add("player", player);
+					return 2;
 				}
 			}
 		}

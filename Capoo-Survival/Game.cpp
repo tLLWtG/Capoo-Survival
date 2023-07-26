@@ -155,7 +155,7 @@ void Game::GameLoop()
 
 void Game::ShowSplashScreen()
 {
-	
+
 	_splashscreen.show(_mainWindow);
 	_gameState = Game::ShowingMenu;
 }
@@ -173,9 +173,9 @@ void Game::ShowMenu()
 	player->maxHealth = 200.0f;
 	player->health = 200.0f;
 	player->scores = 0;
-	
+
 	std::set<std::string> monsterSet = _monsterManager.GetMonsterSet();
-	
+
 	for (auto& x : monsterSet)
 	{
 		_gameObjectManager.Remove(x);
@@ -202,9 +202,9 @@ void Game::ShowMenu()
 		ShowSettingScreen();
 		break;
 	case Mainmenu::Loading:
-		Game::LoadArchive();
 		Game::gameTime.restart();
 		_gameObjectManager.clock.restart();
+		Game::LoadArchive();
 		_gameState = Playing;
 		break;
 	}
@@ -283,7 +283,7 @@ void Game::LoadArchive()
 	{
 		// load失败提示，然后回到mainmenu
 	}
-	
+
 	float saveTime = archive[0];
 	float saveHealth = archive[1];
 	float saveScore = archive[2];

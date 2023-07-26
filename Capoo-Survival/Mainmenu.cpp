@@ -16,7 +16,7 @@ Mainmenu::MenuResult Mainmenu::show(sf::RenderWindow& window) {
 	addIconButton(sf::Vector2f(1208, 675), "Image/IconButton/volume.png", "volume");
 	
 	Archive::load();
-	printf("Game::time =%f\n", Game::addTime);
+	//printf("Game::time =%f\n", Game::addTime);
 	if (!Archive::load().empty()) {
 		addTextButton(sf::Vector2f(640, 260), L"NEW", "NEW");
 		addTextButton(sf::Vector2f(640, 360), L"CONTINUE", "CONTINUE");
